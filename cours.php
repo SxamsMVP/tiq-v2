@@ -1,9 +1,3 @@
-<?php
-
-session_start();
-include('header.php');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +11,15 @@ include('header.php');
     <style>
         .center-title {
             text-align: center;
+        }
+        .main-content {
+            padding: 20px;
+            margin-left: 220px; /* ajustez la marge en fonction de la largeur de votre barre latérale */
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
@@ -60,31 +63,44 @@ include('header.php');
         <a href="forum.php">Forum</a>
     </div>
 
-    
-    <div class="col-md-2 sidebar">
-    <h3 style="color: white">Catégories</h3>
-    <ul>
-        <li>
-            <a href="#" onclick="changeContent('SELECT')">SELECT</a>
-            <ul>
-                <li><a href="#" onclick="changeContent('SELECT DISTINCT')">SELECT DISTINCT</a></li>
-            </ul>
-        </li>
-        <li><a href="#" onclick="changeContent('WHERE')">WHERE</a></li>
-            <ul>
-                <li><a href="#" onclick="changeContent('AND & OR')">AND & OR</a></li>
-                <li><a href="#" onclick="changeContent('IN')">IN</a></li>
-            </ul>
-        <li><a href="#" onclick="changeContent('Jointure')">Jointure</a></li>
-        <li><a href="#" onclick="changeContent('Aggregations')">Aggregations</a></li>
-    </ul>
-</div>
-
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Barre latérale -->
+            <div class="col-md-2 sidebar">
+                <h3 style="color: white">Catégories</h3>
+                <ul>
+                    <li>
+                        <a href="#" onclick="changeContent('SELECT')">SELECT</a>
+                        <ul>
+                            <li><a href="#" onclick="changeContent('SELECT DISTINCT')">SELECT DISTINCT</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" onclick="changeContent('WHERE')">WHERE</a></li>
+                        <ul>
+                            <li><a href="#" onclick="changeContent('AND & OR')">AND & OR</a></li>
+                            <li><a href="#" onclick="changeContent('IN')">IN</a></li>
+                            <li><a href="#" onclick="changeContent('BETWEEN')">BETWEEN</a></li>
+                            <li><a href="#" onclick="changeContent('LIKE')">LIKE</a></li>
+                        </ul>
+                    <li><a href="#" onclick="changeContent('GROUP BY')">GROUP BY</a></li>
+                    <li><a href="#" onclick="changeContent('HAVING')">HAVING</a></li>
+                    <li><a href="#" onclick="changeContent('Jointure')">Jointure</a></li>
+                    <li><a href="#" onclick="changeContent('Aggregations')">Aggregations</a></li>
+                </ul>
+            </div>
 
             <!-- Contenu principal -->
-            <div class="col-md-10 main-content" id="content">
-                <!-- Contenu initial -->
-                <p>Sélectionnez une catégorie pour afficher le contenu correspondant.</p>
+            <div class="col-md-10 main-content">
+                <article id="post-11" class="post-11 page type-page status-publish hentry">
+                    <header class="entry-header">
+                        <!-- Contenu initial -->
+                        <h1 class="center-title">Apprendre le SQL</h1>
+                        <p>Le SQL, ou Structured Query Language, est un langage utilisé pour interagir avec les bases de données. 
+                            Principalement adopté par les développeurs web, il permet de manipuler les données d'un site internet. 
+                            SQL.sh propose des cours et des explications sur les commandes essentielles permettant de lire, insérer, 
+                            mettre à jour et supprimer des données dans une base de données.</p>
+                    </header>
+                </article>
             </div>
         </div>
     </div>
@@ -94,39 +110,51 @@ include('header.php');
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-    function changeContent(category) {
-        // Récupérer l'élément avec l'ID "content"
-        var contentElement = document.getElementById('content');
+        function changeContent(category) {
+            // Récupérer l'élément avec l'ID "content"
+            var contentElement = document.getElementById('content');
 
-        // Modifier le contenu en fonction de la catégorie
-        switch (category) {
-            case 'SELECT':
-                contentElement.innerHTML = '<h1>SELECT</h1><p>Contenu pour SELECT</p>';
-                break;
-            case 'SELECT DISTINCT':
-                contentElement.innerHTML = '<h1>SELECT DISTINCT</h1><p>Contenu pour SELECT DISTINCT</p>';
-                break;
-            case 'WHERE':
-                contentElement.innerHTML = '<h1>WHERE</h1><p>Contenu pour WHERE...</p>';
-                break;
-            case 'AND & OR':
-                contentElement.innerHTML = '<h1>AND & OR</h1><p>Contenue pour et & ou</p>';
-                break;
-            case 'IN':
-                contentElement.innerHTML = '<h1>IN</h1><p>Contenue pour IN</p>';
-                break;
-            case 'Jointure':
-                contentElement.innerHTML = '<h1>Jointure</h1><p>test</p>';
-                break;
-                
-            case 'Aggregations':
-                contentElement.innerHTML = '<h1>Aggregations</h1><p>Contenu pour Aggregations...</p>';
-                break;
-            default:
-                contentElement.innerHTML = '<p>Sélectionnez une catégorie pour afficher le contenu correspondant.</p>';
+            // Modifier le contenu en fonction de la catégorie
+            switch (category) {
+                case 'SELECT':
+                    contentElement.innerHTML = '<h1>SELECT</h1><p>Contenu pour SELECT</p>';
+                    break;
+                case 'SELECT DISTINCT':
+                    contentElement.innerHTML = '<h1>SELECT DISTINCT</h1><p>Contenu pour SELECT DISTINCT</p>';
+                    break;
+                case 'WHERE':
+                    contentElement.innerHTML = '<h1>WHERE</h1><p>Contenu pour WHERE...</p>';
+                    break;
+                case 'AND & OR':
+                    contentElement.innerHTML = '<h1>AND & OR</h1><p>Contenu pour et & ou</p>';
+                    break;
+                case 'IN':
+                    contentElement.innerHTML = '<h1>IN</h1><p>Contenu pour IN</p>';
+                    break;
+                case 'BETWEEN':
+                    contentElement.innerHTML = '<h1>BETWEEN</h1><p>Contenu pour BETWEEN</p>';
+                    break;
+                case 'LIKE':
+                    contentElement.innerHTML = '<h1>LIKE</h1><p>Contenu pour LIKE</p>';
+                    break;
+                case 'GROUP BY':
+                    contentElement.innerHTML = '<h1>GROUP BY</h1><p>Contenu pour GROUP BY</p>';
+                    break;
+                case 'HAVING':
+                    contentElement.innerHTML = '<h1>HAVING</h1><p>Contenu pour HAVING</p>';
+                    break;                 
+                case 'Jointure':
+                    contentElement.innerHTML = '<h1>Jointure</h1><p>test</p>';
+                    break;
+                    
+                case 'Aggregations':
+                    contentElement.innerHTML = '<h1>Aggregations</h1><p>Contenu pour Aggregations...</p>';
+                    break;
+                default:
+                    contentElement.innerHTML = '<p>Sélectionnez une catégorie pour afficher le contenu correspondant.</p>';
+            }
         }
-    }
-</script>
+    </script>
 
 </body>
 
