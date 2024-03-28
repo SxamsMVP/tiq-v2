@@ -27,6 +27,7 @@ body {
     margin-left: auto;
     margin-right: auto;
 
+    margin-top: 1rem;
 }
 
 .header-links a {
@@ -65,12 +66,15 @@ body {
     text-align: center;
 }
 
-
-.logo img {
-    max-height: 80px; /* Ajustez la hauteur maximale selon vos besoins */
-    max-width: 100%; /* Garantit que l'image ne dépasse pas la largeur du conteneur */
+.logo {
+    display: flex;
+    align-items: center;
 }
 
+.logo img {
+    max-height: 100px; /* Ajustez la hauteur maximale selon vos besoins */
+    max-width: 100%; /* Garantit que l'image ne dépasse pas la largeur du conteneur */
+}
 .photo-preview-container {
     width: 50px; /* Définir la largeur du conteneur */
     height: 50px; /* Définir la hauteur du conteneur */
@@ -94,4 +98,13 @@ body {
     height: 50px;
     border-radius: 50%; /* Pour une photo de profil arrondie */
     margin-right: 10px; /* Espace entre la photo et le texte */
+}
+
+.footer-sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Couleur de fond de votre choix /
+    color: white; / Couleur du texte de votre choix /
+    padding: 20px; / Espace intérieur de votre choix */
 }

@@ -67,44 +67,48 @@ if ($authentication_successful) {
     <title>Connexion</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/header_menu.css">
+    <style>
+        body {
+            background-image: url('img/fond_ecran.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body>
-<!-- En-tête -->
-<div class="header">
+    <div class="header mb-4">
         <div class="logo">
             <img src="img/logo.png" alt="Logo SQL CHALLENGER">
         </div>
         <div class="header-title">SQL CHALLENGER</div>
-        <div class="header-links">
-        <a href="inscription.php">Inscription</a>
-    
     </div>
-</div>
-
-    <div class="container">
-        <h3 style="color: #007bff; font-size: 2rem; font-weight: bold;">Connexion</h3>
-
+    <div class="container mt-5" style="background-color: #c7a4eb; border-radius: 20px;">
+        <h3 style="color: #ffffff; font-size: 2rem; font-weight: bold;">Connexion</h3>
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
+            <div class="form-group text-white">
                 <label for="username">Nom d'utilisateur :</label>
                 <input type="text" name="username" class="form-control" required>
             </div>
-            <div class="form-group">
+            <div class="form-group text-white">
                 <label for="password">Mot de passe :</label>
                 <input type="password" name="password" class="form-control" required>
             </div>
+            <div class="col text-right  ">
+                <a class="mt-4 text-decoration-underline" href="??">Mot de passe oublié</a>
+            </div>
 
-            <div class="d-flex justify-content-between">
-                <input class="btn btn-success" type="submit" value="Connexion">
+            <div class="text-center mt-4 mb-4"> <!-- Ajout de la classe text-center pour centrer le bouton -->
+                <input class="btn btn-success btn-lg" type="submit" value="Connexion"> <!-- Ajout de la classe btn-lg pour agrandir le bouton -->
             </div>
         </form>
-        <a class="mt-4" href="??">Mot de passe oublié</a>
+        <a class="mt-4" href="inscription.php">Pas de compte ? S'inscrire</a>
     </div>
-    
+
+
     <!-- Barre latérale en bas -->
-    <div class="footer-sidebar bg-dark fixed-bottom text-white p-4">
+    <div class="footer-sidebar text-white p-4">
         <h4>Coordonnées de l'entreprise</h4>
         <p>Adresse : Université de Bordeaux</p>
         <p>Téléphone : 06 06 06 06 06</p>
