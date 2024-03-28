@@ -1,7 +1,7 @@
 /* Styles pour le menu latéral */
 .sidebar {
     height: 100%;
-    width: 250px;
+    width: 220px;
     position: fixed;
     z-index: 1;
     top: 143px;
@@ -33,4 +33,17 @@
     margin-left: 120px;
     /* Largeur du menu latéral */
     padding: 12px;
+}
+
+.center-title {
+    text-align: center;
+}
+.main-content {
+    padding: 20px;
+    margin-left: 220px; /* ajustez la marge en fonction de la largeur de votre barre latérale */
+}
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
 }

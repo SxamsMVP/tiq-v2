@@ -8,20 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/header_menu.css">
     <link rel="stylesheet" href="style/cour.css">
-    <style>
-        .center-title {
-            text-align: center;
-        }
-        .main-content {
-            padding: 20px;
-            margin-left: 220px; /* ajustez la marge en fonction de la largeur de votre barre latérale */
-        }
-        @media (max-width: 768px) {
-            .main-content {
-                margin-left: 0;
-            }
-        }
-    </style>
+
 </head>
 
 <body>
@@ -92,14 +79,16 @@
             <!-- Contenu principal -->
             <div class="col-md-10 main-content">
                 <article id="post-11" class="post-11 page type-page status-publish hentry">
-                    <header class="entry-header">
-                        <!-- Contenu initial -->
-                        <h1 class="center-title">Apprendre le SQL</h1>
-                        <p>Le SQL, ou Structured Query Language, est un langage utilisé pour interagir avec les bases de données. 
-                            Principalement adopté par les développeurs web, il permet de manipuler les données d'un site internet. 
-                            SQL.sh propose des cours et des explications sur les commandes essentielles permettant de lire, insérer, 
-                            mettre à jour et supprimer des données dans une base de données.</p>
-                    </header>
+
+                    <!-- Contenu initial -->
+                    <h1 class="center-title">Apprendre le SQL</h1>
+                    <p>Le SQL, ou Structured Query Language, est un langage utilisé pour interagir avec les bases de données. 
+                        Principalement adopté par les développeurs web, il permet de manipuler les données d'un site internet. 
+                        SQL.sh propose des cours et des explications sur les commandes essentielles permettant de lire, insérer, 
+                        mettre à jour et supprimer des données dans une base de données.</p>
+                    <h1 class="center-title">Cours</h1>
+                    <p>Les cours sont conçus pour vous enseigner les commandes SQL essentielles telles que SELECT, INSERT INTO, UPDATE, DELETE, DROP TABLE, entre autres. Chaque commande est expliquée à travers des exemples clairs et succincts, offrant ainsi une formation pratique. En complément de la liste des commandes SQL, les cours proposent également des fiches mnémotechniques décrivant les fonctions SQL telles que AVG(), COUNT(), MAX(), etc. Ces ressources sont précieuses pour renforcer votre maîtrise du SQL.</p>
+
                 </article>
             </div>
         </div>
