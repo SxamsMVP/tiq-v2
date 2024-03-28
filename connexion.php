@@ -103,7 +103,7 @@ if ($authentication_successful) {
                 <input class="btn btn-success btn-lg" type="submit" value="Connexion"> <!-- Ajout de la classe btn-lg pour agrandir le bouton -->
             </div>
         </form>
-        <a class="mt-4" href="inscription.php">Pas de compte ? S'inscrire</a>
+        <a class="mt-4" href="inscription.php">Pas de compte ? S'inscrire !</a>
     </div>
 
 
