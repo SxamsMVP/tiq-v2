@@ -99,7 +99,7 @@ if ($authentication_successful) {
                 <a class="mt-4 text-decoration-underline" href="??">Mot de passe oublié</a>
             </div>
 
-            <div class="text-center mt-4 mb-4"> <!-- Ajout de la classe text-center pour centrer le bouton -->
+            <div class="text-center mt-1 mb-4"> <!-- Ajout de la classe text-center pour centrer le bouton -->
                 <input class="btn btn-success btn-lg" type="submit" value="Connexion"> <!-- Ajout de la classe btn-lg pour agrandir le bouton -->
             </div>
         </form>
