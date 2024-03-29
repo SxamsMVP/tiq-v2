@@ -3,15 +3,14 @@ body {
 }
 
 .container {
-    max-width: 100%;
+    max-width: 600px; /* Réduire la largeur maximale à 600px */
     margin: 0 auto;
     padding: 20px;
     text-align: center;
 }
 
 .header {
-    background-color: #c7a4eb;
-    color: #000000;
+    color: #ffffff;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -20,7 +19,7 @@ body {
 }
 
 .header-title {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: bold;
     font-family: fantasy;
     text-align: center;
@@ -37,7 +36,7 @@ body {
 }
 
 .menu {
-    background-color: #6050dc;
+    background-color: #000000;
     color: #000000;
     padding: 10px;
     display: flex;
@@ -52,7 +51,7 @@ body {
 
 .list-group-item {
     background-color: #ffffff;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     border: 1px solid #dee2e6;
     border-radius: 5px;
     padding: 10px;
@@ -75,7 +74,6 @@ body {
     max-height: 100px; /* Ajustez la hauteur maximale selon vos besoins */
     max-width: 100%; /* Garantit que l'image ne dépasse pas la largeur du conteneur */
 }
-
 .photo-preview-container {
     width: 50px; /* Définir la largeur du conteneur */
     height: 50px; /* Définir la hauteur du conteneur */
@@ -102,25 +100,10 @@ body {
 }
 
 .footer-sidebar {
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%; /* Couleur de fond de votre choix /
     color: white; / Couleur du texte de votre choix /
     padding: 20px; / Espace intérieur de votre choix */
-}
-.table-responsive {
-    max-height: 200px; /* Réduire la hauteur maximale pour limiter la taille du tableau */
-    max-width: 400px; /* Réduire la largeur maximale pour limiter la taille du tableau */
-    overflow: auto; /* Ajouter une barre de défilement si nécessaire */
-    float: left; /* Aligner le tableau à gauche */
-    margin-right: 20px; /* Ajouter un espace à droite du tableau */
-}
-
-.table {
-    font-size: 12px; /* Réduire la taille de la police */
-}
-
-.table th,
-.table td {
-    padding: 5px; /* Réduire l'espacement entre les cellules */
 }

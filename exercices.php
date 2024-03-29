@@ -104,6 +104,7 @@ function compareResults($result1, $result2)
     return $array1 === $array2;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -112,7 +113,7 @@ function compareResults($result1, $result2)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQL CHALLENGER</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style/header_menu.css">
+    <link rel="stylesheet" href="style/exercices.css">
 </head>
 
 <body>
@@ -151,112 +152,61 @@ function compareResults($result1, $result2)
         <a href="exercices.php">Exercices</a>
         <a href="forum.php">Forum</a>
     </div>
+    <div class="container mt-2">
 
-    <div class="container mt-5">
-        <div class="query-form">
-            <h1 class="text-center text-info mb-4">Apprendre SQL - Questions et Réponses</h1>
+        <?php if ($currentQuestion) : ?>
+            <h3 class="mb-3"><strong>Question:</strong> <?php echo $currentQuestion['question']; ?></h3>
+        <?php endif; ?>
+        <div class="row">
+            <div class="col-md-6">
 
-            <?php if ($currentQuestion) : ?>
-                <h2>Question en cours:</h2>
-                <p><strong>Question:</strong> <?php echo $currentQuestion['question']; ?></p>
-            <?php endif; ?>
-
-            <?php if (!empty($tableName) && !empty($tableData)) : ?>
-                <h2>Contenu de la table "<?php echo $tableName; ?>" :</h2>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <?php foreach ($tableData[0] as $columnName => $value) : ?>
-                                <th><?php echo $columnName; ?></th>
-                            <?php endforeach; ?>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($tableData as $row) : ?>
-                            <tr>
-                                <?php foreach ($row as $value) : ?>
-                                    <td><?php echo $value; ?></td>
-                                <?php endforeach; ?>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php endif; ?>
-
-            <h2>Entrez votre requête SQL :</h2>
-            <form action="exercices.php" method="post">
-                <div class="form-group">
-                    <textarea name="sql_query" rows="8" cols="50" class="form-control" required><?php echo isset($_POST['sql_query']) ? htmlspecialchars($_POST['sql_query']) : ''; ?></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Exécuter la requête</button>
-            </form>
-            
-            <?php if ($currentQuestion) : ?>
+                <h2>Entrez votre requête SQL :</h2>
                 <form action="exercices.php" method="post">
-                    <input type="hidden" name="answer" value="<?php echo htmlspecialchars($currentQuestion['answer']); ?>">
-                    <button type="submit" class="btn btn-success mt-3" name="validate">Valider</button>
+                    <div class="form-group">
+                        <textarea name="sql_query" rows="8" cols="50" class="form-control" required><?php echo isset($_POST['sql_query']) ? htmlspecialchars($_POST['sql_query']) : ''; ?></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Exécuter la requête</button>
                 </form>
-            <?php endif; ?>
 
+                <?php if ($currentQuestion) : ?>
+                    <form action="exercices.php" method="post">
+                        <input type="hidden" name="answer" value="<?php echo isset($currentQuestion['answer']) ? htmlspecialchars($currentQuestion['answer']) : ''; ?>">
+
+                        <button type="submit" class="btn btn-success mt-3" name="validate">Valider</button>
+                    </form>
+                <?php endif; ?>
+            </div>
+            <div class="col-md-6">
+                <?php if (!empty($tableName) && !empty($tableData)) : ?>
+                    <h4 class="text-right">Contenu de la table "<?php echo $tableName; ?>" :</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <?php foreach ($tableData[0] as $columnName => $value) : ?>
+                                        <th><?php echo $columnName; ?></th>
+                                    <?php endforeach; ?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($tableData as $row) : ?>
+                                    <tr>
+                                        <?php foreach ($row as $value) : ?>
+                                            <td class="text-secondary"><?php echo $value; ?></td>
+                                        <?php endforeach; ?>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
-        <div class="query-results">
-            <?php
-            // Connexion à la base de données SQLite
-            $bdd = new SQLite3('database.sqlite');
+    </div>
 
-            // Vérification de la connexion
-            if (!$bdd) {
-                die("Erreur de connexion à la base de données");
-            }
-
-            // Vérifier si le formulaire a été soumis
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Récupérer la requête soumise par l'utilisateur
-                $sql_query = $_POST['sql_query'] ?? '';
-
-                // Exécuter la requête SQL
-                if (!empty($sql_query)) {
-                    $result = $bdd->query($sql_query);
-
-                    // Vérification du résultat de la requête
-                    if ($result) {
-                        // Affichage des résultats de la requête
-                        echo "<h2>Résultats de la requête :</h2>";
-                        echo "<table class='table table-bordered'>";
-                        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                            echo "<tr>";
-                            foreach ($row as $key => $value) {
-                                echo "<td>$key</td><td>$value</td>";
-                            }
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-
-                        // Formulaire pour valider la réponse de l'utilisateur
-                        echo "<form action='exercices.php' method='post'>";
-                        echo "<input type='hidden' name='answer' value=\"" . htmlspecialchars($currentQuestion['answer']) . "\">"; // Champ caché pour stocker la réponse attendue
-                        echo "<input type='hidden' name='sql_query' value=\"" . htmlspecialchars($sql_query) . "\">"; // Champ caché pour stocker la requête de l'utilisateur
-                        echo "<button type='submit' name='validate' class='btn btn-primary'>Valider</button>";
-                        echo "</form>";
-                    } else {
-                        // Affichage d'un message d'erreur si la requête a échoué
-                        echo "<h2>Erreur lors de l'exécution de la requête :</h2>";
-                        echo "<p>" . $bdd->lastErrorMsg() . "</p>";
-                    }
-                } else {
-                    // Afficher un message si aucun requête n'a été soumise
-                    echo "<h2>Aucune requête soumise.</h2>";
-                }
-            }
-
-            // Fermeture de la connexion à la base de données
-            $bdd->close();
-            ?>
-        </div>
-
-        <!-- Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
