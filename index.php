@@ -13,46 +13,6 @@ include('header.php');
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/header_menu.css">
     <title>Bannière avec navigation</title>
-    <style>
-        .banner {
-            position: relative;
-            width: 100%;
-            height: 220px;
-            /* Ajustez la hauteur de la bannière selon vos besoins */
-            overflow: hidden;
-        }
-
-        .banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Les images s'adapteront automatiquement à la hauteur de la bannière */
-            display: block;
-            /* Pour s'assurer que l'image prend toute la largeur */
-            margin: 0 auto;
-            /* Pour centrer l'image horizontalement */
-        }
-
-        .prev,
-        .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 18px;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .prev {
-            left: 10px;
-        }
-
-        .next {
-            right: 10px;
-        }
-    </style>
 </head>
 
 <body>
