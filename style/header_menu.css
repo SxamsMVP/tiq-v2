@@ -15,7 +15,10 @@ body {
     padding: 10px;
     display: flex;
     align-items: center;
-    
+}
+
+.logo {
+    margin-right: 10px; /* Permet au logo de rester à gauche */
 }
 
 .header-title {
@@ -23,7 +26,11 @@ body {
     font-weight: bold;
     font-family: fantasy;
     margin-top: 1rem;
-    text-align: left;
+    margin-right: auto;
+}
+
+.header-links {
+    margin-left: auto; /* Permet au contenu des liens de rester à droite */
 }
 
 .header-links a {
@@ -31,7 +38,6 @@ body {
     color: #000000;
     margin-left: 20px;
 }
-
 .menu {
     background-color: #6050dc;
     color: #000000;
@@ -60,11 +66,6 @@ body {
 
 .main-content {
     text-align: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
 }
 
 .logo img {
