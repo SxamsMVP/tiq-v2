@@ -47,3 +47,33 @@
         margin-left: 0;
     }
 }
+/* Styles spécifiques pour le menu latéral droit */
+.right-sidebar {
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 163;
+    right: 0;
+    height: 100%;
+    width: 500px; /* Ajustez la largeur selon vos besoins */
+    overflow-y: auto;
+}
+
+.right-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.right-sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.right-sidebar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.right-sidebar ul li a:hover {
+    color: #17a2b8;
+}
