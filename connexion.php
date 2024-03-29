@@ -66,10 +66,10 @@ if ($authentication_successful) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style/header_menu.css">
+    <link rel="stylesheet" href="style/connexion.css">
     <style>
         body {
-            background-image: url('img/fond_ecran.jpg');
+            background-image: url('img/fond_ecran.jpeg');
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -83,19 +83,19 @@ if ($authentication_successful) {
         </div>
         <div class="header-title">SQL CHALLENGER</div>
     </div>
-    <div class="container mt-5" style="background-color: #c7a4eb; border-radius: 20px;">
+    <div class="container mt-5" style="background-color: #000000; border-radius: 20px;">
         <h3 style="color: #ffffff; font-size: 2rem; font-weight: bold;">Connexion</h3>
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group text-white">
+            <div class="form-group text-white text-left pr-4 pl-3">
                 <label for="username">Nom d'utilisateur :</label>
-                <input type="text" name="username" class="form-control" required>
+                <input type="text" name="username" class="form-control " required>
             </div>
-            <div class="form-group text-white">
+            <div class="form-group text-white text-left pr-4 pl-3">
                 <label for="password">Mot de passe :</label>
-                <input type="password" name="password" class="form-control" required>
+                <input type="password" name="password" class="form-control " required>
             </div>
-            <div class="col text-right  ">
+            <div class="col text-right pr-4">
                 <a class="mt-4 text-decoration-underline" href="??">Mot de passe oublié</a>
             </div>
 
