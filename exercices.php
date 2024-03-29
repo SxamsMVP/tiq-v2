@@ -105,7 +105,7 @@ function compareResults($result1, $result2) {
                 if (!empty($userData['photo_path'])) {
                     echo '<img src="' . $userData['photo_path'] . '" alt="Photo de profil" class="profile-photo">';
                 }
-                echo '<a href="account.php">' . $username . '</a>';
+                echo '<a href="account.php">' . ucwords($username) . '</a>';
                 if ($userData['admin']) {
                     echo '<a href="back_office.php">Admin</a>';
                 }

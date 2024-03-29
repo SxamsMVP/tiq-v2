@@ -1,3 +1,9 @@
+<?php
+session_start();
+include('header.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,29 +26,28 @@
         <div class="header-title">
             <a href="index.php" style="text-decoration: none; color: inherit;">SQL CHALLENGER</a>
         </div>
-        <div class="header-links">
-            <?php
-            // Placeholder pour $userData et $username
-            $userData = []; // Remplacez ceci par vos données utilisateur
-            $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+        
+        <div class="header-content">
+            <div class="header-links">
+                <?php
+                // Affichez les liens de connexion/inscription ou de données du compte/déconnexion en fonction de la connexion de l'utilisateur
+                if (isset($_SESSION['username'])) {
 
-            // Affichez les liens de connexion/inscription ou de données du compte/déconnexion en fonction de la connexion de l'utilisateur
-            if (!empty($username)) {
-                // Affichez la photo de profil si le chemin est disponible
-                if (!empty($userData['photo_path'])) {
-                    echo '<img src="' . $userData['photo_path'] . '" alt="Photo de profil" class="profile-photo">';
+                    // Affichez la photo de profil si le chemin est disponible
+                    if (!empty($userData['photo_path'])) {
+                        echo '<img src="' . $userData['photo_path'] . '" alt="Photo de profil" class="profile-photo">';
+                    }
+                    echo '<a href="account.php">' . ucwords($username) . '</a>';
+                    if ($userData['admin']) {
+                        echo '<a href="back_office.php">Admin</a>';
+                    }
+                    echo '<a href="logout.php">Déconnexion</a>';
+                } else {
+                    echo '<a href="connexion.php">Connexion</a>';
+                    echo '<a href="inscription.php">Inscription</a>';
                 }
-                echo '<a href="account.php">' . $username . '</a>';
-                if (!empty($userData['admin'])) {
-                    echo '<a href="back_office.php">Admin</a>';
-                }
-                echo '<a href="logout.php">Déconnexion</a>';
-            } else {
-                echo '<a href="connexion.php">Connexion</a>';
-                echo '<a href="inscription.php">Inscription</a>';
-            }
-            ?>
-        </div>
+                ?>
+            </div>
     </div>
 
     <!-- Menu horizontal -->
