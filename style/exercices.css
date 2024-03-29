@@ -110,7 +110,7 @@ body {
 }
 .table-responsive {
     max-height: 200px; /* Réduire la hauteur maximale pour limiter la taille du tableau */
-    max-width: 400px; /* Réduire la largeur maximale pour limiter la taille du tableau */
+    max-width: auto; /* Réduire la largeur maximale pour limiter la taille du tableau */
     overflow: auto; /* Ajouter une barre de défilement si nécessaire */
     float: left; /* Aligner le tableau à gauche */
     margin-right: 20px; /* Ajouter un espace à droite du tableau */
