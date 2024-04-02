@@ -85,3 +85,21 @@
     border-radius: 5px;
 }
 
+.sidebar-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar-list li {
+    padding: 5px 0;
+}
+
+.sidebar-list li a {
+    color: #333; /* Couleur du texte */
+    text-decoration: none;
+}
+
+.sidebar-list li a:hover {
+    color: #007bff; /* Couleur du texte au survol */
+}
+

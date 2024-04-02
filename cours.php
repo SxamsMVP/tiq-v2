@@ -97,10 +97,19 @@ include('header.php');
             </div>
 
             <!-- Barre latérale droite -->
-            <div class="col-md-3 right-sidebar">
-            </div>
+        <div class="col-md-3 right-sidebar">
+            <h3 style="color: white">Prendre des cours particuliers</h3>
+            <ul class="sidebar-list">
+                <li><a href="#">Débutants</a></li>
+                <li><a href="#">Intermédiaires</a></li>
+                <li><a href="#">Avancé</a></li>
+                <li><a href="#">Expert</a></li>
+            </ul>
+
+            <h3 styke = "color: white"> Livres conseillés</h3>
+                <ul class="sidebar-list">
+                    <li><a href="#">livre</a></li>
         </div>
-    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -114,7 +123,7 @@ include('header.php');
             // Modifier le contenu en fonction de la catégorie
             switch (category) {
                 case 'SELECT':
-                    contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>SELECT</h1><p>Commande basique La syntaxe fondamentale de cette commande est la suivante :</p><br> <p class="sql-command">SELECT nom_du_champ FROM nom_du_tableau</p><br><p>Cette requête SQL va sélectionner (SELECT) le champ "nom_du_champ" provenant (FROM) du tableau appelé "nom_du_tableau".</p></article>';
+                    contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>SELECT</h1><p>Commande basique<br><br>La syntaxe fondamentale de cette commande est la suivante :</p><p class="sql-command">SELECT nom_du_champ FROM nom_du_tableau</p><p>Cette requête SQL va sélectionner (SELECT) le champ "nom_du_champ" provenant (FROM) du tableau appelé "nom_du_tableau".</p></article>';
                     break;
                 case 'SELECT DISTINCT':
                     contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>SELECT DISTINCT</h1><p>Contenu pour SELECT DISTINCT</p></article>';
