@@ -48,6 +48,7 @@ include('header.php');
                 }
                 ?>
             </div>
+        </div>
     </div>
 
     <!-- Menu horizontal -->
