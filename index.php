@@ -107,7 +107,7 @@ include('header.php');
                     <a href="cours.php" class="btn btn-primary">Découvrir les cours</a>
                 </div>
                 <div class="col-md-6">
-                    <h3>Exercices Pratiques</h3>
+                    <h3>Exercices</h3>
                     <p>Mettez vos connaissances en pratique avec nos exercices interactifs. Testez vos compétences en résolvant des problèmes SQL réels et en obtenant un retour immédiat. Améliorez votre compréhension et votre maîtrise de SQL en pratiquant régulièrement.</p>
                     <a href="exercices.php" class="btn btn-primary">Commencer les exercices</a>
                 </div>
