@@ -77,3 +77,11 @@
 .right-sidebar ul li a:hover {
     color: #17a2b8;
 }
+
+.sql-command {
+    background-color: #f0f0f0;
+    padding: 7px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+

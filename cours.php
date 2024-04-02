@@ -3,7 +3,6 @@ session_start();
 include('header.php');
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,13 +88,9 @@ include('header.php');
             <!-- Contenu principal -->
             <div class="col-md-7 main-content">
                 <article id="post-11" class="post-11 page type-page status-publish hentry">
-
                     <!-- Contenu initial -->
                     <h1 class="center-title">Apprendre le SQL</h1>
-                    <p>Le SQL, ou Structured Query Language, est un langage utilisé pour interagir avec les bases de données.
-                        Principalement adopté par les développeurs web, il permet de manipuler les données d'un site internet.
-                        SQL.sh propose des cours et des explications sur les commandes essentielles permettant de lire, insérer,
-                        mettre à jour et supprimer des données dans une base de données.</p>
+                    <p>Le SQL, ou Structured Query Language, est un langage utilisé pour interagir avec les bases de données. Principalement adopté par les développeurs web, il permet de manipuler les données d'un site internet. SQL.sh propose des cours et des explications sur les commandes essentielles permettant de lire, insérer, mettre à jour et supprimer des données dans une base de données.</p>
                     <h1 class="center-title">Cours</h1>
                     <p>Les cours sont conçus pour vous enseigner les commandes SQL essentielles telles que SELECT, INSERT INTO, UPDATE, DELETE, DROP TABLE, entre autres. Chaque commande est expliquée à travers des exemples clairs et succincts, offrant ainsi une formation pratique. En complément de la liste des commandes SQL, les cours proposent également des fiches mnémotechniques décrivant les fonctions SQL telles que AVG(), COUNT(), MAX(), etc. Ces ressources sont précieuses pour renforcer votre maîtrise du SQL.</p>
                 </article>
@@ -119,7 +114,7 @@ include('header.php');
             // Modifier le contenu en fonction de la catégorie
             switch (category) {
                 case 'SELECT':
-                    contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>SELECT</h1><p>Contenu pour SELECT</p></article>';
+                    contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>SELECT</h1><p>Commande basique La syntaxe fondamentale de cette commande est la suivante :</p><br> <p class="sql-command">SELECT nom_du_champ FROM nom_du_tableau</p><br><p>Cette requête SQL va sélectionner (SELECT) le champ "nom_du_champ" provenant (FROM) du tableau appelé "nom_du_tableau".</p></article>';
                     break;
                 case 'SELECT DISTINCT':
                     contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>SELECT DISTINCT</h1><p>Contenu pour SELECT DISTINCT</p></article>';
