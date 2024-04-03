@@ -9,7 +9,7 @@
     left: 0;
     background-color: #000000;
     /* Couleur de fond du menu latéral */
-    overflow-x: hidden;
+    overflow-x: auto;
     padding-top: 20px;
 }
 
@@ -40,11 +40,14 @@
 }
 .main-content {
     padding: 20px;
-    margin-left: 220px; /* ajustez la marge en fonction de la largeur de votre barre latérale */
+    margin-left: 250px; /* ajustez la marge en fonction de la largeur de votre barre latérale gauche */
+    margin-right: 520px; /* ajustez la marge en fonction de la largeur de votre barre latérale droite */
 }
+
 @media (max-width: 768px) {
     .main-content {
         margin-left: 0;
+        margin-right: 0;
     }
 }
 /* Styles spécifiques pour le menu latéral droit */
@@ -53,7 +56,7 @@
     color: white;
     padding: 20px;
     position: fixed;
-    top: 163;
+    top: 163px; /* Ajustez la position par rapport à l'en-tête */
     right: 0;
     height: 100%;
     width: 500px; /* Ajustez la largeur selon vos besoins */
@@ -102,4 +105,13 @@
 .sidebar-list li a:hover {
     color: #007bff; /* Couleur du texte au survol */
 }
+
+
+
+
+
+
+
+
+
 

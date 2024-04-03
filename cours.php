@@ -1,8 +1,3 @@
-<?php
-session_start();
-include('header.php');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +8,6 @@ include('header.php');
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/header_menu.css">
     <link rel="stylesheet" href="style/cour.css">
-
 </head>
 
 <body>
@@ -25,7 +19,7 @@ include('header.php');
         <div class="header-title">
             <a href="index.php" style="text-decoration: none; color: inherit;">SQL CHALLENGER</a>
         </div>
-        
+
         <div class="header-content">
             <div class="header-links">
                 <?php
@@ -36,8 +30,8 @@ include('header.php');
                     if (!empty($userData['photo_path'])) {
                         echo '<img src="' . $userData['photo_path'] . '" alt="Photo de profil" class="profile-photo">';
                     }
-                    echo '<a href="account.php">' . ucwords($username) . '</a>';
-                    if ($userData['admin']) {
+                    echo '<a href="account.php">' . ucwords($_SESSION['username']) . '</a>';
+                    if ($_SESSION['admin']) {
                         echo '<a href="back_office.php">Admin</a>';
                     }
                     echo '<a href="logout.php">Déconnexion</a>';
@@ -97,19 +91,26 @@ include('header.php');
             </div>
 
             <!-- Barre latérale droite -->
-        <div class="col-md-3 right-sidebar">
-            <h3 style="color: white">Prendre des cours particuliers</h3>
-            <ul class="sidebar-list">
-                <li><a href="#">Débutants</a></li>
-                <li><a href="#">Intermédiaires</a></li>
-                <li><a href="#">Avancé</a></li>
-                <li><a href="#">Expert</a></li>
-            </ul>
+            <div class="col-md-3 right-sidebar">
+                <h3 style="color: white">Prendre des cours particuliers</h3>
+                <ul class="sidebar-list">
+                    <li><a href="#">Débutants</a></li>
+                    <li><a href="#">Intermédiaires</a></li>
+                    <li><a href="#">Avancé</a></li>
+                    <li><a href="#">Expert</a></li>
+                </ul>
 
-            <h3 styke = "color: white"> Livres conseillés</h3>
+                <h3 style="color: white"> Livres conseillés</h3>
                 <ul class="sidebar-list">
                     <li><a href="#">livre</a></li>
+                    <li><a href="#">livre</a></li>
+                    <li><a href="#">livre</a></li>
+                    <li><a href="#">livre</a></li>
+                    <li><a href="#">livre</a></li>
+                </ul>
+            </div>
         </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -126,7 +127,84 @@ include('header.php');
                     contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>SELECT</h1><p>Commande basique<br><br>La syntaxe fondamentale de cette commande est la suivante :</p><p class="sql-command">SELECT nom_du_champ FROM nom_du_tableau</p><p>Cette requête SQL va sélectionner (SELECT) le champ "nom_du_champ" provenant (FROM) du tableau appelé "nom_du_tableau".</p></article>';
                     break;
                 case 'SELECT DISTINCT':
-                    contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>SELECT DISTINCT</h1><p>Contenu pour SELECT DISTINCT</p></article>';
+                    contentElement.innerHTML = `
+                        <article id="post-11" class="post-11 page type-page status-publish hentry">
+                            <h1>SELECT DISTINCT</h1>
+                            <p>
+                                L'usage de la commande SELECT en SQL permet de récupérer toutes les données d'une ou plusieurs colonnes. Cependant, cette commande peut entraîner l'affichage de lignes en doublon. Pour prévenir ces redondances dans les résultats, il suffit d'ajouter DISTINCT après SELECT.
+                            </p>
+                            <br>
+                            <p>
+                                <b>Exemple :</b>
+                            </p>
+                            <table border="1" cellpadding="5">
+                                <thead>
+                                    <tr>
+                                        <th>identifiant</th>
+                                        <th>prenom</th>
+                                        <th>nom</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Pierre</td>
+                                        <td>Dupond</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Sabrina</td>
+                                        <td>Bernard</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>David</td>
+                                        <td>Durand</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Pierre</td>
+                                        <td>Leroy</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Marie</td>
+                                        <td>Leroy</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>
+                                En utilisant seulement SELECT tous les noms sont retournés, or la table contient plusieurs fois le même prénom (cf. Pierre). Pour sélectionner uniquement les prénoms uniques il faut utiliser la requête suivante:
+                                <br>
+                                <code>SELECT DISTINCT prenom FROM client</code>
+                                <br>
+                                Cette requête va retourner les champs suivants:
+                            </p>
+                            <table border="1" cellpadding="5">
+                                <thead>
+                                    <tr>
+                                        <th>prenom</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Pierre</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sabrina</td>
+                                    </tr>
+                                    <tr>
+                                        <td>David</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Marie</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>
+                                Ce résultat affiche volontairement qu'une seule fois le prénom "Pierre" grâce à l'utilisation de la commande DISTINCT qui n'affiche que les résultats distincts.
+                            </p>
+                        </article>`;
                     break;
                 case 'WHERE':
                     contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>WHERE</h1><p>Contenu pour WHERE...</p></article>';
