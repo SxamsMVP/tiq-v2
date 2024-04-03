@@ -1,6 +1,10 @@
+<?php
+session_start();
+include('header.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +13,6 @@
     <link rel="stylesheet" href="style/header_menu.css">
     <link rel="stylesheet" href="style/cour.css">
 </head>
-
 <body>
     <!-- En-tête -->
     <div class="header">
@@ -19,7 +22,6 @@
         <div class="header-title">
             <a href="index.php" style="text-decoration: none; color: inherit;">SQL CHALLENGER</a>
         </div>
-
         <div class="header-content">
             <div class="header-links">
                 <?php
@@ -124,90 +126,111 @@
             // Modifier le contenu en fonction de la catégorie
             switch (category) {
                 case 'SELECT':
-                    contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>SELECT</h1><p>Commande basique<br><br>La syntaxe fondamentale de cette commande est la suivante :</p><p class="sql-command">SELECT nom_du_champ FROM nom_du_tableau</p><p>Cette requête SQL va sélectionner (SELECT) le champ "nom_du_champ" provenant (FROM) du tableau appelé "nom_du_tableau".</p></article>';
-                    break;
+    contentElement.innerHTML = `
+        <article id="post-11" class="post-11 page type-page status-publish hentry">
+            <h1>SELECT</h1>
+            <br>
+            <p>La syntaxe fondamentale de cette commande est la suivante :</p>
+            <p class="sql-command">SELECT nom_du_champ FROM nom_du_tableau</p>
+            <p>Cette requête SQL va sélectionner (SELECT) le champ "nom_du_champ" provenant (FROM) du tableau appelé "nom_du_tableau".</p>
+            <p>Le SQL, ou Structured Query Language, est un langage utilisé pour interagir avec les bases de données. La commande SELECT est l'une des commandes fondamentales de SQL et est utilisée pour récupérer des données à partir d'une ou plusieurs tables de base de données.</p>
+            <p>Voici un exemple :</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>identifiant</th>
+                            <th>prénom</th>
+                            <th>nom</th>
+                            <th>ville</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Pierre</td>
+                            <td>Dupond</td>
+                            <td>Paris</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Sabrina</td>
+                            <td>Durand</td>
+                            <td>Nantes</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Julien</td>
+                            <td>Martin</td>
+                            <td>Lyon</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>David</td>
+                            <td>Bernard</td>
+                            <td>Marseille</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Marie</td>
+                            <td>Leroy</td>
+                            <td>Grenoble</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Cet exemple montre une table "client" avec des informations sur les clients d'une entreprise.</p>
+            <p>Si l'on veut avoir la liste de toutes les villes des clients, il suffit d'effectuer la requête SQL ci-dessous :</p>
+            <p class="sql-command">SELECT ville FROM client</p>
+            <p>De cette manière, on obtient le résultat suivant :</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ville</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Paris</td>
+                        </tr>
+                        <tr>
+                            <td>Nantes</td>
+                        </tr>
+                        <tr>
+                            <td>Lyon</td>
+                        </tr>
+                        <tr>
+                            <td>Marseille</td>
+                        </tr>
+                        <tr>
+                            <td>Grenoble</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>`;
+break;
+
+
                 case 'SELECT DISTINCT':
                     contentElement.innerHTML = `
                         <article id="post-11" class="post-11 page type-page status-publish hentry">
                             <h1>SELECT DISTINCT</h1>
-                            <p>
-                                L'usage de la commande SELECT en SQL permet de récupérer toutes les données d'une ou plusieurs colonnes. Cependant, cette commande peut entraîner l'affichage de lignes en doublon. Pour prévenir ces redondances dans les résultats, il suffit d'ajouter DISTINCT après SELECT.
-                            </p>
+                            <p>L'usage de la commande SELECT en SQL permet de récupérer toutes les données d'une ou plusieurs colonnes. Cependant, cette commande peut entraîner l'affichage de lignes en doublon. Pour prévenir ces redondances dans les résultats, il suffit d'ajouter DISTINCT après SELECT.</p>
                             <br>
-                            <p>
-                                <b>Exemple :</b>
-                            </p>
-                            <table border="1" cellpadding="5">
-                                <thead>
-                                    <tr>
-                                        <th>identifiant</th>
-                                        <th>prenom</th>
-                                        <th>nom</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Pierre</td>
-                                        <td>Dupond</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Sabrina</td>
-                                        <td>Bernard</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>David</td>
-                                        <td>Durand</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Pierre</td>
-                                        <td>Leroy</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Marie</td>
-                                        <td>Leroy</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p>
-                                En utilisant seulement SELECT tous les noms sont retournés, or la table contient plusieurs fois le même prénom (cf. Pierre). Pour sélectionner uniquement les prénoms uniques il faut utiliser la requête suivante:
-                                <br>
-                                <code>SELECT DISTINCT prenom FROM client</code>
-                                <br>
-                                Cette requête va retourner les champs suivants:
-                            </p>
-                            <table border="1" cellpadding="5">
-                                <thead>
-                                    <tr>
-                                        <th>prenom</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Pierre</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sabrina</td>
-                                    </tr>
-                                    <tr>
-                                        <td>David</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Marie</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p>
-                                Ce résultat affiche volontairement qu'une seule fois le prénom "Pierre" grâce à l'utilisation de la commande DISTINCT qui n'affiche que les résultats distincts.
-                            </p>
+                            <p>La commande de base consiste à exécuter la requête suivante :</p>
+                            <p class="sql-command">SELECT DISTINCT ma_colonne FROM nom_du_tableau</p>
+                            <p>Cette requête récupère le champ "ma_colonne" de la table "nom_du_tableau" tout en évitant de renvoyer des doublons.</p>
                         </article>`;
                     break;
                 case 'WHERE':
-                    contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>WHERE</h1><p>Contenu pour WHERE...</p></article>';
+                    contentElement.innerHTML = `
+                        <article id="post-11" class="post-11 page type-page status-publish hentry">
+                            <h1>WHERE</h1>
+                            <p>La clause WHERE dans une requête SQL sert à filtrer les lignes d'une base de données en fonction d'une condition spécifique. Elle permet ainsi de sélectionner uniquement les données qui répondent à ce critère, facilitant ainsi l'obtention des informations souhaitées.</p>
+                          
+                        </article>`;
                     break;
                 case 'AND & OR':
                     contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>AND & OR</h1><p>Contenu pour et & ou</p></article>';
@@ -238,7 +261,5 @@
             }
         }
     </script>
-
 </body>
-
 </html>
