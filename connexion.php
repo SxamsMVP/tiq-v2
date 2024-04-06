@@ -108,14 +108,33 @@ if ($authentication_successful) {
 
 
     <!-- Barre latérale en bas -->
-    <div class="footer-sidebar text-white p-4">
-        <h4>Coordonnées de l'entreprise</h4>
-        <p>Adresse : Université de Bordeaux</p>
-        <p>Téléphone : 06 06 06 06 06</p>
-        <p>Email : sqlchallenger@gmail.com</p>
+   <!-- Pied de page -->
+<footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-between">
+            <div class="w-full md:w-1/3 mb-4 md:mb-0">
+                <h3 class="text-lg font-bold mb-2">Coordonnées de l'entreprise</h3>
+                <p class="text-gray-400">Adresse : Université de Bordeaux</p>
+                <p class="text-gray-400">Téléphone : 06 06 06 06 06</p>
+                <p class="text-gray-400">Email : sqlchallenger@gmail.com</p>
+            </div>
+            <div class="w-full md:w-1/3 mb-4 md:mb-0">
+            </div>
+            <div class="w-full md:w-1/3">
+                <h3 class="text-lg font-bold mb-2">Suivez-nous</h3>
+                <ul class="text-gray-400">
+                    <li><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target = "blank" class="hover:text-white">Facebook</a></li>
+                    <li><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target = "blank" class="hover:text-white">Twitter</a></li>
+                    <li><a href="http://alexandrelourme.free.fr/M1PROC/" target = "blank" class="hover:text-white">Instagram</a></li>
+                    <li><a href="https://www.labri.fr/perso/maabout/" target = "blank" class="hover:text-white">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-gray-400">
+            <p>&copy; <?php echo date('Y'); ?> Tous droits réservés.</p>
+        </div>
     </div>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</footer>
 </body>
 
 </html>

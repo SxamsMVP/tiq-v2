@@ -100,24 +100,52 @@ include('header.php');
         <div class="container">
             <h2>Bienvenue sur SQL CHALLENGER</h2>
             <p>Découvrez le monde de SQL et améliorez vos compétences en bases de données avec notre plateforme éducative interactive. Que vous soyez débutant ou expert, notre site offre une variété de ressources pour vous aider à apprendre et à pratiquer SQL.</p>
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>Nos Cours</h3>
-                    <p>Explorez notre sélection de cours SQL conçus pour vous guider à travers les concepts fondamentaux et avancés de SQL. Apprenez à interroger des bases de données, à manipuler des données et à construire des requêtes SQL efficaces.</p>
-                    <a href="cours.php" class="btn btn-primary">Découvrir les cours</a>
-                </div>
-                <div class="col-md-6">
-                    <h3>Exercices</h3>
-                    <p>Mettez vos connaissances en pratique avec nos exercices interactifs. Testez vos compétences en résolvant des problèmes SQL réels et en obtenant un retour immédiat. Améliorez votre compréhension et votre maîtrise de SQL en pratiquant régulièrement.</p>
+            
+            
+            
+            <div class="row justify-content-between">
+    <div class="col-md-4">
+    <a href="cours.php">
+        <div class="footer-sidebar bg-white text-black text-center">
+            <img class="imgcours" src="/img/courssql.png" alt="">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-100 dark:text-white">Cours</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-100 dark:text-gray-100">Accédez à nos cours pour pouvoir vous entraîner.</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+    <a href="exercices.php">
+        <div class="footer-sidebar bg-white text-black text-center">
+            <img class="imgcours" src="/img/courssql.png" alt="">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-100 dark:text-white">Exercices</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-100 dark:text-gray-100">Mettez vos connaissances en pratique avec nos exercices interactifs. Testez vos compétences en résolvant des problèmes SQL et en obtenant un retour immédiat. Améliorez votre compréhension et votre maîtrise de SQL en pratiquant.</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+    <a href="forum.php">
+        <div class="footer-sidebar bg-white text-black text-center">
+            <img class="imgcours" src="/img/courssql.png" alt="">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-100 dark:text-white">Forum</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-100 dark:text-gray-100">Forum food.</p>
+        </div>
+    </div>
+</div>
+<!--                 <div class="col-md-6">
+                    <h3>Exercices pratiques</h3>
+                    <p>Mettez vos connaissances en pratique avec nos exercices interactifs. Testez vos compétences en résolvant des problèmes SQL et en obtenant un retour immédiat. Améliorez votre compréhension et votre maîtrise de SQL en pratiquant.</p>
                     <a href="exercices.php" class="btn btn-primary">Commencer les exercices</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
 
     <!-- Barre latérale en bas -->
-    <div class="footer-sidebar bg-dark  text-white p-3">
+    <div class="footer-sidebar bg-dark  text-white text-center p-3">
         <h4>Coordonnées de l'entreprise</h4>
         <p>Adresse : Université de Bordeaux</p>
         <p>Téléphone : 06 06 06 06 06</p>
