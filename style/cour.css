@@ -2,7 +2,7 @@
 .sidebar {
     height: 100%;
     width: 220px;
-    position: fixed;
+    position: absolute;
     z-index: 1;
     top: 163px;
     /* Ajustez la hauteur pour laisser de l'espace avec l'en-tête */
@@ -55,7 +55,7 @@
     background-color: #343a40;
     color: white;
     padding: 20px;
-    position: fixed;
+    position: absolute;
     top: 163px; /* Ajustez la position par rapport à l'en-tête */
     right: 0;
     height: 100%;

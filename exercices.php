@@ -1,32 +1,32 @@
 <?php
 session_start();
 include('header.php');
-// Connexion à la base de données
+
 $bdd = new SQLite3('database.sqlite');
-// Vérification de la connexion
 if (!$bdd) {
     die("Erreur de connexion à la base de données");
 }
-// Récupération des questions depuis la base de données
+
+if (!isset($_SESSION['incorrect_attempts'])) {
+    $_SESSION['incorrect_attempts'] = 0;
+}
+
 $resultat = $bdd->query('SELECT * FROM questions');
-// Stocker les questions dans une variable de session
 $_SESSION['questions'] = [];
 while ($row = $resultat->fetchArray(SQLITE3_ASSOC)) {
     $_SESSION['questions'][] = $row;
 }
-// Initialiser le compteur de question dans la session
+
 if (!isset($_SESSION['question_index'])) {
     $_SESSION['question_index'] = 0;
 }
-// Récupérer le nom de la table à afficher depuis la base de données
-$tableName = '';
+
 $questionIndex = $_SESSION['question_index'];
-if (isset($_SESSION['questions'][$questionIndex]['bdd'])) {
-    $tableName = $_SESSION['questions'][$questionIndex]['bdd'];
-}
-// Récupérer les données de la table spécifiée
+$currentQuestion = isset($_SESSION['questions'][$questionIndex]) ? $_SESSION['questions'][$questionIndex] : null;
+$tableName = $currentQuestion ? $currentQuestion['bdd'] : '';
+
 $tableData = [];
-if (!empty($tableName)) {
+if ($tableName) {
     $tableExists = $bdd->querySingle("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='$tableName'");
     if ($tableExists) {
         $tableResult = $bdd->query("SELECT * FROM $tableName");
@@ -34,48 +34,59 @@ if (!empty($tableName)) {
             $tableData[] = $row;
         }
     } else {
-        // Afficher un message d'erreur explicite si la table n'existe pas
-        echo "Erreur lors de l'exécution de la requête : La table $tableName n'existe pas.";
+        echo "Erreur : La table $tableName n'existe pas.";
     }
 }
 
-// Récupérer la question actuelle
-$currentQuestion = isset($_SESSION['questions'][$questionIndex]) ? $_SESSION['questions'][$questionIndex] : null;
-
-// Exécuter la requête de l'utilisateur
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sql_query = $_POST['sql_query'] ?? '';
-
-    // Exécuter la requête de l'utilisateur seulement si la table existe
-    if ($tableExists) {
-        $userResult = $bdd->query($sql_query);
-    }
-
-    // Exécuter la requête stockée dans le champ "answer"
-    if ($currentQuestion) {
-        $answer = $currentQuestion['reponse'];
-        $answerResult = $bdd->query($answer);
-    }
+if (isset($_POST['previous'])) {
+    $_SESSION['question_index'] = max($_SESSION['question_index'] - 1, 0); // S'assurer que l'index ne devient pas négatif
+    header("Location: exercices.php");
+    exit;
 }
-
-// Fonction pour comparer les résultats des requêtes
-function compareResults($result1, $result2) {
-    // Convertir les résultats en tableaux associatifs
+function compareResults($result1, $result2)
+{
     $array1 = [];
     while ($row = $result1->fetchArray(SQLITE3_ASSOC)) {
         $array1[] = $row;
     }
-
     $array2 = [];
     while ($row = $result2->fetchArray(SQLITE3_ASSOC)) {
         $array2[] = $row;
     }
-
-    // Comparer les tableaux associatifs
     return $array1 === $array2;
 }
-?>
 
+$isAnswerCorrect = false;
+$userResult = null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $sql_query = $_POST['sql_query'] ?? '';
+    if ($tableExists) {
+        $userResult = $bdd->query($sql_query);
+    }
+
+    if (isset($_POST['validate']) && $currentQuestion) {
+        $answer = $currentQuestion['reponse'];
+        $answerResult = $bdd->query($answer);
+        if ($userResult && $answerResult) {
+            $isAnswerCorrect = compareResults($userResult, $answerResult);
+            $_SESSION['isAnswerCorrect'] = $isAnswerCorrect;
+        }
+    } // Mise à jour du compteur de tentatives incorrectes
+    if (!$isAnswerCorrect) {
+        $_SESSION['incorrect_attempts']++;
+        if ($_SESSION['incorrect_attempts'] >= 3) {
+            // Ici, vous pouvez gérer l'affichage du message après 3 tentatives incorrectes
+        }
+    } else {
+        $_SESSION['incorrect_attempts'] = 0; // Réinitialiser le compteur si la réponse est correcte
+    }
+}
+if ($isAnswerCorrect) {
+    $_SESSION['question_index']++;
+    header("Location: exercices.php"); // Redirection
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -125,7 +136,6 @@ function compareResults($result1, $result2) {
         <a href="forum.php">Forum</a>
     </div>
     <div class="container mt-2">
-
         <?php if ($currentQuestion) : ?>
             <h3 class="mb-3"><strong>Question:</strong> <?php echo $currentQuestion['question']; ?></h3>
         <?php endif; ?>
@@ -137,15 +147,15 @@ function compareResults($result1, $result2) {
                         <div class="form-group">
                             <textarea name="sql_query" id="sql_query" rows="8" cols="50" class="form-control" required><?php echo isset($_POST['sql_query']) ? htmlspecialchars($_POST['sql_query']) : ''; ?></textarea>
                         </div>
-                        <!-- Boutons dans le même formulaire pour les placer sur la même ligne -->
-                        <div class="d-flex justify-content-between"> <!-- Utilisation de flexbox pour aligner les boutons -->
+                        <div class="d-flex justify-content-between">
                             <button type="button" id="executeQuery" class="btn btn-primary w-50">Exécuter la requête</button>
                             <?php if ($currentQuestion) : ?>
-                                <input type="hidden" name="answer" value="<?php echo isset($currentQuestion['answer']) ? htmlspecialchars($currentQuestion['answer']) : ''; ?>">
-                                <button type="submit" class="btn btn-success w-50 ml-2" name="validate">Valider</button> <!-- Ajout de la classe ml-2 pour un espacement entre les boutons -->
+                                <button type="submit" class="btn btn-success w-50 ml-2" name="validate">Valider</button>
                             <?php endif; ?>
                         </div>
                     </form>
+                    <button type="button" id="previousQuestion" class="btn btn-secondary">Question précédente</button>
+
                 </div>
                 <div class="col-md-6">
                     <?php if (!empty($tableName) && !empty($tableData)) : ?>
@@ -173,51 +183,120 @@ function compareResults($result1, $result2) {
                             </table>
                         </div>
                     <?php endif; ?>
-
                     <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($userResult)) : ?>
-                        <?php if ($userResult) : ?>
-                            <h4>Résultats de la requête :</h4>
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <?php foreach ($userResult->fetchArray(SQLITE3_ASSOC) as $columnName => $value) : ?>
-                                                <th><?php echo $columnName; ?></th>
-                                            <?php endforeach; ?>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                        <?php
+                        $firstRow = true;
+                        $hasResults = false;
+                        $columnNames = [];
+                        ?>
+                        <h4>Résultats de la requête :</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
                                         <?php while ($row = $userResult->fetchArray(SQLITE3_ASSOC)) : ?>
-                                            <tr>
-                                                <?php foreach ($row as $value) : ?>
-                                                    <td><?php echo $value; ?></td>
+                                            <?php $hasResults = true; ?> <!-- Marquer qu'il y a des résultats -->
+                                            <?php if ($firstRow) : ?>
+                                                <?php foreach ($row as $columnName => $value) : ?>
+                                                    <th><?php echo $columnName; ?></th>
+                                                    <?php $columnNames[] = $columnName; ?>
                                                 <?php endforeach; ?>
-                                            </tr>
-                                        <?php endwhile; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <?php else : ?>
-                            <h4>Erreur lors de l'exécution de la requête :</h4>
-                            <p><?php echo $bdd->lastErrorMsg(); ?></p>
+                                                <?php $firstRow = false; ?>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <?php foreach ($row as $value) : ?>
+                                            <td><?php echo $value; ?></td>
+                                        <?php endforeach; ?>
+                                    </tr>
+                                    <?php continue; ?>
+                                <?php endif; ?>
+                                <tr>
+                                    <?php foreach ($columnNames as $columnName) : ?>
+                                        <td><?php echo $row[$columnName]; ?></td>
+                                    <?php endforeach; ?>
+                                </tr>
+                            <?php endwhile; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php if (!$hasResults) : ?> <!-- Utiliser la nouvelle variable pour le contrôle -->
+                            <p>Aucun résultat trouvé.</p>
                         <?php endif; ?>
                     <?php endif; ?>
+
+
                 </div>
             </div>
         </div>
 
+        <!-- Modal pour le résultat -->
+        <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="resultModalLabel">Résultat</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Message sera inséré ici -->
+                    </div>
+                    <div class="modal-footer">
+                        <?php if (isset($_SESSION['isAnswerCorrect']) && $_SESSION['isAnswerCorrect']) : ?>
+                            <button type="button" class="btn btn-primary" id="nextQuestion">Question suivante</button>
+                        <?php endif; ?>
+                    </div>
+
+                    <?php if ($_SESSION['incorrect_attempts'] >= 3) : ?>
+            <div class="alert alert-info">
+                La réponse correcte était : <br> <?php echo htmlspecialchars($currentQuestion['reponse']); ?>
+            </div>
+            <?php $_SESSION['incorrect_attempts'] = 0; // Réinitialisez le compteur après avoir affiché le message 
+            ?>
+        <?php endif; ?>
+
+                </div>
+            </div>
+        </div>
 
         <!-- Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <script>
-            // Attachez un gestionnaire d'événements au clic sur le bouton "Exécuter la requête"
-            document.getElementById('executeQuery').addEventListener('click', function () {
-                // Soumettre le formulaire
-                document.getElementById('sqlForm').submit();
+            $(document).ready(function() {
+                <?php if (isset($_SESSION['isAnswerCorrect'])) : ?>
+                    let isAnswerCorrect = <?php echo json_encode($_SESSION['isAnswerCorrect']); ?>;
+                    $('#resultModal .modal-body').html(isAnswerCorrect ? 'Bonne réponse!' : 'Mauvaise réponse.');
+                    $('#resultModal').modal('show');
+                    <?php unset($_SESSION['isAnswerCorrect']); ?>
+                <?php endif; ?>
+
+                document.getElementById('executeQuery').addEventListener('click', function() {
+                    document.getElementById('sqlForm').submit();
+                });
+                document.getElementById('nextQuestion').addEventListener('click', function() {
+                    window.location.reload(); // Cela rafraîchira la page
+                });
+            });
+            document.getElementById('previousQuestion').addEventListener('click', function() {
+                var form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'exercices.php';
+
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'previous';
+                input.value = '1';
+                form.appendChild(input);
+
+                document.body.appendChild(form);
+                form.submit();
             });
         </script>
-    </body>
+</body>
 
-    </html>
+</html>
