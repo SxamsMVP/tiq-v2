@@ -380,14 +380,14 @@ include('header.php');
         contentElement.innerHTML = `
             <article id="post-11" class="post-11 page type-page status-publish hentry">
                 <h1>AND & OR</h1>
-                <p>Une requête SQL peut être restreinte à l’aide de la condition WHERE. Les opérateurs logiques AND et OR peuvent être utilisés au sein de la commande WHERE pour combiner des conditions.</p>
+                <p>Une requête SQL peut être restreinte à l’aide de la condition <code>WHERE</code>. Les opérateurs logiques <code>AND</code> et <code>OR</code> peuvent être utilisés au sein de la commande <code>WHERE</code> pour combiner des conditions.</p>
                 <h2>Syntaxe d’utilisation des opérateurs AND et OR</h2>
-                <p>Les opérateurs sont à ajoutés dans la condition WHERE. Ils peuvent être combinés à l’infini pour filtrer les données comme souhaité.</p>
-                <p>L’opérateur <strong>AND</strong> permet de s’assurer que la <strong>condition1</strong> <strong>ET</strong> la <strong>condition2</strong> sont vraies :</p>
+                <p>Les opérateurs sont à ajoutés dans la condition <code>WHERE</code>. Ils peuvent être combinés à l’infini pour filtrer les données comme souhaité.</p>
+                <p>L’opérateur <code>AND</code> permet de s’assurer que la <strong>condition1</strong> <code>ET</code> la <strong>condition2</strong> sont vraies :</p>
                 <p class="sql-command">SELECT nom_colonnes FROM nom_table WHERE condition1 AND condition2</p>
-                <p>L’opérateur <strong>OR</strong> vérifie quant à lui que la <strong>condition1</strong> <strong>OU</strong> la <strong>condition2</strong> est vraie :</p>
+                <p>L’opérateur <code>OR</code> vérifie quant à lui que la <strong>condition1</strong> <code>OU</code> la <strong>condition2</strong> est vraie :</p>
                 <p class="sql-command">SELECT nom_colonnes FROM nom_table WHERE condition1 OR condition2</p>
-                <p>Ces opérateurs peuvent être combinés à l’infini et mélangés. L’exemple ci-dessous filtre les résultats de la table “nom_table” si <strong>condition1</strong> <strong>ET</strong> <strong>condition2</strong> <strong>OU</strong> <strong>condition3</strong> est vraie :</p>
+                <p>Ces opérateurs peuvent être combinés à l’infini et mélangés. L’exemple ci-dessous filtre les résultats de la table <code>nom_table</code> si <strong>condition1</strong> <code>ET</code> <strong>condition2</strong> <code>OU</code> <strong>condition3</strong> est vraie :</p>
                 <p class="sql-command">SELECT nom_colonnes FROM nom_table WHERE condition1 AND (condition2 OR condition3)</p>
             </article>`;
         break;
