@@ -69,7 +69,7 @@ if ($authentication_successful) {
     <link rel="stylesheet" href="style/connexion.css">
     <style>
         body {
-            background-image: url('img/fond_ecran.jpeg');
+            background-image: url('img/backgroungwall.jpg');
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -83,58 +83,61 @@ if ($authentication_successful) {
         </div>
         <div class="header-title">SQL CHALLENGER</div>
     </div>
-    <div class="container mt-5" style="background-color: #000000; border-radius: 20px;">
-        <h3 style="color: #ffffff; font-size: 2rem; font-weight: bold;">Connexion</h3>
-
+    <div class="container mt-5" style="background-color: #ffffff; border-radius: 20px; padding: 20px;">
+        <h3 style="color: #000000; font-size: 2rem; font-weight: bold; margin-bottom: 20px; text-align: center;">Connexion</h3>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group text-white text-left pr-4 pl-3">
+            <div class="form-group">
                 <label for="username">Nom d'utilisateur :</label>
-                <input type="text" name="username" class="form-control " required>
+                <input type="text" name="username" class="form-control" placeholder="Entrez votre nom d'utilisateur" required>
             </div>
-            <div class="form-group text-white text-left pr-4 pl-3">
+            <div class="form-group">
                 <label for="password">Mot de passe :</label>
-                <input type="password" name="password" class="form-control " required>
+                <input type="password" name="password" class="form-control" placeholder="Entrez votre mot de passe" required>
             </div>
-            <div class="col text-right pr-4">
-                <a class="mt-4 text-decoration-underline" href="??">Mot de passe oublié</a>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
             </div>
-
-            <div class="text-center mt-1 mb-4"> <!-- Ajout de la classe text-center pour centrer le bouton -->
-                <input class="btn btn-success btn-lg" type="submit" value="Connexion"> <!-- Ajout de la classe btn-lg pour agrandir le bouton -->
+            <div class="text-center mt-3">
+                <input class="btn btn-primary btn-lg btn-hover" type="submit" value="Connexion">
             </div>
         </form>
-        <a class="mt-4" href="inscription.php">Pas de compte ? S'inscrire !</a>
+        <div class="text-center mt-3">
+            <a href="#" class="text-decoration-underline">Mot de passe oublié</a>
+        </div>
+        <div class="text-center mt-3">
+            <a href="inscription.php">Pas de compte ? S'inscrire !</a>
+        </div>
     </div>
 
 
     <!-- Barre latérale en bas -->
-   <!-- Pied de page -->
-<footer class="bg-gray-900 text-white py-8">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-wrap justify-between">
-            <div class="w-full md:w-1/3 mb-4 md:mb-0">
-                <h3 class="text-lg font-bold mb-2">Coordonnées de l'entreprise</h3>
-                <p class="text-gray-400">Adresse : Université de Bordeaux</p>
-                <p class="text-gray-400">Téléphone : 06 06 06 06 06</p>
-                <p class="text-gray-400">Email : sqlchallenger@gmail.com</p>
+    <!-- Pied de page -->
+    <footer class="footer">
+        <div class="footer-info">
+            <div class="footer-info__item">
+                <h3 class="footer-info__title">Coordonnées de l'entreprise</h3>
+                <ul class="footer-info__contact">
+                    <li class="footer-info__contact-item">Adresse : Université de Bordeaux</li>
+                    <li class="footer-info__contact-item">Téléphone : 06 06 06 06 06</li>
+                    <li class="footer-info__contact-item">Email : sqlchallenger@gmail.com</li>
+                </ul>
             </div>
-            <div class="w-full md:w-1/3 mb-4 md:mb-0">
+            <div class="footer-info__item">
+                <!-- Ajoutez ici d'autres informations sur l'entreprise si nécessaire -->
             </div>
-            <div class="w-full md:w-1/3">
-                <h3 class="text-lg font-bold mb-2">Suivez-nous</h3>
-                <ul class="text-gray-400">
-                    <li><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target = "blank" class="hover:text-white">Facebook</a></li>
-                    <li><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target = "blank" class="hover:text-white">Twitter</a></li>
-                    <li><a href="http://alexandrelourme.free.fr/M1PROC/" target = "blank" class="hover:text-white">Instagram</a></li>
-                    <li><a href="https://www.labri.fr/perso/maabout/" target = "blank" class="hover:text-white">LinkedIn</a></li>
+            <div class="footer-info__item">
+                <h3 class="footer-info__title">Suivez-nous</h3>
+                <ul class="footer-info__contact">
+                    <li class="footer-info__contact-item"><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target="_blank" class="hover:text-white">Facebook</a></li>
+                    <li class="footer-info__contact-item"><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target="_blank" class="hover:text-white">Twitter</a></li>
+                    <li class="footer-info__contact-item"><a href="http://alexandrelourme.free.fr/M1PROC/" target="_blank" class="hover:text-white">Instagram</a></li>
+                    <li class="footer-info__contact-item"><a href="https://www.labri.fr/perso/maabout/" target="_blank" class="hover:text-white">LinkedIn</a></li>
                 </ul>
             </div>
         </div>
-        <div class="mt-8 text-center text-gray-400">
-            <p>&copy; <?php echo date('Y'); ?> Tous droits réservés.</p>
-        </div>
-    </div>
-</footer>
+    </footer>
+
 </body>
 
 </html>
