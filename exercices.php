@@ -11,18 +11,17 @@ if (!isset($_SESSION['incorrect_attempts'])) {
     $_SESSION['incorrect_attempts'] = 0;
 }
 
-$resultat = $bdd->query('SELECT * FROM questions');
-$_SESSION['questions'] = [];
-while ($row = $resultat->fetchArray(SQLITE3_ASSOC)) {
-    $_SESSION['questions'][] = $row;
-}
+// Initialisation ou récupération du niveau de l'utilisateur
+$userLevel = isset($_SESSION['user_level']) ? $_SESSION['user_level'] : 1;
 
-if (!isset($_SESSION['question_index'])) {
-    $_SESSION['question_index'] = 0;
+// Choisir une nouvelle question si nécessaire
+if (!isset($_SESSION['currentQuestion'])) {
+    $resultat = $bdd->query("SELECT * FROM questions WHERE level <= $userLevel ORDER BY RANDOM() LIMIT 1");
+    $_SESSION['currentQuestion'] = $resultat->fetchArray(SQLITE3_ASSOC);
 }
+$currentQuestion = $_SESSION['currentQuestion'];
 
-$questionIndex = $_SESSION['question_index'];
-$currentQuestion = isset($_SESSION['questions'][$questionIndex]) ? $_SESSION['questions'][$questionIndex] : null;
+
 $tableName = $currentQuestion ? $currentQuestion['bdd'] : '';
 
 $tableData = [];
