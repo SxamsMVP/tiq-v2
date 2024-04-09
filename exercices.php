@@ -2,6 +2,11 @@
 session_start();
 include('header.php');
 
+$bdd = new SQLite3('database.sqlite');
+if (!$bdd) {
+    die("Erreur de connexion à la base de données");
+}
+
 if (!isset($_SESSION['incorrect_attempts'])) {
     $_SESSION['incorrect_attempts'] = 0;
 }
@@ -9,31 +14,15 @@ if (!isset($_SESSION['incorrect_attempts'])) {
 // Initialisation ou récupération du niveau de l'utilisateur
 $userLevel = isset($_SESSION['user_level']) ? $_SESSION['user_level'] : 1;
 
+// Choisir une nouvelle question si nécessaire
 if (!isset($_SESSION['currentQuestion'])) {
     $resultat = $bdd->query("SELECT * FROM questions WHERE level <= $userLevel ORDER BY RANDOM() LIMIT 1");
     $_SESSION['currentQuestion'] = $resultat->fetchArray(SQLITE3_ASSOC);
 }
 $currentQuestion = $_SESSION['currentQuestion'];
 
-// Afficher toutes les données de la question courante
-echo '<pre>';
-foreach ($currentQuestion as $key => $value) {
-    echo $key . ': ' . $value . '<br>';
-}
-echo '</pre>';
-$tableName = $currentQuestion ? $currentQuestion['bdd'] : '';
-$tableData = [];
-if ($tableName) {
-    $tableExists = $bdd->querySingle("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='$tableName'");
-    if ($tableExists) {
-        $tableResult = $bdd->query("SELECT * FROM $tableName");
-        while ($row = $tableResult->fetchArray(SQLITE3_ASSOC)) {
-            $tableData[] = $row;
-        }
-    } else {
-        echo "Erreur : La table $tableName n'existe pas.";
-    }
-}
+
+$pathUML = $currentQuestion['path_uml'];
 
 if (isset($_POST['previous'])) {
     $_SESSION['question_index'] = max($_SESSION['question_index'] - 1, 0); // S'assurer que l'index ne devient pas négatif
@@ -57,9 +46,8 @@ $isAnswerCorrect = false;
 $userResult = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql_query = $_POST['sql_query'] ?? '';
-    if ($tableExists) {
+    
         $userResult = $bdd->query($sql_query);
-    }
 
     if (isset($_POST['validate']) && $currentQuestion) {
         $answer = $currentQuestion['reponse'];
@@ -79,11 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 if ($isAnswerCorrect) {
-    $_SESSION['question_index']++;
     header("Location: exercices.php"); // Redirection
     exit;
 }
-$bdd->close();
 ?>
 
 <!DOCTYPE html>
@@ -159,11 +145,8 @@ $bdd->close();
                     <div class="text-center">
                         <h4>UML :</h4>
                     </div>
-
                     <div class="text-center">
-                        <h4>Image correspondant à la question :</h4>
-                         <?php echo $currentQuestion['path_uml'] ?> <!-- Affiche le chemin -->
-                        <img src="<?php echo $currentQuestion['path_uml']; ?>" alt="Image UML" class="img-fluid">
+                        <img src="<?php echo $currentQuestion['path_uml']; ?>" alt="Image UML" class="img-fluid" style="max-width: 80%; height: auto;">
                     </div>
 
                     <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($userResult)) : ?>
