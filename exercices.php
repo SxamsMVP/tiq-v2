@@ -2,11 +2,6 @@
 session_start();
 include('header.php');
 
-$bdd = new SQLite3('database.sqlite');
-if (!$bdd) {
-    die("Erreur de connexion à la base de données");
-}
-
 if (!isset($_SESSION['incorrect_attempts'])) {
     $_SESSION['incorrect_attempts'] = 0;
 }
@@ -14,16 +9,19 @@ if (!isset($_SESSION['incorrect_attempts'])) {
 // Initialisation ou récupération du niveau de l'utilisateur
 $userLevel = isset($_SESSION['user_level']) ? $_SESSION['user_level'] : 1;
 
-// Choisir une nouvelle question si nécessaire
 if (!isset($_SESSION['currentQuestion'])) {
     $resultat = $bdd->query("SELECT * FROM questions WHERE level <= $userLevel ORDER BY RANDOM() LIMIT 1");
     $_SESSION['currentQuestion'] = $resultat->fetchArray(SQLITE3_ASSOC);
 }
 $currentQuestion = $_SESSION['currentQuestion'];
 
-
+// Afficher toutes les données de la question courante
+echo '<pre>';
+foreach ($currentQuestion as $key => $value) {
+    echo $key . ': ' . $value . '<br>';
+}
+echo '</pre>';
 $tableName = $currentQuestion ? $currentQuestion['bdd'] : '';
-
 $tableData = [];
 if ($tableName) {
     $tableExists = $bdd->querySingle("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='$tableName'");
@@ -85,6 +83,7 @@ if ($isAnswerCorrect) {
     header("Location: exercices.php"); // Redirection
     exit;
 }
+$bdd->close();
 ?>
 
 <!DOCTYPE html>
@@ -157,31 +156,16 @@ if ($isAnswerCorrect) {
 
                 </div>
                 <div class="col-md-6">
-                    <?php if (!empty($tableName) && !empty($tableData)) : ?>
-                        <div class="text-center">
-                            <h4>Contenu de la table "<?php echo $tableName; ?>" :</h4>
-                        </div>
-                        <div class="table-responsive mb-5">
-                            <table class="table table-bordered table-striped">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <?php foreach ($tableData[0] as $columnName => $value) : ?>
-                                            <th><?php echo $columnName; ?></th>
-                                        <?php endforeach; ?>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($tableData as $row) : ?>
-                                        <tr>
-                                            <?php foreach ($row as $value) : ?>
-                                                <td class="text-secondary"><?php echo $value; ?></td>
-                                            <?php endforeach; ?>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    <?php endif; ?>
+                    <div class="text-center">
+                        <h4>UML :</h4>
+                    </div>
+
+                    <div class="text-center">
+                        <h4>Image correspondant à la question :</h4>
+                         <?php echo $currentQuestion['path_uml'] ?> <!-- Affiche le chemin -->
+                        <img src="<?php echo $currentQuestion['path_uml']; ?>" alt="Image UML" class="img-fluid">
+                    </div>
+
                     <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($userResult)) : ?>
                         <?php
                         $firstRow = true;
@@ -250,12 +234,12 @@ if ($isAnswerCorrect) {
                     </div>
 
                     <?php if ($_SESSION['incorrect_attempts'] >= 3) : ?>
-            <div class="alert alert-info">
-                La réponse correcte était : <br> <?php echo htmlspecialchars($currentQuestion['reponse']); ?>
-            </div>
-            <?php $_SESSION['incorrect_attempts'] = 0; // Réinitialisez le compteur après avoir affiché le message 
-            ?>
-        <?php endif; ?>
+                        <div class="alert alert-info">
+                            La réponse correcte était : <br> <?php echo htmlspecialchars($currentQuestion['reponse']); ?>
+                        </div>
+                        <?php $_SESSION['incorrect_attempts'] = 0; // Réinitialisez le compteur après avoir affiché le message 
+                        ?>
+                    <?php endif; ?>
 
                 </div>
             </div>

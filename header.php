@@ -18,7 +18,6 @@ if (isset($_SESSION['username'])) {
     $stmt->bindParam(':username', $username, SQLITE3_TEXT);
     $result = $stmt->execute();
     $userData = $result->fetchArray(SQLITE3_ASSOC);
-    $bdd->close();
 } else {
     // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
     header('Location: connexion.php');
