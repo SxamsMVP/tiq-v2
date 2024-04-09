@@ -123,6 +123,53 @@ body {
 }
 
 .table th,
+
 .table td {
     padding: 5px; /* Réduire l'espacement entre les cellules */
+}
+
+.custom-modal-dialog {
+    max-width: 600px; /* Augmentez la largeur maximale selon vos besoins */
+    width: 90%; /* Utilisez une largeur de 90% pour s'adapter à différentes tailles d'écrans */
+}
+/* Style pour l'alerte dans le footer */
+.custom-modal-footer .alert {
+    background-color: #ffe2b3; /* Couleur de fond de l'alerte */
+    color: #093942; /* Couleur du texte de l'alerte */
+    border-color: #000000; /* Couleur de la bordure de l'alerte */
+    margin-bottom: 10px; /* Marge inférieure de l'alerte */
+}
+
+/* Style pour le footer de la modal */
+.custom-modal-footer {
+    background-color: #f8f9fa; /* Couleur de fond du footer */
+    border-top: 1px solid #dee2e6; /* Bordure supérieure du footer */
+    padding: 10px; /* Espacement intérieur du footer */
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centrer le contenu horizontalement */
+}
+
+/* Style pour le contenu de la modal */
+.custom-modal-body {
+    padding: 20px; /* Espacement intérieur du contenu */
+}
+
+/* Style pour le titre de la modal */
+.custom-modal-title {
+    background-color: #007bff; /* Couleur de fond du titre */
+    color: #ffffff; /* Couleur du texte du titre */
+    padding: 15px; /* Espacement intérieur du titre */
+    border-bottom: 1px solid #dee2e6; /* Bordure inférieure du titre */
+}
+
+/* Style pour le bouton de fermeture */
+.custom-modal-close {
+    color: #ffffff; /* Couleur du texte du bouton de fermeture */
+}
+
+/* Style pour le bouton 'Question suivante' */
+.custom-modal-footer .btn-success {
+    width: 100%; /* Largeur du bouton */
+    padding: 10px; /* Espacement intérieur du bouton */
 }

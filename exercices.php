@@ -46,8 +46,8 @@ $isAnswerCorrect = false;
 $userResult = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql_query = $_POST['sql_query'] ?? '';
-    
-        $userResult = $bdd->query($sql_query);
+
+    $userResult = $bdd->query($sql_query);
 
     if (isset($_POST['validate']) && $currentQuestion) {
         $answer = $currentQuestion['reponse'];
@@ -56,14 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $isAnswerCorrect = compareResults($userResult, $answerResult);
             $_SESSION['isAnswerCorrect'] = $isAnswerCorrect;
         }
-    } // Mise à jour du compteur de tentatives incorrectes
-    if (!$isAnswerCorrect) {
-        $_SESSION['incorrect_attempts']++;
-        if ($_SESSION['incorrect_attempts'] >= 3) {
-            // Ici, vous pouvez gérer l'affichage du message après 3 tentatives incorrectes
+
+        // Vérifier si la réponse est incorrecte
+        if (!$isAnswerCorrect) {
+            $_SESSION['incorrect_attempts']++;
         }
-    } else {
-        $_SESSION['incorrect_attempts'] = 0; // Réinitialiser le compteur si la réponse est correcte
     }
 }
 if ($isAnswerCorrect) {
@@ -71,6 +68,7 @@ if ($isAnswerCorrect) {
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -196,37 +194,38 @@ if ($isAnswerCorrect) {
                 </div>
             </div>
         </div>
-
-        <!-- Modal pour le résultat -->
         <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered custom-modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header custom-modal-title">
                         <h5 class="modal-title" id="resultModalLabel">Résultat</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close custom-modal-close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body custom-modal-body">
                         <!-- Message sera inséré ici -->
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer custom-modal-footer">
+                        <?php if ($_SESSION['incorrect_attempts'] >= 3) : ?>
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <strong>Oops!</strong> La réponse correcte était : <br> <?php echo htmlspecialchars($currentQuestion['reponse']); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <?php $_SESSION['incorrect_attempts'] = 0; // Réinitialiser le compteur après avoir affiché le message 
+                            ?>
+                        <?php endif; ?>
                         <?php if (isset($_SESSION['isAnswerCorrect']) && $_SESSION['isAnswerCorrect']) : ?>
-                            <button type="button" class="btn btn-primary" id="nextQuestion">Question suivante</button>
+                            <button type="button" class="btn btn-success">Question suivante</button>
                         <?php endif; ?>
                     </div>
-
-                    <?php if ($_SESSION['incorrect_attempts'] >= 3) : ?>
-                        <div class="alert alert-info">
-                            La réponse correcte était : <br> <?php echo htmlspecialchars($currentQuestion['reponse']); ?>
-                        </div>
-                        <?php $_SESSION['incorrect_attempts'] = 0; // Réinitialisez le compteur après avoir affiché le message 
-                        ?>
-                    <?php endif; ?>
-
                 </div>
             </div>
         </div>
+
+
 
         <!-- Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -262,6 +261,15 @@ if ($isAnswerCorrect) {
                 document.body.appendChild(form);
                 form.submit();
             });
+        </script>
+        <script>
+            <?php if ($_SESSION['incorrect_attempts'] >= 3) : ?>
+                var errorMessage = "<?php echo "<div class='alert alert-info'>La réponse correcte était : <br>" . htmlspecialchars($currentQuestion['reponse']) . "</div>"; ?>";
+                $('#resultModal .modal-body').html(errorMessage);
+                $('#resultModal').modal('show');
+                <?php $_SESSION['incorrect_attempts'] = 0; // Réinitialiser le compteur après avoir affiché le message 
+                ?>
+            <?php endif; ?>
         </script>
 </body>
 
