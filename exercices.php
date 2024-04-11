@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 if ($isAnswerCorrect) {
+    $_SESSION['incorrect_attempts'] = 0; // Réinitialiser les tentatives incorrectes
     header("Location: exercices.php"); // Redirection
     exit;
 }
@@ -137,12 +138,11 @@ if ($isAnswerCorrect) {
                         </div>
                     </form>
                     <button type="button" id="previousQuestion" class="btn btn-secondary">Question précédente</button>
-
+                    <?php if ($_SESSION['incorrect_attempts'] >= 3 || (isset($_SESSION['isAnswerCorrect']) && $_SESSION['isAnswerCorrect'])) : ?>
+                        <button type="button" id="nextQuestion" class="btn btn-success">Question suivante</button>
+                    <?php endif; ?>
                 </div>
                 <div class="col-md-6">
-                    <div class="text-center">
-                        <h4>UML :</h4>
-                    </div>
                     <div class="text-center">
                         <img src="<?php echo $currentQuestion['path_uml']; ?>" alt="Image UML" class="img-fluid" style="max-width: 80%; height: auto;">
                     </div>
@@ -189,8 +189,6 @@ if ($isAnswerCorrect) {
                             <p>Aucun résultat trouvé.</p>
                         <?php endif; ?>
                     <?php endif; ?>
-
-
                 </div>
             </div>
         </div>
@@ -225,8 +223,6 @@ if ($isAnswerCorrect) {
             </div>
         </div>
 
-
-
         <!-- Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -247,6 +243,7 @@ if ($isAnswerCorrect) {
                     window.location.reload(); // Cela rafraîchira la page
                 });
             });
+
             document.getElementById('previousQuestion').addEventListener('click', function() {
                 var form = document.createElement('form');
                 form.method = 'POST';
