@@ -51,6 +51,16 @@ $userResult = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql_query = $_POST['sql_query'] ?? '';
 
+    // Vérifier si la requête contient un mot-clé interdit
+    $forbiddenKeywords = ['DELETE', 'UPDATE', 'DROP', 'ALTER', 'TRUNCATE', 'INSERT'];
+    foreach ($forbiddenKeywords as $keyword) {
+        if (stripos($sql_query, $keyword) !== false) {
+            // Afficher un message d'erreur
+            echo '<script>displayErrorMessage("La requête contient un mot-clé interdit: ' . $keyword . '");</script>';
+            exit; // Arrêter l'exécution du script
+        }
+    }
+
     $userResult = $bdd->query($sql_query);
 
     if (isset($_POST['validate']) && $currentQuestion) {
@@ -66,8 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // Réinitialiser les tentatives incorrectes et passer à la question suivante
             $_SESSION['incorrect_attempts'] = 0;
-    header("Location: exercices.php");
-
+            header("Location: exercices.php");
             exit;
         }
     }
@@ -85,7 +94,7 @@ if (isset($_POST['nextQuestion'])) {
             // Gérer l'absence de l'ID, par exemple, en définissant une valeur par défaut ou en gérant une erreur
             $id = 0; // Ou toute autre gestion d'erreur appropriée
         }
-        
+
         $updateQuery = "UPDATE utilisateurs SET question = :newIndex WHERE id = :id";
         $stmt = $bdd->prepare($updateQuery);
         $stmt->bindValue(':newIndex', $newIndex, SQLITE3_INTEGER);
@@ -97,11 +106,6 @@ if (isset($_POST['nextQuestion'])) {
 }
 
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-
-<!-- Le reste du code HTML reste inchangé -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -260,7 +264,7 @@ if (isset($_POST['nextQuestion'])) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 <?php if (isset($_SESSION['isAnswerCorrect'])) : ?>
                     let isAnswerCorrect = <?php echo json_encode($_SESSION['isAnswerCorrect']); ?>;
                     $('#resultModal .modal-body').html(isAnswerCorrect ? 'Bonne réponse!' : 'Mauvaise réponse.');
@@ -268,15 +272,15 @@ if (isset($_POST['nextQuestion'])) {
                     <?php unset($_SESSION['isAnswerCorrect']); ?>
                 <?php endif; ?>
 
-                document.getElementById('executeQuery').addEventListener('click', function() {
+                document.getElementById('executeQuery').addEventListener('click', function () {
                     document.getElementById('sqlForm').submit();
                 });
-                document.getElementById('nextQuestion').addEventListener('click', function() {
+                document.getElementById('nextQuestion').addEventListener('click', function () {
                     window.location.reload(); // Cela rafraîchira la page
                 });
             });
 
-            document.getElementById('previousQuestion').addEventListener('click', function() {
+            document.getElementById('previousQuestion').addEventListener('click', function () {
                 var form = document.createElement('form');
                 form.method = 'POST';
                 form.action = 'exercices.php';
@@ -301,6 +305,11 @@ if (isset($_POST['nextQuestion'])) {
                 input.name = 'nextQuestion';
                 form.appendChild(input);
                 form.submit();
+            }
+
+            // Fonction pour afficher un message d'erreur
+            function displayErrorMessage(message) {
+                alert(message);
             }
         </script>
         <script>
