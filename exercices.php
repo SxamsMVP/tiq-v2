@@ -10,25 +10,29 @@ if (!$bdd) {
 if (!isset($_SESSION['incorrect_attempts'])) {
     $_SESSION['incorrect_attempts'] = 0;
 }
+// Initialisation ou récupération de l'index de question de l'utilisateur
+$questionIndex = isset($_SESSION['question_index']) ? $_SESSION['question_index'] : 0;
 
-// Initialisation ou récupération du niveau de l'utilisateur
-$userLevel = isset($_SESSION['user_level']) ? $_SESSION['user_level'] : 1;
+// Récupérer la question en fonction de l'index de question de l'utilisateur sans tenir compte du niveau
+$resultat = $bdd->query("SELECT * FROM questions ORDER BY id LIMIT $questionIndex, 1");
+$currentQuestion = $resultat->fetchArray(SQLITE3_ASSOC);
 
-// Choisir une nouvelle question si nécessaire
-if (!isset($_SESSION['currentQuestion'])) {
-    $resultat = $bdd->query("SELECT * FROM questions WHERE level <= $userLevel ORDER BY RANDOM() LIMIT 1");
-    $_SESSION['currentQuestion'] = $resultat->fetchArray(SQLITE3_ASSOC);
+if (!$currentQuestion) {
+    // Si aucune question trouvée, rediriger vers une page d'erreur ou revenir à la première question
+    header("Location: error.php");
+    exit;
 }
-$currentQuestion = $_SESSION['currentQuestion'];
-
 
 $pathUML = $currentQuestion['path_uml'];
 
 if (isset($_POST['previous'])) {
-    $_SESSION['question_index'] = max($_SESSION['question_index'] - 1, 0); // S'assurer que l'index ne devient pas négatif
+    // Décrémenter l'index de question pour afficher la question précédente
+    $_SESSION['question_index'] = max($_SESSION['question_index'] - 1, 0);
     header("Location: exercices.php");
     exit;
 }
+
+// Fonction pour comparer les résultats des requêtes SQL
 function compareResults($result1, $result2)
 {
     $array1 = [];
@@ -57,19 +61,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['isAnswerCorrect'] = $isAnswerCorrect;
         }
 
-        // Vérifier si la réponse est incorrecte
         if (!$isAnswerCorrect) {
             $_SESSION['incorrect_attempts']++;
+        } else {
+            // Réinitialiser les tentatives incorrectes et passer à la question suivante
+            $_SESSION['incorrect_attempts'] = 0;
+    header("Location: exercices.php");
+
+            exit;
         }
     }
 }
-if ($isAnswerCorrect) {
-    $_SESSION['incorrect_attempts'] = 0; // Réinitialiser les tentatives incorrectes
-    header("Location: exercices.php"); // Redirection
+
+if (isset($_POST['nextQuestion'])) {
+    if (isset($_SESSION['question_index'])) {
+        $_SESSION['question_index']++;
+        // Mise à jour de l'index de la question dans la base de données pour l'utilisateur connecté
+        $newIndex = $_SESSION['question_index'];
+        $username = $_SESSION['username']; // Assurez-vous que le nom d'utilisateur est bien stocké dans la session
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+        } else {
+            // Gérer l'absence de l'ID, par exemple, en définissant une valeur par défaut ou en gérant une erreur
+            $id = 0; // Ou toute autre gestion d'erreur appropriée
+        }
+        
+        $updateQuery = "UPDATE utilisateurs SET question = :newIndex WHERE id = :id";
+        $stmt = $bdd->prepare($updateQuery);
+        $stmt->bindValue(':newIndex', $newIndex, SQLITE3_INTEGER);
+        $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+        $stmt->execute();
+    }
+    header("Location: exercices.php");
     exit;
 }
+
 ?>
 
+<!DOCTYPE html>
+<html lang="fr">
+
+<!-- Le reste du code HTML reste inchangé -->
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -216,7 +248,7 @@ if ($isAnswerCorrect) {
                             ?>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['isAnswerCorrect']) && $_SESSION['isAnswerCorrect']) : ?>
-                            <button type="button" class="btn btn-success">Question suivante</button>
+                            <button type="button" class="btn btn-success" onclick="goToNextQuestion()">Question suivante</button>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -258,6 +290,18 @@ if ($isAnswerCorrect) {
                 document.body.appendChild(form);
                 form.submit();
             });
+
+            function goToNextQuestion() {
+                var form = document.createElement('form');
+                document.body.appendChild(form);
+                form.method = 'POST';
+                form.action = 'exercices.php';
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'nextQuestion';
+                form.appendChild(input);
+                form.submit();
+            }
         </script>
         <script>
             <?php if ($_SESSION['incorrect_attempts'] >= 3) : ?>
