@@ -8,8 +8,8 @@ if (!isset($_SESSION['incorrect_attempts'])) {
 }
 
 // Récupération de la question actuelle basée sur l'index
-$resultat = $bdd->prepare("SELECT * FROM select_questions ORDER BY id LIMIT 1 OFFSET :questionIndex");
-$resultat->bindValue(':questionIndex', $questionIndex - 1, SQLITE3_INTEGER);
+$resultat = $bdd->prepare("SELECT * FROM select_questions ORDER BY id LIMIT 1 OFFSET :selectQuestionIndex");
+$resultat->bindValue(':selectQuestionIndex', $selectQuestionIndex - 1, SQLITE3_INTEGER);
 $currentQuestion = $resultat->execute()->fetchArray(SQLITE3_ASSOC);
 $pathUML = $currentQuestion['path_uml'];
 
@@ -43,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if (isset($_POST['previous'])) {
-    $_SESSION['question_index'] = max($_SESSION['question_index'] - 1, 0);
+    $_SESSION['select_question_index'] = max($_SESSION['select_question_index'] - 1, 0);
     header("Location: parcours_exercice.php");
     exit;
 }
 
 if (isset($_POST['nextQuestion'])) {
-    $_SESSION['question_index']++;
-    $newIndex = $_SESSION['question_index'];
+    $_SESSION['select_question_index']++;
+    $newIndex = $_SESSION['select_question_index'];
     $userId = $_SESSION['user_id'];
     $updateQuery = $bdd->prepare("UPDATE utilisateurs SET select_question_index = :newIndex WHERE id = :userId");
     $updateQuery->bindValue(':newIndex', $newIndex, SQLITE3_INTEGER);
@@ -124,12 +124,12 @@ ob_end_flush();
     <div class="container mt-1 mb-2">
         <h4>Progression :</h4>
         <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: <?php echo ($questionIndex / 20) * 100; ?>%;" aria-valuenow="<?php echo $questionIndex; ?>" aria-valuemin="0" aria-valuemax="40">
-                <?php echo $questionIndex; ?>/20
+            <div class="progress-bar" role="progressbar" style="width: <?php echo ($selectQuestionIndex / 20) * 100; ?>%;" aria-valuenow="<?php echo $selectQuestionIndex; ?>" aria-valuemin="0" aria-valuemax="40">
+                <?php echo $selectQuestionIndex; ?>/20
             </div>
         </div>
         <?php if ($currentQuestion) : ?>
-            <h3 class="mt-3 mb-3"><strong>Question n°<?php echo $questionIndex; ?> :</strong> <?php echo $currentQuestion['question']; ?></h3>
+            <h3 class="mt-3 mb-3"><strong>Question n°<?php echo $selectQuestionIndex; ?> :</strong> <?php echo $currentQuestion['question']; ?></h3>
         <?php endif; ?>
         <div class="container mt-2">
             <div class="row">
