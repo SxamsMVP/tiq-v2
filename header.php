@@ -1,26 +1,28 @@
 <?php
 // Démarrez la session
 
-// Vérifiez si l'utilisateur est connecté
+// Connexion à la base de données
+$bdd = new SQLite3('database.sqlite');
+if (!$bdd) {
+    die("Erreur de connexion à la base de données");
+}
+
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-
-    // Connexion à la base de données
-    $bdd = new SQLite3('database.sqlite');
-
-    // Vérification de la connexion
-    if (!$bdd) {
-        die("Erreur de connexion à la base de données");
-    }
-
-    $query = "SELECT photo_path, admin FROM utilisateurs WHERE username = :username";
+    $query = "SELECT id, photo_path, question, admin FROM utilisateurs WHERE username = :username";
     $stmt = $bdd->prepare($query);
     $stmt->bindParam(':username', $username, SQLITE3_TEXT);
     $result = $stmt->execute();
     $userData = $result->fetchArray(SQLITE3_ASSOC);
+    if ($userData) {
+        $_SESSION['user_id'] = $userData['id'];
+        $_SESSION['question_index'] = $userData['question']; // Assurez-vous que c'est bien le champ correct pour l'index.
+    } else {
+        die("Aucun utilisateur trouvé avec ce nom d'utilisateur.");
+    }
 } else {
-    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
     header('Location: connexion.php');
-    exit();
+    exit;
 }
-?>
+
+$questionIndex = $_SESSION['question_index'] ?? 1; 

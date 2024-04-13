@@ -53,7 +53,7 @@ include('header.php');
     <!-- Menu horizontal -->
     <div class="menu">
         <a href="cours.php">Cours</a>
-        <a href="exercices.php">Exercices</a>
+        <a href="accueil_exercice.php">Exercices</a>
         <a href="forum.php">Forum</a>
     </div>
 
@@ -115,7 +115,7 @@ include('header.php');
     </div>
 
     <div class="col-md-4">
-    <a href="exercices.php">
+    <a href="accueil_exercice.php">
         <div class="footer-sidebar bg-white text-black text-center">
             <img class="imgcours" src="/img/courssql.png" alt="">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-100 dark:text-white">Exercices</h5>

@@ -1,38 +1,65 @@
 <?php
+ob_start();
 session_start();
 include('header.php');
-
-$bdd = new SQLite3('database.sqlite');
-if (!$bdd) {
-    die("Erreur de connexion à la base de données");
-}
 
 if (!isset($_SESSION['incorrect_attempts'])) {
     $_SESSION['incorrect_attempts'] = 0;
 }
-// Initialisation ou récupération de l'index de question de l'utilisateur
-$questionIndex = isset($_SESSION['question_index']) ? $_SESSION['question_index'] : 0;
 
-// Récupérer la question en fonction de l'index de question de l'utilisateur sans tenir compte du niveau
-$resultat = $bdd->query("SELECT * FROM questions ORDER BY id LIMIT $questionIndex, 1");
-$currentQuestion = $resultat->fetchArray(SQLITE3_ASSOC);
+// Récupération de la question actuelle basée sur l'index
+$resultat = $bdd->prepare("SELECT * FROM parcours_questions ORDER BY id LIMIT 1 OFFSET :questionIndex");
+$resultat->bindValue(':questionIndex', $questionIndex - 1, SQLITE3_INTEGER);
+$currentQuestion = $resultat->execute()->fetchArray(SQLITE3_ASSOC);
+$pathUML = $currentQuestion['path_uml'];
 
 if (!$currentQuestion) {
-    // Si aucune question trouvée, rediriger vers une page d'erreur ou revenir à la première question
     header("Location: error.php");
     exit;
 }
 
-$pathUML = $currentQuestion['path_uml'];
+$isAnswerCorrect = false;
+$userResult = null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $sql_query = $_POST['sql_query'] ?? '';
+
+    $userResult = $bdd->query($sql_query);
+
+    if (isset($_POST['validate']) && $currentQuestion) {
+        $answer = $currentQuestion['reponse'];
+        $answerResult = $bdd->query($answer);
+        if ($userResult && $answerResult) {
+            $isAnswerCorrect = compareResults($userResult, $answerResult);
+            $_SESSION['isAnswerCorrect'] = $isAnswerCorrect;
+        }
+
+        if ($isAnswerCorrect) {
+            $_SESSION['incorrect_attempts'] = 0;
+            // Do not exit here if you want the script to continue processing
+        } else {
+            $_SESSION['incorrect_attempts']++;
+        }
+    }
+}
 
 if (isset($_POST['previous'])) {
-    // Décrémenter l'index de question pour afficher la question précédente
     $_SESSION['question_index'] = max($_SESSION['question_index'] - 1, 0);
-    header("Location: exercices.php");
+    header("Location: parcours_exercice.php");
     exit;
 }
 
-// Fonction pour comparer les résultats des requêtes SQL
+if (isset($_POST['nextQuestion'])) {
+    $_SESSION['question_index']++;
+    $newIndex = $_SESSION['question_index'];
+    $userId = $_SESSION['user_id'];
+    $updateQuery = $bdd->prepare("UPDATE utilisateurs SET question = :newIndex WHERE id = :userId");
+    $updateQuery->bindValue(':newIndex', $newIndex, SQLITE3_INTEGER);
+    $updateQuery->bindValue(':userId', $userId, SQLITE3_INTEGER);
+    $updateQuery->execute();
+    header("Location: parcours_exercice.php");
+    exit;
+}
+
 function compareResults($result1, $result2)
 {
     $array1 = [];
@@ -46,65 +73,7 @@ function compareResults($result1, $result2)
     return $array1 === $array2;
 }
 
-$isAnswerCorrect = false;
-$userResult = null;
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sql_query = $_POST['sql_query'] ?? '';
-
-    // Vérifier si la requête contient un mot-clé interdit
-    $forbiddenKeywords = ['DELETE', 'UPDATE', 'DROP', 'ALTER', 'TRUNCATE', 'INSERT'];
-    foreach ($forbiddenKeywords as $keyword) {
-        if (stripos($sql_query, $keyword) !== false) {
-            // Afficher un message d'erreur
-            echo '<script>displayErrorMessage("La requête contient un mot-clé interdit: ' . $keyword . '");</script>';
-            exit; // Arrêter l'exécution du script
-        }
-    }
-
-    $userResult = $bdd->query($sql_query);
-
-    if (isset($_POST['validate']) && $currentQuestion) {
-        $answer = $currentQuestion['reponse'];
-        $answerResult = $bdd->query($answer);
-        if ($userResult && $answerResult) {
-            $isAnswerCorrect = compareResults($userResult, $answerResult);
-            $_SESSION['isAnswerCorrect'] = $isAnswerCorrect;
-        }
-
-        if (!$isAnswerCorrect) {
-            $_SESSION['incorrect_attempts']++;
-        } else {
-            // Réinitialiser les tentatives incorrectes et passer à la question suivante
-            $_SESSION['incorrect_attempts'] = 0;
-            header("Location: exercices.php");
-            exit;
-        }
-    }
-}
-
-if (isset($_POST['nextQuestion'])) {
-    if (isset($_SESSION['question_index'])) {
-        $_SESSION['question_index']++;
-        // Mise à jour de l'index de la question dans la base de données pour l'utilisateur connecté
-        $newIndex = $_SESSION['question_index'];
-        $username = $_SESSION['username']; // Assurez-vous que le nom d'utilisateur est bien stocké dans la session
-        if (isset($_POST['id'])) {
-            $id = $_POST['id'];
-        } else {
-            // Gérer l'absence de l'ID, par exemple, en définissant une valeur par défaut ou en gérant une erreur
-            $id = 0; // Ou toute autre gestion d'erreur appropriée
-        }
-
-        $updateQuery = "UPDATE utilisateurs SET question = :newIndex WHERE id = :id";
-        $stmt = $bdd->prepare($updateQuery);
-        $stmt->bindValue(':newIndex', $newIndex, SQLITE3_INTEGER);
-        $stmt->bindValue(':username', $username, SQLITE3_TEXT);
-        $stmt->execute();
-    }
-    header("Location: exercices.php");
-    exit;
-}
-
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -129,9 +98,7 @@ if (isset($_POST['nextQuestion'])) {
         </div>
         <div class="header-links">
             <?php
-            // Affichez les liens de connexion/inscription ou de données du compte/déconnexion en fonction de la connexion de l'utilisateur
             if (isset($_SESSION['username'])) {
-                // Affichez la photo de profil si le chemin est disponible
                 if (!empty($userData['photo_path'])) {
                     echo '<img src="' . $userData['photo_path'] . '" alt="Photo de profil" class="profile-photo">';
                 }
@@ -151,18 +118,24 @@ if (isset($_POST['nextQuestion'])) {
     <!-- Menu horizontal -->
     <div class="menu">
         <a href="cours.php">Cours</a>
-        <a href="exercices.php">Exercices</a>
+        <a href="accueil_exercice.php">Exercices</a>
         <a href="forum.php">Forum</a>
     </div>
-    <div class="container mt-2">
+    <div class="container mt-1 mb-2">
+        <h4>Progression :</h4>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: <?php echo ($questionIndex / 40) * 100; ?>%;" aria-valuenow="<?php echo $questionIndex; ?>" aria-valuemin="0" aria-valuemax="40">
+                <?php echo $questionIndex; ?>/40
+            </div>
+        </div>
         <?php if ($currentQuestion) : ?>
-            <h3 class="mb-3"><strong>Question:</strong> <?php echo $currentQuestion['question']; ?></h3>
+            <h3 class="mt-3 mb-3"><strong>Question n°<?php echo $questionIndex; ?> :</strong> <?php echo $currentQuestion['question']; ?></h3>
         <?php endif; ?>
         <div class="container mt-2">
             <div class="row">
                 <div class="col-md-6">
                     <h4>Entrez votre requête SQL :</h4>
-                    <form id="sqlForm" action="exercices.php" method="post">
+                    <form id="sqlForm" action="parcours_exercice.php" method="post">
                         <div class="form-group">
                             <textarea name="sql_query" id="sql_query" rows="8" cols="50" class="form-control" required><?php echo isset($_POST['sql_query']) ? htmlspecialchars($_POST['sql_query']) : ''; ?></textarea>
                         </div>
@@ -173,13 +146,16 @@ if (isset($_POST['nextQuestion'])) {
                             <?php endif; ?>
                         </div>
                     </form>
-                    <button type="button" id="previousQuestion" class="btn btn-secondary">Question précédente</button>
+                    <form id="previousQuestionForm" action="parcours_exercice.php" method="post">
+                        <input type="hidden" name="previous" value="1">
+                        <button type="button" id="previousQuestion" class="btn btn-secondary">Question précédente</button>
+                    </form>
                     <?php if ($_SESSION['incorrect_attempts'] >= 3 || (isset($_SESSION['isAnswerCorrect']) && $_SESSION['isAnswerCorrect'])) : ?>
                         <button type="button" id="nextQuestion" class="btn btn-success">Question suivante</button>
                     <?php endif; ?>
                 </div>
                 <div class="col-md-6">
-                    <div class="text-center">
+                    <div class="text-center mb-2">
                         <img src="<?php echo $currentQuestion['path_uml']; ?>" alt="Image UML" class="img-fluid" style="max-width: 80%; height: auto;">
                     </div>
 
@@ -195,7 +171,7 @@ if (isset($_POST['nextQuestion'])) {
                                 <thead class="thead-dark">
                                     <tr>
                                         <?php while ($row = $userResult->fetchArray(SQLITE3_ASSOC)) : ?>
-                                            <?php $hasResults = true; ?> <!-- Marquer qu'il y a des résultats -->
+                                            <?php $hasResults = true; ?>
                                             <?php if ($firstRow) : ?>
                                                 <?php foreach ($row as $columnName => $value) : ?>
                                                     <th><?php echo $columnName; ?></th>
@@ -221,7 +197,7 @@ if (isset($_POST['nextQuestion'])) {
                                 </tbody>
                             </table>
                         </div>
-                        <?php if (!$hasResults) : ?> <!-- Utiliser la nouvelle variable pour le contrôle -->
+                        <?php if (!$hasResults) : ?>
                             <p>Aucun résultat trouvé.</p>
                         <?php endif; ?>
                     <?php endif; ?>
@@ -248,12 +224,12 @@ if (isset($_POST['nextQuestion'])) {
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <?php $_SESSION['incorrect_attempts'] = 0; // Réinitialiser le compteur après avoir affiché le message 
-                            ?>
+                            <?php $_SESSION['incorrect_attempts'] = 0; ?>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['isAnswerCorrect']) && $_SESSION['isAnswerCorrect']) : ?>
                             <button type="button" class="btn btn-success" onclick="goToNextQuestion()">Question suivante</button>
                         <?php endif; ?>
+
                     </div>
                 </div>
             </div>
@@ -264,63 +240,38 @@ if (isset($_POST['nextQuestion'])) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
+                // Function to handle the display of the modal based on the correctness of the answer
                 <?php if (isset($_SESSION['isAnswerCorrect'])) : ?>
                     let isAnswerCorrect = <?php echo json_encode($_SESSION['isAnswerCorrect']); ?>;
-                    $('#resultModal .modal-body').html(isAnswerCorrect ? 'Bonne réponse!' : 'Mauvaise réponse.');
-                    $('#resultModal').modal('show');
-                    <?php unset($_SESSION['isAnswerCorrect']); ?>
+                    let message = isAnswerCorrect ? 'Bonne réponse!' : 'Mauvaise réponse.';
+                    $('.modal-body').html(message); // Set the modal body content
+                    $('#resultModal').modal('show'); // Show the modal
+                    <?php unset($_SESSION['isAnswerCorrect']); ?> // Unset the session variable to avoid repeated messages
                 <?php endif; ?>
 
-                document.getElementById('executeQuery').addEventListener('click', function () {
+                document.getElementById('executeQuery').addEventListener('click', function() {
                     document.getElementById('sqlForm').submit();
                 });
-                document.getElementById('nextQuestion').addEventListener('click', function () {
-                    window.location.reload(); // Cela rafraîchira la page
+
+                function goToNextQuestion() {
+                    var form = document.createElement('form');
+                    document.body.appendChild(form);
+                    form.method = 'POST';
+                    form.action = 'parcours_exercice.php';
+                    var input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'nextQuestion';
+                    form.appendChild(input);
+                    form.submit();
+                }
+                window.goToNextQuestion = goToNextQuestion;
+                document.getElementById('previousQuestion').addEventListener('click', function() {
+                    document.getElementById('previousQuestionForm').submit();
                 });
             });
-
-            document.getElementById('previousQuestion').addEventListener('click', function () {
-                var form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'exercices.php';
-
-                var input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'previous';
-                input.value = '1';
-                form.appendChild(input);
-
-                document.body.appendChild(form);
-                form.submit();
-            });
-
-            function goToNextQuestion() {
-                var form = document.createElement('form');
-                document.body.appendChild(form);
-                form.method = 'POST';
-                form.action = 'exercices.php';
-                var input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'nextQuestion';
-                form.appendChild(input);
-                form.submit();
-            }
-
-            // Fonction pour afficher un message d'erreur
-            function displayErrorMessage(message) {
-                alert(message);
-            }
         </script>
-        <script>
-            <?php if ($_SESSION['incorrect_attempts'] >= 3) : ?>
-                var errorMessage = "<?php echo "<div class='alert alert-info'>La réponse correcte était : <br>" . htmlspecialchars($currentQuestion['reponse']) . "</div>"; ?>";
-                $('#resultModal .modal-body').html(errorMessage);
-                $('#resultModal').modal('show');
-                <?php $_SESSION['incorrect_attempts'] = 0; // Réinitialiser le compteur après avoir affiché le message 
-                ?>
-            <?php endif; ?>
-        </script>
+
 </body>
 
 </html>

@@ -1,0 +1,171 @@
+.center-title {
+    text-align: center;
+}
+.exercise-section {
+    margin-top: 20px;
+}
+.full-width-card img {
+    width: 100%; /* Ensures the image covers the full width of the card */
+    height: 150px; /* Reduced height from previously larger sizes */
+    object-fit: cover; /* Covers the height and width specified without distorting the image */
+}
+.full-width-card {
+    margin-bottom: 20px; /* Adds space between the cards */
+    border: 1px solid black; /* Thin black border */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+.container{
+    max-width: 900px;
+}
+
+.footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    /* Couleur de fond de votre choix */
+    color: white;
+    /* Couleur du texte de votre choix */
+    padding: 5px;
+    /* Espace intérieur réduit */
+    text-align: center;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+    /* Largeur maximale pour éviter qu'il ne s'étende trop */
+    margin: 0 auto;
+    /* Centrez la barre sur la page */
+}
+
+.footer-info__item {
+    flex-grow: 1;
+    /* Les éléments prennent autant d'espace que possible */
+    text-align: left;
+    /* Alignez le texte à gauche */
+}
+
+.footer-info__title {
+    font-weight: bold;
+    font-size: 0.9rem;
+    /* Taille du titre réduite */
+}
+
+.footer-info__contact {
+    list-style: none;
+    /* Supprimez les puces de la liste */
+    padding: 0;
+    /* Supprimez le remplissage par défaut de la liste */
+    margin-top: 5px;
+    /* Espacement supplémentaire réduit au-dessus de la liste */
+}
+
+.footer-info__contact-item {
+    margin-bottom: 0px;
+    /* Espacement entre les éléments de la liste réduit */
+    font-size: 0.8rem;
+    /* Taille du texte réduite */
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.header {
+    background-color: #7AD3E7;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    background-color: #7A8ED3;
+    color: #000000;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.list-group-item {
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.btn {
+    margin-top: 20px;
+}
+
+.main-content {
+    text-align: center;
+}
+
+.logo img {
+    max-height: 100px; /* Ajustez la hauteur maximale selon vos besoins */
+    max-width: 100%; /* Garantit que l'image ne dépasse pas la largeur du conteneur */
+}
+.photo-preview-container {
+    width: 50px; /* Définir la largeur du conteneur */
+    height: 50px; /* Définir la hauteur du conteneur */
+    overflow: hidden; /* Cacher tout contenu dépassant du conteneur */
+    border-radius: 50%; /* Créer un cercle en utilisant un bord arrondi à 50% de la largeur/hauteur */
+    display: inline-block; /* Permet d'aligner l'élément à côté de l'input */
+    margin-left: 10px; /* Ajuster la marge pour l'espacement */
+}
+
+.photo-profil-preview {
+    width: 50px; /* Définir la largeur du cercle */
+    height: 50px; /* Définir la hauteur du cercle */
+    object-fit: cover; /* Couvrir tout le cercle tout en préservant les proportions de l'image */
+    border-radius: 50%; /* Assurer que l'image est affichée en tant que cercle */
+    display: block; /* Résoudre tout problème d'espacement supplémentaire */
+    margin-top: 5px; /* Ajuster la marge supérieure pour l'espacement */
+}
+
+.profile-photo {
+    width: 50px; /* Ajustez la taille selon vos besoins */
+    height: 50px;
+    border-radius: 50%; /* Pour une photo de profil arrondie */
+    margin-right: 10px; /* Espace entre la photo et le texte */
+}
+
+.logo {
+    margin-right: 10px; /* Permet au logo de rester à gauche */
+}
+
+.header-title {
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: helvetica;
+    text-align: left;
+    margin-left: 15px;
+    margin-top: 1rem;
+}
+
+.header-links {
+    margin-left: auto; /* Permet au contenu des liens de rester à droite */
+}
+
+.header-links a {
+    text-decoration: none;
+    color: #000000;
+    margin-left: 20px;
+}
