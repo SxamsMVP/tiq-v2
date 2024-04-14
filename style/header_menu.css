@@ -31,13 +31,18 @@ body {
 
 .header-links {
     margin-left: auto; /* Permet au contenu des liens de rester à droite */
-}
+} 
 
 .header-links a {
     text-decoration: none;
     color: #000000;
     margin-left: 20px;
 }
+
+.header-content{
+    margin-left:auto;
+}
+
 .menu {
     background-color: #7A8ED3;
     color: #000000;
@@ -143,3 +148,70 @@ body {
 .next {
     right: 10px;
 }
+
+.imgcours1{
+    width:  200px;;
+    height:  100px;
+}
+
+.imgcours2{
+    width:  200px;;
+    height:  100px;
+}
+
+.imgcours3{
+    width:  200px;;
+    height:  100px;
+}
+
+.footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    /* Couleur de fond de votre choix */
+    color: white;
+    /* Couleur du texte de votre choix */
+    padding: 5px;
+    /* Espace intérieur réduit */
+    text-align: center;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+    /* Largeur maximale pour éviter qu'il ne s'étende trop */
+    margin: 0 auto;
+    /* Centrez la barre sur la page */
+}
+
+.footer-info__item {
+    flex-grow: 1;
+    /* Les éléments prennent autant d'espace que possible */
+    text-align: left;
+    /* Alignez le texte à gauche */
+}
+
+.footer-info__title {
+    font-weight: bold;
+    font-size: 0.9rem;
+    /* Taille du titre réduite */
+}
+
+.footer-info__contact {
+    list-style: none;
+    /* Supprimez les puces de la liste */
+    padding: 0;
+    /* Supprimez le remplissage par défaut de la liste */
+    margin-top: 5px;
+    /* Espacement supplémentaire réduit au-dessus de la liste */
+}
+
+.footer-info__contact-item {
+    margin-bottom: 0px;
+    /* Espacement entre les éléments de la liste réduit */
+    font-size: 0.8rem;
+    /* Taille du texte réduite */
+}
+

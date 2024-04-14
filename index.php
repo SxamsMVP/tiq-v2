@@ -11,7 +11,7 @@ include('header.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/header_menu.css">
-    <title>Bannière avec navigation</title>
+    <title>SQL CHALLENGER</title>
 </head>
 
 <body>
@@ -107,30 +107,30 @@ include('header.php');
     <div class="col-md-4">
     <a href="cours.php">
         <div class="footer-sidebar bg-white text-black text-center">
-            <img class="imgcours" src="/img/courssql.png" alt="">
+            <img class="imgcours1" src="/img/logoCours.png" alt="">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-100 dark:text-white">Cours</h5>
             </a>
-            <p class="mb-3 font-normal text-gray-100 dark:text-gray-100">Accédez à nos cours pour pouvoir vous entraîner.</p>
+            <p class="mb-3 font-normal text-gray-100 dark:text-gray-100">Accédez à nos cours afin de maîtriser les bases du SQL.</p>
         </div>
     </div>
 
     <div class="col-md-4">
     <a href="accueil_exercice.php">
         <div class="footer-sidebar bg-white text-black text-center">
-            <img class="imgcours" src="/img/courssql.png" alt="">
+            <img class="imgcours2" src="/img/logoCours.png" alt="">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-100 dark:text-white">Exercices</h5>
             </a>
-            <p class="mb-3 font-normal text-gray-100 dark:text-gray-100">Mettez vos connaissances en pratique avec nos exercices interactifs. Testez vos compétences en résolvant des problèmes SQL et en obtenant un retour immédiat. Améliorez votre compréhension et votre maîtrise de SQL en pratiquant.</p>
+            <p class="mb-3 font-normal text-gray-100 dark:text-gray-100">Mettez vos connaissances en pratique avec nos exercices interactifs. Testez vos compétences en résolvant des problèmes SQL et en obtenant un retour immédiat.</p>
         </div>
     </div>
 
     <div class="col-md-4">
     <a href="forum.php">
         <div class="footer-sidebar bg-white text-black text-center">
-            <img class="imgcours" src="/img/courssql.png" alt="">
+            <img class="imgcours3" src="/img/logoCours.png" alt="">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-100 dark:text-white">Forum</h5>
             </a>
-            <p class="mb-3 font-normal text-gray-100 dark:text-gray-100">Forum food.</p>
+            <p class="mb-3 font-normal text-gray-100 dark:text-gray-100">Echanges - Question / Réponses avec les autres utilisateurs. N'hésitez pas !</p>
         </div>
     </div>
 </div>
@@ -144,13 +144,31 @@ include('header.php');
     </section>
 
 
-    <!-- Barre latérale en bas -->
-    <div class="footer-sidebar bg-dark  text-white text-center p-3">
-        <h4>Coordonnées de l'entreprise</h4>
-        <p>Adresse : Université de Bordeaux</p>
-        <p>Téléphone : 06 06 06 06 06</p>
-        <p>Email : sqlchallenger@gmail.com</p>
-    </div>
+    <!-- Pied de page -->
+    <footer class="footer">
+        <div class="footer-info">
+            <div class="footer-info__item">
+                <h3 class="footer-info__title">Coordonnées de l'entreprise</h3>
+                <ul class="footer-info__contact">
+                    <li class="footer-info__contact-item">Adresse : Université de Bordeaux</li>
+                    <li class="footer-info__contact-item">Téléphone : 06 06 06 06 06</li>
+                    <li class="footer-info__contact-item">Email : sqlchallenger@gmail.com</li>
+                </ul>
+            </div>
+            <div class="footer-info__item">
+                <!-- Ajoutez ici d'autres informations sur l'entreprise si nécessaire -->
+            </div>
+            <div class="footer-info__item">
+                <h3 class="footer-info__title">Suivez-nous</h3>
+                <ul class="footer-info__contact">
+                    <li class="footer-info__contact-item"><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target="_blank" class="hover:text-white">Facebook</a></li>
+                    <li class="footer-info__contact-item"><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target="_blank" class="hover:text-white">Twitter</a></li>
+                    <li class="footer-info__contact-item"><a href="http://alexandrelourme.free.fr/M1PROC/" target="_blank" class="hover:text-white">Instagram</a></li>
+                    <li class="footer-info__contact-item"><a href="https://www.labri.fr/perso/maabout/" target="_blank" class="hover:text-white">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
