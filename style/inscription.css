@@ -10,12 +10,11 @@ body {
 }
 
 .header {
+    background-color: #7AD3E7;
     color: #ffffff;
     padding: 10px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    
 }
 
 .header-title {
