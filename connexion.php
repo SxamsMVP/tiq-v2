@@ -111,32 +111,7 @@ if ($authentication_successful) {
     </div>
 
 
-    <!-- Barre latérale en bas -->
-    <!-- Pied de page -->
-    <footer class="footer">
-        <div class="footer-info">
-            <div class="footer-info__item">
-                <h3 class="footer-info__title">Coordonnées de l'entreprise</h3>
-                <ul class="footer-info__contact">
-                    <li class="footer-info__contact-item">Adresse : Université de Bordeaux</li>
-                    <li class="footer-info__contact-item">Téléphone : 06 06 06 06 06</li>
-                    <li class="footer-info__contact-item">Email : sqlchallenger@gmail.com</li>
-                </ul>
-            </div>
-            <div class="footer-info__item">
-                <!-- Ajoutez ici d'autres informations sur l'entreprise si nécessaire -->
-            </div>
-            <div class="footer-info__item">
-                <h3 class="footer-info__title">Suivez-nous</h3>
-                <ul class="footer-info__contact">
-                    <li class="footer-info__contact-item"><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target="_blank" class="hover:text-white">Facebook</a></li>
-                    <li class="footer-info__contact-item"><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target="_blank" class="hover:text-white">Twitter</a></li>
-                    <li class="footer-info__contact-item"><a href="http://alexandrelourme.free.fr/M1PROC/" target="_blank" class="hover:text-white">Instagram</a></li>
-                    <li class="footer-info__contact-item"><a href="https://www.labri.fr/perso/maabout/" target="_blank" class="hover:text-white">LinkedIn</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+
 
 </body>
 
