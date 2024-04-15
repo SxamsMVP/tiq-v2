@@ -1,0 +1,37 @@
+ .questions-menu {
+    display: flex;
+    justify-content: center;  /* Center the buttons horizontally */
+    flex-wrap: wrap; /* Allow the items to wrap */
+    margin-bottom: 20px; /* Spacing between rows of buttons */
+}
+
+.menu-link, .question-link {
+    padding: 10px 20px; /* Padding inside the buttons */
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* White text */
+    font-size: 16px; /* Set font size */
+    border-radius: 5px; /* Rounded corners */
+    margin: 5px; /* Space between buttons */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.link-parcours {
+    background-color: #ffc107; /* Yellow background */
+}
+
+.link-select {
+    background-color: #dc3545; /* Red background */
+}
+
+.link-where {
+    background-color: #fd7e14; /* Orange background */
+}
+
+.menu-link:hover, .question-link:hover {
+    opacity: 0.8; /* Slight transparency on hover */
+}
+
+/* Additional styling for menu links to differentiate */
+.menu-link {
+    background-color: #007bff; /* Standard blue background */
+}
