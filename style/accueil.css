@@ -13,8 +13,8 @@
 }
 
 .photo-profil-preview {
-    width: 50px; /* Définir la largeur du cercle */
-    height: 50px; /* Définir la hauteur du cercle */
+    width: 60px; /* Définir la largeur du cercle */
+    height: 60px; /* Définir la hauteur du cercle */
     object-fit: cover; /* Couvrir tout le cercle tout en préservant les proportions de l'image */
     border-radius: 50%; /* Assurer que l'image est affichée en tant que cercle */
     display: block; /* Résoudre tout problème d'espacement supplémentaire */
@@ -22,13 +22,33 @@
 }
 
 .profile-photo {
-    width: 50px; /* Ajustez la taille selon vos besoins */
-    height: 50px;
+    width: 60px; /* Ajustez la taille selon vos besoins */
+    height: 60px;
     border-radius: 50%; /* Pour une photo de profil arrondie */
     margin-right: 10px; /* Espace entre la photo et le texte */
 }
 
+.stylish-username {
+    font-size: 1.5rem; /* Larger font size */
+    color: #4CAF50; /* Bright green color */
+    font-weight: bold; /* Make it bold */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle text shadow for depth */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
 
+.stylish-username:hover {
+    color: #34A853; /* Slightly different green on hover */
+    text-decoration: none; /* Removes underline on hover */
+}
+
+.icon-large {
+    font-size: 1.5rem;
+    transition: color 0.3s ease-in-out; /* Smooth transition for color change */
+}
+
+.icon-large:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
 
 body {
     background-image: url('/img/background_accueil.jpg');;
@@ -44,6 +64,7 @@ body, html {
     align-items: center;
     flex-direction: column; /* Stacks items vertically */
 }
+
 .header {
     color: #ffffff;
     padding: 10px;
@@ -58,10 +79,16 @@ body, html {
 .header-title {
     font-size: 3rem;
     font-weight: bold;
-    font-family: helvetica;
+    font-family: Helvetica, sans-serif; /* Added sans-serif as a fallback */
     margin-top: 1rem;
-    margin-left : 15px
+    margin-left: 15px;
 }
+
+.highlight {
+    font-size: 5rem; /* Make the font size larger */
+    color: #007bff; /* Set the color to blue */
+}
+
 
 .header-links {
     margin-left: auto; /* Permet au contenu des liens de rester à droite */
@@ -116,19 +143,26 @@ body, html {
 
 .main-content {
     display: flex; /* Use flex display */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 100vh; /* Make the container full height of the viewport */
+    flex-direction: column; /* Stack the children vertically */
+    align-items: center; /* Center children horizontally */
+    height: 75vh; /* Make the container full height of the viewport */
     text-align: center; /* Center text */
 }
 
 .container {
+    display: flex; /* Use flex display */
+    justify-content: space-around; /* Space buttons evenly */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Space inside the container */
+    max-width: 1200px; /* Maximum width of the container */
     width: 100%; /* Full width */
-    max-width: none; /* Override any max-width */
 }
 
 .btn-large {
-    display: block; /* Makes the <a> element block level for full width */
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
     margin: 10px; /* Adds margin around the buttons */
     padding: 20px 40px; /* Adds padding inside the buttons */
     font-size: 1.5rem; /* Increases the font size */
@@ -138,8 +172,38 @@ body, html {
     border-radius: 5px; /* Rounds the corners of the buttons */
     text-decoration: none; /* Removes the underline from the link */
     transition: background-color 0.3s; /* Adds a transition effect when hovering */
+    flex: 0 0 auto; /* Don't grow or shrink the button */
+    width: 300px; /* Third of the container width minus margin */
+    height: 100px; /* Set a fixed height */
+    box-sizing: border-box; /* Include padding and border in the width and height */
 }
 
 .btn-large:hover {
     background-color: #0056b3; /* Darkens the button color on hover */
+}
+
+
+.logout-icon {
+    color: red; /* Set the icon color to red */
+    font-size: 1.5rem;
+}
+
+
+.footer {
+    width: 100%;
+    color: white; /* Light text color for contrast */
+    text-align: center; /* Center the text */
+    position: absolute; /* Position at the bottom */
+    bottom: 0; /* Align to the bottom */
+    left: 0; /* Align to the left */
+    font-size: 0.9rem; /* Smaller font size */
+}
+
+.footer-link {
+    color: #007bff; /* Set the link color to blue */
+    text-decoration: none; /* No underline */
+}
+
+.footer-link:hover, .footer-link:focus {
+    text-decoration: underline; /* Underline on hover/focus for better accessibility */
 }
