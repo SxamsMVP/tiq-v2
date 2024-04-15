@@ -15,15 +15,6 @@ include('header.php');
 
 <body>
     <div class="header">
-
-        <div class="logo">
-            <img src="img/logo.png" alt="Logo SQL CHALLENGER">
-        </div>
-
-        <div class="header-title text-left">
-            <a href="index.php" style="text-decoration: none; color: inherit;">SQL CHALLENGER</a>
-        </div>
-
         <div class="header-content">
             <div class="header-links">
                 <?php
@@ -47,27 +38,26 @@ include('header.php');
             </div>
         </div>
     </div>
-
+    <header class="header">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo SQL CHALLENGER">
+            </div>
+            <h1 class="header-title">SQL CHALLENGER</h1>
+        </header>
     <section class="main-content">
+   
         <div class="container">
-            <div class="row justify-content-center align-items-center"> <!-- Ajout de align-items-center pour aligner verticalement -->
-
-                <div class="col-md-4 text-center"> <!-- Ajout de la classe text-center pour centrer le contenu horizontalement -->
-                    <a href="cours.php">
-                            <img class="imgcours1" src="/img/cours_button.png" alt="">
-                    </a>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-4 text-center">
+                    <a href="cours.php" class="btn-large blue-bg">Cours</a>
                 </div>
 
-                <div class="col-md-4 text-center"> <!-- Ajout de la classe text-center pour centrer le contenu horizontalement -->
-                    <a href="accueil_exercice.php">
-                            <img class="imgcours2" src="/img/exercice_button.png" alt="">
-                    </a>
+                <div class="col-md-4 text-center">
+                    <a href="accueil_exercice.php" class="btn-large blue-bg">Exercices</a>
                 </div>
 
-                <div class="col-md-4 text-center"> <!-- Ajout de la classe text-center pour centrer le contenu horizontalement -->
-                    <a href="forum.php">
-                            <img class="imgcours3" src="/img/forum_button.png" alt="">
-                    </a>
+                <div class="col-md-4 text-center">
+                    <a href="forum.php" class="btn-large blue-bg">Forum</a>
                 </div>
             </div>
         </div>

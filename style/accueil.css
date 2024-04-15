@@ -1,16 +1,49 @@
+
+.logo img {
+    max-height: 100px; /* Ajustez la hauteur maximale selon vos besoins */
+    max-width: 100%; /* Garantit que l'image ne dépasse pas la largeur du conteneur */
+}
+.photo-preview-container {
+    width: 50px; /* Définir la largeur du conteneur */
+    height: 50px; /* Définir la hauteur du conteneur */
+    overflow: hidden; /* Cacher tout contenu dépassant du conteneur */
+    border-radius: 50%; /* Créer un cercle en utilisant un bord arrondi à 50% de la largeur/hauteur */
+    display: inline-block; /* Permet d'aligner l'élément à côté de l'input */
+    margin-left: 10px; /* Ajuster la marge pour l'espacement */
+}
+
+.photo-profil-preview {
+    width: 50px; /* Définir la largeur du cercle */
+    height: 50px; /* Définir la hauteur du cercle */
+    object-fit: cover; /* Couvrir tout le cercle tout en préservant les proportions de l'image */
+    border-radius: 50%; /* Assurer que l'image est affichée en tant que cercle */
+    display: block; /* Résoudre tout problème d'espacement supplémentaire */
+    margin-top: 5px; /* Ajuster la marge supérieure pour l'espacement */
+}
+
+.profile-photo {
+    width: 50px; /* Ajustez la taille selon vos besoins */
+    height: 50px;
+    border-radius: 50%; /* Pour une photo de profil arrondie */
+    margin-right: 10px; /* Espace entre la photo et le texte */
+}
+
+
+
 body {
     background-image: url('/img/background_accueil.jpg');;
     color: white;
     
 }
 
-.container {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
+body, html {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stacks items vertically */
 }
-
 .header {
     color: #ffffff;
     padding: 10px;
@@ -74,38 +107,39 @@ body {
     text-align: center;
 }
 
-.logo img {
-    max-height: 100px; /* Ajustez la hauteur maximale selon vos besoins */
-    max-width: 100%; /* Garantit que l'image ne dépasse pas la largeur du conteneur */
-}
-.photo-preview-container {
-    width: 50px; /* Définir la largeur du conteneur */
-    height: 50px; /* Définir la hauteur du conteneur */
-    overflow: hidden; /* Cacher tout contenu dépassant du conteneur */
-    border-radius: 50%; /* Créer un cercle en utilisant un bord arrondi à 50% de la largeur/hauteur */
-    display: inline-block; /* Permet d'aligner l'élément à côté de l'input */
-    margin-left: 10px; /* Ajuster la marge pour l'espacement */
-}
-
-.photo-profil-preview {
-    width: 50px; /* Définir la largeur du cercle */
-    height: 50px; /* Définir la hauteur du cercle */
-    object-fit: cover; /* Couvrir tout le cercle tout en préservant les proportions de l'image */
-    border-radius: 50%; /* Assurer que l'image est affichée en tant que cercle */
-    display: block; /* Résoudre tout problème d'espacement supplémentaire */
-    margin-top: 5px; /* Ajuster la marge supérieure pour l'espacement */
-}
-
-.profile-photo {
-    width: 50px; /* Ajustez la taille selon vos besoins */
-    height: 50px;
-    border-radius: 50%; /* Pour une photo de profil arrondie */
-    margin-right: 10px; /* Espace entre la photo et le texte */
-}
-
 .imgcours1,
 .imgcours2,
 .imgcours3{
     width:  400px;;
     height:  175px;
+}
+
+.main-content {
+    display: flex; /* Use flex display */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Make the container full height of the viewport */
+    text-align: center; /* Center text */
+}
+
+.container {
+    width: 100%; /* Full width */
+    max-width: none; /* Override any max-width */
+}
+
+.btn-large {
+    display: block; /* Makes the <a> element block level for full width */
+    margin: 10px; /* Adds margin around the buttons */
+    padding: 20px 40px; /* Adds padding inside the buttons */
+    font-size: 1.5rem; /* Increases the font size */
+    font-weight: bold; /* Makes the text bold */
+    color: white; /* Sets the text color to white */
+    background-color: #007bff; /* Sets the background color to blue */
+    border-radius: 5px; /* Rounds the corners of the buttons */
+    text-decoration: none; /* Removes the underline from the link */
+    transition: background-color 0.3s; /* Adds a transition effect when hovering */
+}
+
+.btn-large:hover {
+    background-color: #0056b3; /* Darkens the button color on hover */
 }
