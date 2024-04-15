@@ -30,7 +30,7 @@ include('header.php');
                     if ($userData['admin']) {
                         echo '<a class="text-white" href="back_office.php"><i class="fa-solid fa-gear icon-large"></i></a>';
                     }
-                    
+
                     echo '<a class="text-white" href="logout.php"><i class="fa-solid fa-right-from-bracket logout-icon"></i></a>';
                 } else {
                     echo '<a href="connexion.php">Connexion</a>';
@@ -40,16 +40,14 @@ include('header.php');
             </div>
         </div>
     </div>
-    <section class="main-content">
-
-    <div class="header mt-4">
-        <div class="logo">
-            <img src="img/logo.png" alt="Logo SQL CHALLENGER">
+    <section class="main-content mt-2">
+        <div class="header mt-4">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo SQL CHALLENGER">
+            </div>
+            <h1 class="header-title mt-4"><span class="highlight">S</span>QL <span class="highlight">C</span>HALLENGER</h1>
         </div>
-        <h1 class="header-title mt-4"><span class="highlight">S</span>QL <span class="highlight">C</span>HALLENGER</h1>
-
-    </div>
-        <div class="container mt-4">
+        <div class="container mt-2">
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-4 text-center">
                     <a href="cours.php" class="btn-large blue-bg">Cours</a>
@@ -66,10 +64,10 @@ include('header.php');
         </div>
     </section>
     <footer class="footer">
-    <div class="container">
-        <p>By continuing I agree with <a href="#terms" class="footer-link">Terms & Conditions</a>, <a href="#privacy" class="footer-link">Privacy Policy</a>, and <a href="#cookie" class="footer-link">Cookie Policy</a>.</p>
-    </div>
-</footer>
+        <div class="container">
+            <p>By continuing I agree with <a href="#terms" class="footer-link">Terms & Conditions</a>, <a href="#privacy" class="footer-link">Privacy Policy</a>, and <a href="#cookie" class="footer-link">Cookie Policy</a>.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
