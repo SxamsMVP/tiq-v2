@@ -9,16 +9,14 @@ body {
     margin: 0 auto;
     padding: 20px;
     text-align: center;
-    margin-left: 20px;
+    margin-left: 25px;
     /* Décaler le conteneur vers la gauche */
 }
-
 
 .header {
     color: #ffffff;
     padding: 10px;
     display: flex;
-
 }
 
 .header-title {
@@ -93,8 +91,6 @@ body {
     /* Espacement entre la case à cocher et le texte */
 }
 
-
-
 .main-content {
     text-align: center;
 }
@@ -151,54 +147,32 @@ body {
     /* Espace entre la photo et le texte */
 }
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    /* Couleur de fond de votre choix */
-    color: white;
-    /* Couleur du texte de votre choix */
-    padding: 5px;
-    /* Espace intérieur réduit */
+
+.containerfooter {
+    max-width: 95%; /* Réduire la largeur maximale à 600px */
+    margin: 0 auto;
+    padding: 20px;
     text-align: center;
 }
 
-.footer-info {
-    display: flex;
-    justify-content: space-between;
-    max-width: 600px;
-    /* Largeur maximale pour éviter qu'il ne s'étende trop */
-    margin: 0 auto;
-    /* Centrez la barre sur la page */
+.footer {
+    width: 100%;
+    color: white; /* Light text color for contrast */
+    text-align: center; /* Center the text */
+    position: absolute; /* Position at the bottom */
+    bottom: 0; /* Align to the bottom */
+    left: 0; /* Align to the left */
+    font-size: 0.9rem; /* Smaller font size */
 }
 
-.footer-info__item {
-    flex-grow: 1;
-    /* Les éléments prennent autant d'espace que possible */
-    text-align: left;
-    /* Alignez le texte à gauche */
+.footer-link {
+    color: #007bff; /* Set the link color to blue */
+    text-decoration: none; /* No underline */
 }
 
-.footer-info__title {
-    font-weight: bold;
-    font-size: 0.9rem;
-    /* Taille du titre réduite */
+.footer-link:hover, .footer-link:focus {
+    text-decoration: underline; /* Underline on hover/focus for better accessibility */
 }
 
-.footer-info__contact {
-    list-style: none;
-    /* Supprimez les puces de la liste */
-    padding: 0;
-    /* Supprimez le remplissage par défaut de la liste */
-    margin-top: 5px;
-    /* Espacement supplémentaire réduit au-dessus de la liste */
-}
 
-.footer-info__contact-item {
-    margin-bottom: 0px;
-    /* Espacement entre les éléments de la liste réduit */
-    font-size: 0.8rem;
-    /* Taille du texte réduite */
-}
+

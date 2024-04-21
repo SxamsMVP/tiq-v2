@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
+    <title>Inscription</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/inscription.css">
-    <style>
-        body {
-            background-image: url('img/fond_ecran.jpeg');
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-    </style>
     <script>
         function previewImage(input) {
             var preview = document.getElementById('preview');
@@ -40,109 +33,157 @@
             <img src="img/logo.png" alt="Logo SQL CHALLENGER">
         </div>
         <div class="header-title text-center">SQL CHALLENGER</div>
-        <div class="photo-preview-container mt-2">
-            <img id="preview" src="#" alt="Aperçu de la photo" class="photo-profil-preview" style="display: none;">
-        </div>
         <div class="header-links">
-            <a class="text-white mr-3" href="connexion.php">Connexion</a>
+            <a class="text-black mr-3" href="connexion.php">Connexion</a>
         </div>
     </div>
     <div class="container mt-3">
-        <h1 class="text-center text-white mb-4">Inscription</h1>
-        <div class="col-md-10 offset-md-1">
-            <form action="traitement_inscription.php" method="post" enctype="multipart/form-data">
-                <div class="form-group row text-white">
-                    <label for="photo" class="col-sm-2 col-form-label">Choisissez une photo de profil :</label>
-                    <div class="col-sm-4">
-                        <input type="file" name="photo" id="photo" accept="image/*" onchange="previewImage(this)"
-                            class="form-control-file photo-profil">
+        <h1 class="text-center text-black mb-4">Bienvenue !</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <form action="traitement_inscription.php" method="post" enctype="multipart/form-data">
+                    <h4 class="text-left text-primary mb-4">CRÉEZ VOTRE COMPTE !</h4>
+                    <div class="form-group"> <!-- Suppression de la classe row pour ne pas aligner les éléments sur la même ligne -->
+                        <label for="email" class="form-label text-black">Votre email :</label> <!-- Utilisation de form-label pour une meilleure présentation -->
+                        <input type="text" name="email" class="form-control" required placeholder="Adresse mail"> <!-- Changement du type à 'email' et ajout de placeholder -->
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordInput" class="form-label text-black">Votre mot de passe :</label>
+                        <div class="input-group">
+                            <input type="password" id="passwordInput" name="password" class="form-control" required placeholder="Mot de passe">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="fa fa-eye" id="eyeIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-secondary small mt-2">Votre mot de passe doit contenir au minimum : 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial (& @ +...)</p>
                     </div>
 
-                    <label for="nom" class="col-sm-2 col-form-label">Nom :</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="nom" class="form-control" required>
-                    </div>
-                </div>
+                    <h4 class="text-left text-primary mb-4 mt-4">DÎTES-NOUS EN PLUS SUR VOUS...</h4>
 
-                <div class="form-group row text-white">
-                    <label for="prenom" class="col-sm-2 col-form-label">Prénom :</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="prenom" class="form-control" required>
-                    </div>
-
-                    <label for="adresse" class="col-sm-2 col-form-label">Adresse :</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="adresse" class="form-control" required>
-                    </div>
-                </div>
-
-                <div class="form-group row text-white">
-                    <label for="email" class="col-sm-2 col-form-label">Adresse e-mail :</label>
-                    <div class="col-sm-4">
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-
-                    <label for="username" class="col-sm-2 col-form-label">Pseudo :</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="username" class="form-control" required>
-                    </div>
-                </div>
-
-                <div class="form-group row text-white">
-                    <label for="password" class="col-sm-2 col-form-label">Mot de passe :</label>
-                    <div class="col-sm-4">
-                        <input type="password" id="passwordInput" name="password" class="form-control" required>
-                    </div>
-
-                    <label for="confirm_password" class="col-sm-2 col-form-label">Confirmer le mot de passe :</label>
-                    <div class="col-sm-4">
-                        <input type="password" id="confirmPasswordInput" name="confirm_password" class="form-control" required>
-                    </div>
-                </div>
-
-                <div class="form-group row text-white">
-                    <div class="col-sm-9 offset-sm-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="termsCheckbox" required>
-                            <label class="form-check-label" for="termsCheckbox">
-                                J'accepte les <a href="#" class="text-white">conditions générales</a>.
-                            </label>
+                    <div class="form-group">
+                        <label class="text-black">Civilité :</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="civilite" id="homme" value="Homme" required>
+                                <label class="form-check-label" for="homme">Monsieur</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="civilite" id="femme" value="Femme" required>
+                                <label class="form-check-label" for="femme">Madame</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="form-group  text-white">
-                    <div class=" text-center"> <!-- Ajout de la classe text-center -->
-                        <button class="btn btn-success btn-lg text-center" type="submit">S'inscrire</button> <!-- Ajout de la classe btn-lg -->
+                    <div class="form-group"> <!-- Suppression de la classe row pour ne pas aligner les éléments sur la même ligne -->
+                        <label for="prenom" class="form-label text-black">Votre Prénom :</label> <!-- Utilisation de form-label pour une meilleure présentation -->
+                        <input type="text" name="prenom" class="form-control" required placeholder="Votre Prénom"> <!-- Changement du type à 'email' et ajout de placeholder -->
                     </div>
-                </div>
+                    <div class="form-group"> <!-- Suppression de la classe row pour ne pas aligner les éléments sur la même ligne -->
+                        <label for="nom" class="form-label text-black">Votre Nom :</label> <!-- Utilisation de form-label pour une meilleure présentation -->
+                        <input type="text" name="nom" class="form-control" required placeholder="Votre Nom"> <!-- Changement du type à 'email' et ajout de placeholder -->
+                    </div>
 
-            </form>
-            <a href="index.php" class="mt-3 d-block text-center text-white">Retour à la page d'accueil</a>
+                    <h4 class="text-left text-primary mb-4 mt-4">QUELLES SONT VOS COORDONNÉES ?</h4>
+
+                    <div class="form-group"> <!-- Suppression de la classe row pour ne pas aligner les éléments sur la même ligne -->
+                        <label for="pays" class="form-label text-black">Votre Pays :</label> <!-- Utilisation de form-label pour une meilleure présentation -->
+                        <input type="text" name="pays" class="form-control" required placeholder="France"> <!-- Changement du type à 'email' et ajout de placeholder -->
+                    </div>
+                    <div class="form-group"> <!-- Suppression de la classe row pour ne pas aligner les éléments sur la même ligne -->
+                        <label for="phone" class="form-label text-black">Votre numéro de téléphone :</label> <!-- Utilisation de form-label pour une meilleure présentation -->
+                        <input type="text" name="phone" class="form-control" required placeholder="06 06 06 06 06"> <!-- Changement du type à 'email' et ajout de placeholder -->
+                    </div>
+
+                    <h4 class="text-left text-primary mb-4 mt-4">QUI ÊTES VOUS VRAIMENT ?</h4>
+                    <div class="form-group row text-black pl-3">
+                        <label for="photo" class="form-label text-black mr-3">Choisissez une photo de profil :</label>
+                        <div class="col-sm-4">
+                            <input type="file" name="photo" id="photo" accept="image/*" onchange="previewImage(this)" class="form-control-file photo-profil">
+                        </div>
+                        <!-- Ajout d'un conteneur pour l'aperçu de l'image à côté -->
+                        <img id="preview" src="#" alt="Aperçu de la photo" class="photo-profil-preview" style="display: none;">
+                    </div>
+
+
+                    <div class="form-group mb-4"> <!-- Suppression de la classe row pour ne pas aligner les éléments sur la même ligne -->
+                        <label for="pseudo" class="form-label text-black">Votre pseudo :</label> <!-- Utilisation de form-label pour une meilleure présentation -->
+                        <input type="text" name="pseudo" class="form-control" required placeholder="Je suis un boss sql :)"> <!-- Changement du type à 'email' et ajout de placeholder -->
+                    </div>
+                    <div class="form-group row text-black">
+                        <div class="col-sm-12"> <!-- Modifié pour prendre toute la largeur de sa rangée sans décalage -->
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" value="" id="termsCheckbox" required>
+                                <label class="form-check-label" for="termsCheckbox">
+                                    J'accepte les <a href="#" class="text-black">conditions générales</a>.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-black mt-3">
+                        <div class="text-center"> <!-- Classe text-center pour centrer le bouton -->
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">CRÉER VOTRE COMPTE</button> <!-- Ajout de la classe btn-block -->
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-section col-md-4">
+                        <h4>À propos</h4>
+                        <p>Nous sommes une entreprise dédiée à [description de l'entreprise]. Rejoignez-nous pour explorer et découvrir plus ensemble.</p>
+                    </div>
+                    <div class="footer-section col-md-4">
+                        <h4>Contactez-nous</h4>
+                        <ul>
+                            <li><a href="mailto:info@votreentreprise.com">info@votreentreprise.com</a></li>
+                            <li><a href="tel:+1234567890">+1 234 567 890</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section col-md-4">
+                        <h4>Suivez-nous</h4>
+                        <a href="http://www.facebook.com">Facebook</a>
+                        <a href="http://www.twitter.com">Twitter</a>
+                        <a href="http://www.instagram.com">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+        <!-- Ajoutez ici votre script JavaScript pour l'aperçu de l'image -->
+        <script>
+            function previewImage(input) {
+                var preview = document.getElementById('preview');
+                var file = input.files[0];
+                var reader = new FileReader();
 
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Ajoutez ici votre script JavaScript pour l'aperçu de l'image -->
-    <script>
-        function previewImage(input) {
-            var preview = document.getElementById('preview');
-            var file = input.files[0];
-            var reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
 
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
-
-            if (file) {
-                reader.readAsDataURL(file);
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
             }
-        }
-    </script>
+            document.getElementById('togglePassword').addEventListener('click', function(e) {
+                const passwordInput = document.getElementById('passwordInput');
+                const passwordIcon = document.getElementById('eyeIcon');
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    passwordIcon.className = 'fa fa-eye-slash'; // Change icon to eye-slash when visible
+                } else {
+                    passwordInput.type = 'password';
+                    passwordIcon.className = 'fa fa-eye'; // Change icon back to eye when hidden
+                }
+            });
+        </script>
 </body>
 
 </html>

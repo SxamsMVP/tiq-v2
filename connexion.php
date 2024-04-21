@@ -110,6 +110,11 @@ if ($authentication_successful) {
         </div>
     </div>
 
+    <footer class="footer">
+        <div class="containerfooter text-center">
+            <p>By continuing I agree with <a href="#terms" class="footer-link">Terms & Conditions</a>, <a href="#privacy" class="footer-link">Privacy Policy</a>, and <a href="#cookie" class="footer-link">Cookie Policy</a>.</p>
+        </div>
+    </footer>
 
 
 
