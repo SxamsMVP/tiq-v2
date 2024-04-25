@@ -1,0 +1,35 @@
+.btn-image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 40px;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+}
+
+.btn-centered {
+    margin-bottom: 40px; /* Centre le bouton dans la colonne */
+}
+
+.btn-image:hover {
+    transform: scale(1.05); /* Effet de zoom au survol */
+    color: #ccc; /* Changement de couleur du texte au survol */
+}
+
+.container-fluid {
+    padding: 0; /* Supprime le padding par défaut */
+}
+
+@media (max-width: 768px) {
+    .btn-image {
+        height: 400px; /* Ajuste la hauteur pour les appareils mobiles */
+    }
+}
+
+

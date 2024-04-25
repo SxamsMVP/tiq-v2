@@ -1,0 +1,162 @@
+/* Style pour le conteneur */
+.container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* Style pour la première colonne */
+.col-12 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+/* Style pour l'en-tête du tableau */
+.table th {
+    background-color: #f0f0f0;
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Style pour les cellules du tableau */
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style pour les lignes impaires */
+.table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Style pour les liens de suppression */
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background-size: cover; 
+    background-image: url('/img/add_question_background.png');;
+    color: #333;
+}
+
+
+body {
+    background-color: #f8f9fa;
+}
+
+.header {
+    background-color: #7AD3E7;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    margin-right: 10px; /* Permet au logo de rester à gauche */
+}
+
+.header-title {
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: helvetica;
+    margin-top: 1rem;
+    margin-left : 15px
+}
+
+.header-links {
+    margin-left: auto; /* Permet au contenu des liens de rester à droite */
+} 
+
+.header-links a {
+    text-decoration: none;
+    color: #000000;
+    margin-left: 20px;
+}
+
+.header-content{
+    margin-left:auto;
+}
+
+.menu {
+    background-color: #7A8ED3;
+    color: #000000;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.list-group-item {
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.btn {
+    margin-top: 20px;
+}
+
+.main-content {
+    text-align: center;
+}
+
+.logo img {
+    max-height: 100px; /* Ajustez la hauteur maximale selon vos besoins */
+    max-width: 100%; /* Garantit que l'image ne dépasse pas la largeur du conteneur */
+}
+.photo-preview-container {
+    width: 50px; /* Définir la largeur du conteneur */
+    height: 50px; /* Définir la hauteur du conteneur */
+    overflow: hidden; /* Cacher tout contenu dépassant du conteneur */
+    border-radius: 50%; /* Créer un cercle en utilisant un bord arrondi à 50% de la largeur/hauteur */
+    display: inline-block; /* Permet d'aligner l'élément à côté de l'input */
+    margin-left: 10px; /* Ajuster la marge pour l'espacement */
+}
+
+.photo-profil-preview {
+    width: 50px; /* Définir la largeur du cercle */
+    height: 50px; /* Définir la hauteur du cercle */
+    object-fit: cover; /* Couvrir tout le cercle tout en préservant les proportions de l'image */
+    border-radius: 50%; /* Assurer que l'image est affichée en tant que cercle */
+    display: block; /* Résoudre tout problème d'espacement supplémentaire */
+    margin-top: 5px; /* Ajuster la marge supérieure pour l'espacement */
+}
+
+.profile-photo {
+    width: 50px; /* Ajustez la taille selon vos besoins */
+    height: 50px;
+    border-radius: 50%; /* Pour une photo de profil arrondie */
+    margin-right: 10px; /* Espace entre la photo et le texte */
+}

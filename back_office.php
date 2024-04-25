@@ -10,8 +10,13 @@ include('header.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQL CHALLENGER</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="style/header_menu.css">
+    <link rel="stylesheet" href="style/back_office.css">
     <style>
         .center-title {
             text-align: center;
@@ -32,7 +37,7 @@ include('header.php');
             <?php
             // Affichez les liens de connexion/inscription ou de données du compte/déconnexion en fonction de la connexion de l'utilisateur
             if (isset($_SESSION['username'])) {
-                
+
                 // Affichez la photo de profil si le chemin est disponible
                 if (!empty($userData['photo_path'])) {
                     echo '<img src="' . $userData['photo_path'] . '" alt="Photo de profil" class="profile-photo">';
@@ -42,7 +47,6 @@ include('header.php');
                     echo '<a href="back_office.php">Admin</a>';
                 }
                 echo '<a href="logout.php">Déconnexion</a>';
-                
             } else {
                 echo '<a href="connexion.php">Connexion</a>';
                 echo '<a href="inscription.php">Inscription</a>';
@@ -58,14 +62,26 @@ include('header.php');
         <a href="forum.php">Forum</a>
     </div>
 
-    <div class="container mt-5">
-        <div class="text-center">
-            <!-- Bouton pour ajouter une question -->
-            <a href="add_question.php" class="btn btn-primary mr-2">Ajouter une question</a>
-            <!-- Bouton pour gérer les questions -->
-            <a href="gerer_questions.php" class="btn btn-secondary">Gérer les questions</a>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <!-- Bouton pour ajouter une question -->
+                <a href="add_question.php" class="btn btn-image" style="background-image: url('img/add_question.png');">Ajouter une question</a>
+            </div>
+            <div class="col-12 col-md-6">
+                <!-- Bouton pour gérer les questions -->
+                <a href="gerer_questions.php" class="btn btn-image" style="background-image: url('img/gestion_question.png');">Gérer les questions</a>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <!-- Bouton supplémentaire pour voir les questions -->
+                <a href="gestion_utilisateurs.php" class="btn btn-image btn-centered" style="background-image: url('img/gestion_utilisateur.png');">Gestion des utilisateurs</a>
+            </div>
         </div>
     </div>
+
+
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

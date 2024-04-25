@@ -11,7 +11,9 @@ include('header.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQL CHALLENGER</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="style/accueil_exercice.css">
     <style>
     </style>
@@ -125,34 +127,26 @@ include('header.php');
         </div>
     </div>
 
-    <!-- Pied de page -->
-    <footer class="footer">
-        <div class="footer-info">
-            <div class="footer-info__item">
-                <h3 class="footer-info__title">Coordonnées de l'entreprise</h3>
-                <ul class="footer-info__contact">
-                    <li class="footer-info__contact-item">Adresse : Université de Bordeaux</li>
-                    <li class="footer-info__contact-item">Téléphone : 06 06 06 06 06</li>
-                    <li class="footer-info__contact-item">Email : sqlchallenger@gmail.com</li>
-                </ul>
-            </div>
-            <div class="footer-info__item">
-                <!-- Ajoutez ici d'autres informations sur l'entreprise si nécessaire -->
-            </div>
-            <div class="footer-info__item">
-                <h3 class="footer-info__title">Suivez-nous</h3>
-                <ul class="footer-info__contact">
-                    <li class="footer-info__contact-item"><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target="_blank" class="hover:text-white">Facebook</a></li>
-                    <li class="footer-info__contact-item"><a href="https://www.facebook.com/jenny.benoispineau/?locale=fr_FR" target="_blank" class="hover:text-white">Twitter</a></li>
-                    <li class="footer-info__contact-item"><a href="http://alexandrelourme.free.fr/M1PROC/" target="_blank" class="hover:text-white">Instagram</a></li>
-                    <li class="footer-info__contact-item"><a href="https://www.labri.fr/perso/maabout/" target="_blank" class="hover:text-white">LinkedIn</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="https://www.instagram.com"><i class="icon ion-social-instagram"></i></a><a href="https://www.linkedin.com"><i class="icon ion-social-snapchat"></i></a><a href="https://www.twitter.com"><i class="icon ion-social-twitter"></i></a><a href="https://www.facebook.com"><i class="icon ion-social-facebook"></i></a></div>
+            <ul class="list-inline mb-3">
+                <li class="list-inline-item"><a href="index.php">Accueil</a></li>
+                <li class="list-inline-item"><a href="cours.php">Cours</a></li>
+                <li class="list-inline-item"><a href="forum.php">Forum</a></li>
+                <li class="list-inline-item"><a href="accueil_exercice.php">Exercices</a></li>
+            </ul>
+            <ul class="list-inline mt-3">
+                <li class="list-inline-item"><a>sqlchallenger@gmail.com</a></li>
+                <li class="list-inline-item"><a>05 54 05 05 05</a></li>
+                <li class="list-inline-item"><a>Université de Bordeaux</a></li>
+            </ul>
+            <p class="copyright">Copyright SQL CHALLENGER © 2024</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
