@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;  /* Center the buttons horizontally */
     flex-wrap: wrap; /* Allow the items to wrap */
-    margin-bottom: 20px; /* Spacing between rows of buttons */
 }
 
 .menu-link, .question-link {
@@ -34,4 +33,14 @@
 /* Additional styling for menu links to differentiate */
 .menu-link {
     background-color: #007bff; /* Standard blue background */
+}
+
+.logout-icon {
+    color: red; /* Set the icon color to red */
+    font-size: 1.5rem;
+}
+
+.container{
+    max-width: 600px;
+    max-height: 400px;
 }

@@ -11,6 +11,7 @@ include('header.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQL CHALLENGER</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/header_menu.css">
     <link rel="stylesheet" href="style/forum.css">
     <style>
@@ -31,18 +32,18 @@ include('header.php');
         </div>
         <div class="header-links">
             <?php
-            // Affichez les liens de connexion/inscription ou de données du compte/déconnexion en fonction de la connexion de l'utilisateur
             if (isset($_SESSION['username'])) {
 
                 // Affichez la photo de profil si le chemin est disponible
                 if (!empty($userData['photo_path'])) {
                     echo '<img src="' . $userData['photo_path'] . '" alt="Photo de profil" class="profile-photo">';
                 }
-                echo '<a href="account.php">' . $username . '</a>';
+                echo '<a class="text-white stylish-username" href="account.php">' . ucwords($username) . '</a>';
                 if ($userData['admin']) {
-                    echo '<a href="back_office.php">Admin</a>';
+                    echo '<a class="text-white" href="back_office.php"><i class="fa-solid fa-gear icon-large"></i></a>';
                 }
-                echo '<a href="logout.php">Déconnexion</a>';
+
+                echo '<a class="text-red" href="logout.php"><i class="fa-solid fa-right-from-bracket logout-icon"></i></a>';
             } else {
                 echo '<a href="connexion.php">Connexion</a>';
                 echo '<a href="inscription.php">Inscription</a>';

@@ -63,3 +63,9 @@ select {
 .btn-back:hover {
     text-decoration: underline;
 }
+
+
+.logout-icon {
+    color: red; /* Set the icon color to red */
+    font-size: 1.5rem;
+}

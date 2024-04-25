@@ -190,3 +190,8 @@ body {
     background-image: linear-gradient(45deg, #6a82fb, #fc5c7d); /* Gradient de couleur */
     transition: width 0.4s ease; /* Animation douce lors de la mise à jour */
 }
+
+.logout-icon {
+    color: red; /* Set the icon color to red */
+    font-size: 1.5rem;
+}

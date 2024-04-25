@@ -1,39 +1,43 @@
 <?php
-// Vérifier si le formulaire a été soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Vérifier si l'identifiant de la question est présent dans la requête
-    if (isset($_POST['id'])) {
-        // Récupérer l'identifiant de la question depuis la requête
-        $id = $_POST['id'];
+session_start();
+include('header.php'); // Inclure le fichier de configuration de la base de données
 
-        // Connexion à la base de données
-        $bdd = new SQLite3('database.sqlite');
+if (isset($_POST['id']) && isset($_POST['table'])) {
+    $id = SQLite3::escapeString($_POST['id']);
+    $table = SQLite3::escapeString($_POST['table']);
+    switch ($table) {
+        case 'select':
+            $table = 'select_questions';
+            break;
+        case 'where':
+            $table = 'where_questions';
+            break;
+        case 'parcours':
+            $table = 'parcours_questions';
+            break;
+        case 'having':
+            $table = 'having_questions';
+            break;
+        case 'groupby':
+            $table = 'groupby_questions';
+            break;
+        case 'aggregation':
+            $table = 'aggregation_questions';
+            break;
+        case 'join':
+            $table = 'join_questions';
+            break;
+    }
+    // Construire la requête SQL pour supprimer la question
+    $sql = "DELETE FROM $table WHERE id = '$id'";
 
-        // Préparer la requête SQL pour supprimer la question de la base de données
-        $sql = "DELETE FROM questions WHERE id = :id";
-
-        // Préparer la déclaration
-        $stmt = $bdd->prepare($sql);
-
-        // Lier les paramètres avec les valeurs
-        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
-
-        // Exécuter la requête
-        $resultat = $stmt->execute();
-
-        // Vérifier si la suppression a réussi
-        if ($resultat) {
-            echo "Question supprimée avec succès.";
-        } else {
-            echo "Erreur lors de la suppression de la question.";
-        }
-
-        // Fermer la connexion à la base de données
-        $bdd->close();
+    if ($bdd->exec($sql)) {
+        echo "<script>alert('Question supprimée avec succès.'); window.location.href='gerer_questions.php';</script>";
     } else {
-        echo "Identifiant de la question non trouvé.";
+        echo "<script>alert('Erreur lors de la suppression de la question.'); window.location.href='gerer_questions.php';</script>";
     }
 } else {
-    echo "Accès non autorisé à ce script.";
+    echo "<script>alert('Aucune question ou table spécifiée pour la suppression.'); window.location.href='gerer_questions.php';</script>";
 }
-?>
+
+$bdd->close();

@@ -209,3 +209,8 @@ body {
     margin-bottom: 10px;
     margin-top: 20px;
 }
+
+.logout-icon {
+    color: red; /* Set the icon color to red */
+    font-size: 1.5rem;
+}

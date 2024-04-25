@@ -215,3 +215,8 @@ body {
     /* Taille du texte réduite */
 }
 
+
+.logout-icon {
+    color: red; /* Set the icon color to red */
+    font-size: 1.5rem;
+}

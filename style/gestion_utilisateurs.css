@@ -160,3 +160,7 @@ body {
     border-radius: 50%; /* Pour une photo de profil arrondie */
     margin-right: 10px; /* Espace entre la photo et le texte */
 }
+.logout-icon {
+    color: red; /* Set the icon color to red */
+    font-size: 1.5rem;
+}
