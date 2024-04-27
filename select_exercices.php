@@ -231,6 +231,10 @@ ob_end_flush();
                             <?php $_SESSION['incorrect_attempts'] = 0; ?>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['isAnswerCorrect']) && $_SESSION['isAnswerCorrect']) : ?>
+
+                            <strong>A priori votre réponse est la bonne voici la réponse type attendue :</strong>
+                            <span class="text-info font-weight-bold text-uppercase"><?= htmlspecialchars($currentQuestion['reponse']); ?></span>
+
                             <button type="button" class="btn btn-success" onclick="goToNextQuestion()">Question suivante</button>
                         <?php endif; ?>
 

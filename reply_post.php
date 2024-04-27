@@ -143,21 +143,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
 
         .reply-form {
             width: 100%;
-            /* Adjust width as needed */
             max-width: 600px;
-            /* Or whatever width suits your design */
             margin: 0 auto;
-            /* Centers the form in the parent container */
             padding: 20px;
             background: #fff;
-            /* Optional: for a distinct background */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* Subtle shadow for depth */
             border-radius: 8px;
-            /* Rounded corners */
-
             border: 2px solid #007bff;
-            /* Blue border */
         }
 
         .form-group {
@@ -168,10 +160,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
         textarea.form-control {
             width: 100%;
             height: 150px;
-            /* Or any appropriate height */
             padding: 10px;
             font-size: 1rem;
-            /* Responsive font size */
             line-height: 1.5;
             color: #495057;
             background-color: #fff;

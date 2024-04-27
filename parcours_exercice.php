@@ -42,12 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-if (isset($_POST['previous'])) {
-    $_SESSION['question_index'] = max($_SESSION['question_index'] - 1, 0);
-    header("Location: parcours_exercice.php");
-    exit;
-}
-
 if (isset($_POST['nextQuestion'])) {
     $_SESSION['question_index']++;
     $newIndex = $_SESSION['question_index'];
@@ -150,10 +144,6 @@ ob_end_flush();
                             <?php endif; ?>
                         </div>
                     </form>
-                    <form id="previousQuestionForm" action="parcours_exercice.php" method="post">
-                        <input type="hidden" name="previous" value="1">
-                        <button type="button" id="previousQuestion" class="btn btn-secondary">Question précédente</button>
-                    </form>
                     <?php if ($_SESSION['incorrect_attempts'] >= 3 || (isset($_SESSION['isAnswerCorrect']) && $_SESSION['isAnswerCorrect'])) : ?>
                         <button type="button" id="nextQuestion" class="btn btn-success">Question suivante</button>
                     <?php endif; ?>
@@ -231,6 +221,10 @@ ob_end_flush();
                             <?php $_SESSION['incorrect_attempts'] = 0; ?>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['isAnswerCorrect']) && $_SESSION['isAnswerCorrect']) : ?>
+
+                            <strong>A priori votre réponse est la bonne voici la réponse type attendue :</strong>
+                            <span class="text-info font-weight-bold text-uppercase"><?= htmlspecialchars($currentQuestion['reponse']); ?></span>
+
                             <button type="button" class="btn btn-success" onclick="goToNextQuestion()">Question suivante</button>
                         <?php endif; ?>
 
@@ -270,9 +264,7 @@ ob_end_flush();
                     form.submit();
                 }
                 window.goToNextQuestion = goToNextQuestion;
-                document.getElementById('previousQuestion').addEventListener('click', function() {
-                    document.getElementById('previousQuestionForm').submit();
-                });
+                
             });
         </script>
 
