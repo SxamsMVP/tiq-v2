@@ -10,6 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $email = htmlspecialchars($_POST['email']);
+    $phone = htmlspecialchars($_POST['phone']);
+    $pays = htmlspecialchars($_POST['pays']);
+    
     $password = $_POST['password'];
     $pseudo = htmlspecialchars($_POST['pseudo']); // Assurez-vous que cela correspond à 'name' dans votre formulaire
     $question = 1;
@@ -29,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Préparation et exécution de la requête
-    $query = "INSERT INTO utilisateurs (nom, prenom, email, password, username, photo_path, question) VALUES (:nom, :prenom, :email, :password, :username, :photo_path, :question)";
+    $query = "INSERT INTO utilisateurs (nom, prenom, email, password, username, photo_path, question, pays, phone) VALUES (:nom, :prenom, :email, :password, :username, :photo_path, :question, :pays, :phone)";
     $statement = $bdd->prepare($query);
     $statement->bindValue(':nom', $nom, SQLITE3_TEXT);
     $statement->bindValue(':prenom', $prenom, SQLITE3_TEXT);
@@ -38,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $statement->bindValue(':username', $pseudo, SQLITE3_TEXT); // Corrigé pour correspondre au formulaire
     $statement->bindValue(':photo_path', $filePath, SQLITE3_TEXT);
     $statement->bindValue(':question', $question, SQLITE3_INTEGER);
+    $statement->bindValue(':phone', $phone, SQLITE3_TEXT);
+    $statement->bindValue(':pays', $pays, SQLITE3_TEXT); // Assurez-vous d'utiliser SQLITE3_TEXT pour une chaîne
 
     if ($statement->execute()) {
         header("Location: connexion.php"); // Redirection si tout est correct

@@ -105,7 +105,6 @@
                         <img id="preview" src="#" alt="Aperçu de la photo" class="photo-profil-preview" style="display: none;">
                     </div>
 
-
                     <div class="form-group mb-4"> <!-- Suppression de la classe row pour ne pas aligner les éléments sur la même ligne -->
                         <label for="pseudo" class="form-label text-black">Votre pseudo :</label> <!-- Utilisation de form-label pour une meilleure présentation -->
                         <input type="text" name="pseudo" class="form-control" required placeholder="Je suis un boss sql :)"> <!-- Changement du type à 'email' et ajout de placeholder -->
@@ -129,61 +128,61 @@
             </div>
         </div>
     </div>
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-section col-md-4">
-                        <h4>À propos</h4>
-                        <p>Nous sommes une entreprise dédiée à [description de l'entreprise]. Rejoignez-nous pour explorer et découvrir plus ensemble.</p>
-                    </div>
-                    <div class="footer-section col-md-4">
-                        <h4>Contactez-nous</h4>
-                        <ul>
-                            <li><a href="mailto:info@votreentreprise.com">info@votreentreprise.com</a></li>
-                            <li><a href="tel:+1234567890">+1 234 567 890</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section col-md-4">
-                        <h4>Suivez-nous</h4>
-                        <a href="http://www.facebook.com">Facebook</a>
-                        <a href="http://www.twitter.com">Twitter</a>
-                        <a href="http://www.instagram.com">Instagram</a>
-                    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-section col-md-4">
+                    <h4>À propos</h4>
+                    <p>Nous sommes une entreprise dédiée à [description de l'entreprise]. Rejoignez-nous pour explorer et découvrir plus ensemble.</p>
+                </div>
+                <div class="footer-section col-md-4">
+                    <h4>Contactez-nous</h4>
+                    <ul>
+                        <li><a href="mailto:info@votreentreprise.com">info@votreentreprise.com</a></li>
+                        <li><a href="tel:+1234567890">+1 234 567 890</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section col-md-4">
+                    <h4>Suivez-nous</h4>
+                    <a href="http://www.facebook.com">Facebook</a>
+                    <a href="http://www.twitter.com">Twitter</a>
+                    <a href="http://www.instagram.com">Instagram</a>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <!-- Ajoutez ici votre script JavaScript pour l'aperçu de l'image -->
-        <script>
-            function previewImage(input) {
-                var preview = document.getElementById('preview');
-                var file = input.files[0];
-                var reader = new FileReader();
+    <!-- Ajoutez ici votre script JavaScript pour l'aperçu de l'image -->
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('preview');
+            var file = input.files[0];
+            var reader = new FileReader();
 
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                };
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
 
-                if (file) {
-                    reader.readAsDataURL(file);
-                }
+            if (file) {
+                reader.readAsDataURL(file);
             }
-            document.getElementById('togglePassword').addEventListener('click', function(e) {
-                const passwordInput = document.getElementById('passwordInput');
-                const passwordIcon = document.getElementById('eyeIcon');
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    passwordIcon.className = 'fa fa-eye-slash'; // Change icon to eye-slash when visible
-                } else {
-                    passwordInput.type = 'password';
-                    passwordIcon.className = 'fa fa-eye'; // Change icon back to eye when hidden
-                }
-            });
-        </script>
+        }
+        document.getElementById('togglePassword').addEventListener('click', function(e) {
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordIcon = document.getElementById('eyeIcon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.className = 'fa fa-eye-slash'; // Change icon to eye-slash when visible
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.className = 'fa fa-eye'; // Change icon back to eye when hidden
+            }
+        });
+    </script>
 </body>
 
 </html>
