@@ -42,56 +42,65 @@ body {
 .btn {
     margin-top: 20px;
 }
-
-.footer {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    /* Couleur de fond de votre choix */
-    color: white;
-    /* Couleur du texte de votre choix */
-    padding: 5px;
-    /* Espace intérieur réduit */
-    text-align: center;
+.footer-basic {
+    padding: 15px 0;
+    background-color: #9dffe5;
+    color: #4b4c4d;
 }
 
-.footer-info {
-    display: flex;
-    justify-content: space-between;
-    max-width: 600px;
-    /* Largeur maximale pour éviter qu'il ne s'étende trop */
-    margin: 0 auto;
-    /* Centrez la barre sur la page */
-}
-
-.footer-info__item {
-    flex-grow: 1;
-    /* Les éléments prennent autant d'espace que possible */
-    text-align: left;
-    /* Alignez le texte à gauche */
-}
-
-.footer-info__title {
-    font-weight: bold;
-    font-size: 0.9rem;
-    /* Taille du titre réduite */
-}
-
-.footer-info__contact {
-    list-style: none;
-    /* Supprimez les puces de la liste */
+.footer-basic ul {
     padding: 0;
-    /* Supprimez le remplissage par défaut de la liste */
-    margin-top: 5px;
-    /* Espacement supplémentaire réduit au-dessus de la liste */
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
 }
 
-.footer-info__contact-item {
-    margin-bottom: 0px;
-    /* Espacement entre les éléments de la liste réduit */
-    font-size: 0.8rem;
-    /* Taille du texte réduite */
+.footer-basic li {
+    padding: 0 10px;
+}
+
+.footer-basic ul a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.footer-basic ul a:hover {
+    opacity: 1;
+}
+
+.footer-basic .social {
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.footer-basic .social>a {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin: 0 8px;
+    color: inherit;
+    opacity: 0.75;
+}
+
+.footer-basic .social>a:hover {
+    opacity: 0.9;
+}
+
+.footer-basic .copyright {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 

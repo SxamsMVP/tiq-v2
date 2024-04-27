@@ -105,11 +105,11 @@ include('header.php');
 
                 <h3 style="color: white"> Livres conseillés</h3>
                 <ul class="sidebar-list">
-                    <li><a href="#">livre</a></li>
-                    <li><a href="#">livre</a></li>
-                    <li><a href="#">livre</a></li>
-                    <li><a href="#">livre</a></li>
-                    <li><a href="#">livre</a></li>
+                    <li><a href="https://www.oreilly.com/library/view/learning-sql-3rd/9781492057604/">SQL pour les Nuls</a></li>
+                    <li><a href="https://www.oreilly.com/library/view/learning-sql-3rd/9781492057604/">Learning SQL</a></li>
+                    <li><a href="https://www.oreilly.com/library/view/learning-sql-3rd/9781492057604/">SQL in 10 Minutes, Sams Teach Yourself</a></li>
+                    <li><a href="https://www.oreilly.com/library/view/learning-sql-3rd/9781492057604/">SQL Cookbook</a></li>
+                    <li><a href="https://www.oreilly.com/library/view/learning-sql-3rd/9781492057604/">The Art of SQL</a></li>
                 </ul>
             </div>
         </div>
