@@ -7,6 +7,8 @@
 }
 
 .full-width-card img {
+    background-image: url('/img/background_accueil.jpg');;
+    color: white;
     width: 100%;
     /* Ensures the image covers the full width of the card */
     height: 150px;
@@ -16,6 +18,7 @@
 }
 
 .full-width-card {
+    background-color: #f8f9fa ;
     margin-bottom: 20px;
     /* Adds space between the cards */
     border: 1px solid black;
@@ -29,7 +32,7 @@
 }
 
 body {
-    background-color: #f8f9fa;
+    background-color: #202b3f;
 }
 
 .container {
@@ -40,15 +43,15 @@ body {
 }
 
 .header {
-    background-color: #7AD3E7;
-    color: #ffffff;
+    background-image: url('/img/background_accueil.jpg');;
+    color: white;
     padding: 10px;
     display: flex;
     align-items: center;
 }
 
 .menu {
-    background-color: #7A8ED3;
+    background-color: #ffffff;
     color: #000000;
     padding: 10px;
     display: flex;
@@ -57,7 +60,7 @@ body {
 
 .menu a {
     text-decoration: none;
-    color: #ffffff;
+    color: #202b3f;
     font-weight: bold;
 }
 
@@ -70,7 +73,9 @@ body {
 }
 
 .btn {
-    margin-top: 20px;
+    margin-top: 20px;    
+    background-image: url('/img/background_accueil.jpg');;
+    color: white;
 }
 
 .main-content {
@@ -151,8 +156,9 @@ body {
 
 .footer-basic {
     padding: 20px 0;
-    background-color: #9dffe5;
-    color: #4b4c4d;
+    background-color: #ffffff;
+    color: white;
+    color: #000000;
 }
 
 .footer-basic ul {

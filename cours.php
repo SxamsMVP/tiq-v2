@@ -4,6 +4,7 @@ include('header.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@ include('header.php');
     <link rel="stylesheet" href="style/header_menu.css">
     <link rel="stylesheet" href="style/cour.css">
 </head>
+
 <body>
     <!-- En-tête -->
     <div class="header">
@@ -76,21 +78,21 @@ include('header.php');
                     <li><a href="#" onclick="changeContent('GROUP BY')">GROUP BY</a></li>
                     <li><a href="#" onclick="changeContent('HAVING')">HAVING</a></li>
                     <li><a href="#" onclick="changeContent('JOINTURE')">JOINTURE</a></li>
-                    <li><a href="#" onclick="changeContent('AGGREGATIONS')">AGGREGATIONS</a></li>
+                    <li><a href="#" onclick="changeContent('AGGRAGATIONS')">AGGREGATIONS</a></li>
                 </ul>
             </div>
 
             <!-- Contenu principal -->
             <div class="col-md-7 main-content">
-    <article id="post-11" class="post-11 page type-page status-publish hentry">
-        <!-- Contenu initial -->
-        <h1 class="center-title">Apprendre le SQL</h1>
-        <p>Le SQL, ou Structured Query Language, est un langage utilisé pour interagir avec les bases de données. Principalement adopté par les développeurs web, il permet de manipuler les données d'un site internet.</p>
-        <h1 class="center-title">Cours</h1>
-        <p>Les cours sont conçus pour vous enseigner les commandes SQL essentielles telles que <code>SELECT, INSERT INTO, UPDATE, DELETE, DROP TABLE,</code> entre autres. Chaque commande est expliquée à travers des exemples clairs et succincts, offrant ainsi une formation pratique. En complément de la liste des commandes SQL, les cours proposent également des fiches mnémotechniques décrivant les fonctions SQL telles que <code>AVG(), COUNT(), MAX(),</code> etc. Ces ressources sont précieuses pour renforcer votre maîtrise du SQL.</p>
-    </article>
-    <img src="img/logoCours.png" alt="logo SQL">
-</div>
+                <article id="post-11" class="post-11 page type-page status-publish hentry">
+                    <!-- Contenu initial -->
+                    <h1 class="center-title">Apprendre le SQL</h1>
+                    <p>Le SQL, ou Structured Query Language, est un langage utilisé pour interagir avec les bases de données. Principalement adopté par les développeurs web, il permet de manipuler les données d'un site internet.</p>
+                    <h1 class="center-title">Cours</h1>
+                    <p>Les cours sont conçus pour vous enseigner les commandes SQL essentielles telles que <code>SELECT, INSERT INTO, UPDATE, DELETE, DROP TABLE,</code> entre autres. Chaque commande est expliquée à travers des exemples clairs et succincts, offrant ainsi une formation pratique. En complément de la liste des commandes SQL, les cours proposent également des fiches mnémotechniques décrivant les fonctions SQL telles que <code>AVG(), COUNT(), MAX(),</code> etc. Ces ressources sont précieuses pour renforcer votre maîtrise du SQL.</p>
+                </article>
+                <img src="img/logoCours.png" alt="logo SQL">
+            </div>
 
 
             <!-- Barre latérale droite -->
@@ -126,8 +128,8 @@ include('header.php');
 
             // Modifier le contenu en fonction de la catégorie
             switch (category) {
-    case 'SELECT':
-        contentElement.innerHTML = `
+                case 'SELECT':
+                    contentElement.innerHTML = `
             <article id="post-11" class="post-11 page type-page status-publish hentry">
                 <h1>SELECT</h1>
                 <br>
@@ -211,10 +213,10 @@ include('header.php');
                     </table>
                 </div>
             </article>`;
-        break;
+                    break;
 
-    case 'SELECT DISTINCT':
-        contentElement.innerHTML = `
+                case 'SELECT DISTINCT':
+                    contentElement.innerHTML = `
             <article id="post-11" class="post-11 page type-page status-publish hentry">
                 <h1>SELECT DISTINCT</h1>
                 <p>L'usage de la commande <code>SELECT</code> en SQL permet de récupérer toutes les données d'une ou plusieurs colonnes. Cependant, cette commande peut entraîner l'affichage de lignes en doublon. Pour prévenir ces redondances dans les résultats, il suffit d'ajouter <code>DISTINCT</code> après <code>SELECT</code>.</p>
@@ -292,10 +294,10 @@ include('header.php');
                 </div>
                 <p>Ce résultat affiche volontairement qu’une seule fois le prénom “Pierre” grâce à l’utilisation de la commande <code>DISTINCT</code> qui n’affiche que les résultats distincts.</p>
             </article>`;
-        break;
+                    break;
 
-    case 'WHERE':
-        contentElement.innerHTML = `
+                case 'WHERE':
+                    contentElement.innerHTML = `
             <article id="post-11" class="post-11 page type-page status-publish hentry">
                 <h1>WHERE</h1>
                 <p>La clause <code>WHERE</code> dans une requête SQL sert à filtrer les lignes d'une base de données en fonction d'une condition spécifique. Elle permet ainsi de sélectionner uniquement les données qui répondent à ce critère, facilitant ainsi l'obtention des informations souhaitées.</p>
@@ -372,10 +374,10 @@ include('header.php');
                     </table>
                 </div>
             </article>`;
-        break;
+                    break;
 
-    case 'AND & OR':
-        contentElement.innerHTML = `
+                case 'AND & OR':
+                    contentElement.innerHTML = `
             <article id="post-11" class="post-11 page type-page status-publish hentry">
                 <h1>AND & OR</h1>
                 <p>Une requête SQL peut être restreinte à l’aide de la condition <code>WHERE</code>. Les opérateurs logiques <code>AND</code> et <code>OR</code> peuvent être utilisés au sein de la commande <code>WHERE</code> pour combiner des conditions.</p>
@@ -388,9 +390,9 @@ include('header.php');
                 <p>Ces opérateurs peuvent être combinés à l’infini et mélangés. L’exemple ci-dessous filtre les résultats de la table <code>nom_table</code> si <strong>condition1</strong> <code>ET</code> <strong>condition2</strong> <code>OU</code> <strong>condition3</strong> est vraie :</p>
                 <p class="sql-command">SELECT nom_colonnes FROM nom_table WHERE condition1 AND (condition2 OR condition3)</p>
             </article>`;
-        break;
+                    break;
 
-        case 'IN':
+                case 'IN':
                     contentElement.innerHTML = `
                         <article id="post-11" class="post-11 page type-page status-publish hentry">
                             <h1>IN</h1>
@@ -409,8 +411,8 @@ include('header.php');
                         </article>`;
                     break;
 
-    case 'BETWEEN':
-    contentElement.innerHTML = `
+                case 'BETWEEN':
+                    contentElement.innerHTML = `
         <article id="post-11" class="post-11 page type-page status-publish hentry">
             <h1>BETWEEN</h1>
             <p>L'opérateur <code>BETWEEN</code> en SQL est utilisé pour sélectionner des valeurs dans une plage donnée. Il est souvent utilisé avec la clause <code>WHERE</code> pour filtrer les résultats en fonction de certaines conditions de plage.</p>
@@ -484,31 +486,152 @@ include('header.php');
     </tbody>
 </table>
         </article>`;
-    break;
-
-
-    case 'LIKE':
-        contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>LIKE</h1><p>L\'opérateur <code>LIKE</code> est un élément de la clause <code>WHERE</code> utilisé dans les requêtes SQL. Il permet de rechercher des données basées sur un modèle spécifique. Par exemple, on peut rechercher des enregistrements où la valeur d\'une colonne commence par une lettre spécifique. Les modèles de recherche peuvent être variés.</p></article>';
-        break;
-    case 'GROUP BY':
-        contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>GROUP BY</h1><p>Contenu pour GROUP BY</p></article>';
-        break;
-    case 'HAVING':
-        contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>HAVING</h1><p>Contenu pour HAVING</p></article>';
-        break;
-    case 'JOINTURE':
-        contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>Jointure</h1><p>test</p></article>';
-        break;
-    case 'AGGRAGATIONS':
-        contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><h1>Aggregations</h1><p>Contenu pour Aggregations...</p></article>';
-        break;
-    default:
-        contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><p>Sélectionnez une catégorie pour afficher le contenu correspondant.</p></article>';
-}
+                    break;
+                case 'LIKE':
+                    contentElement.innerHTML = `<article id="post-11" class="post-11 page type-page status-publish hentry">
+    <h1>LIKE</h1>
+    <p>L'opérateur <code>LIKE</code> est un élément de la clause <code>WHERE</code> utilisé dans les requêtes SQL. Il permet de rechercher des données basées sur un modèle spécifique. Par exemple, on peut rechercher des enregistrements où la valeur d'une colonne commence par une lettre spécifique. Les modèles de recherche peuvent être variés.</p>
+    <h2>Syntaxe</h2>
+    <p>La syntaxe à utiliser pour utiliser l'opérateur LIKE est la suivante :</p>
+    <pre><code>SELECT *
+FROM table
+WHERE colonne LIKE modele</code></pre>
+    <p>Dans cet exemple, le "modèle" n'a pas été défini, mais il ressemble très généralement à l'un des exemples suivants :</p>
+    <ul>
+        <li><code>LIKE '%a'</code> : le caractère "%" est un caractère joker qui remplace tous les autres caractères. Ainsi, ce modèle permet de rechercher toutes les chaînes de caractères qui se terminent par un "a".</li>
+        <li><code>LIKE 'a%'</code> : ce modèle permet de rechercher toutes les lignes de "colonne" qui commencent par un "a".</li>
+        <li><code>LIKE '%a%'</code> : ce modèle est utilisé pour rechercher tous les enregistrements qui utilisent le caractère "a".</li>
+        <li><code>LIKE 'pa%on'</code> : ce modèle permet de rechercher les chaînes qui commencent par "pa" et qui se terminent par "on", comme "pantalon" ou "pardon".</li>
+        <li><code>LIKE 'a_c'</code> : peu utilisé, le caractère "_" (underscore) peut être remplacé par n'importe quel caractère, mais un seul caractère uniquement (alors que le symbole pourcentage "%" peut être remplacé par un nombre incalculable de caractères). Ainsi, ce modèle permet de retourner les lignes "aac", "abc" ou même "azc".</li>
+    </ul>
+</article>
+`;
+                    break;
+                case 'GROUP BY':
+                    contentElement.innerHTML = `<article id="post-11" class="post-11 page type-page status-publish hentry">
+    <h1>GROUP BY</h1>
+    <p>La commande GROUP BY est utilisée en SQL pour grouper plusieurs résultats et utiliser une fonction de totaux sur un groupe de résultat. Sur une table qui contient toutes les ventes d’un magasin, il est par exemple possible de regrouper les ventes par clients identiques et d’obtenir le coût total des achats pour chaque client.</p>
+    <h2>Syntaxe d’utilisation de GROUP BY</h2>
+    <p>De façon générale, la commande GROUP BY s’utilise de la façon suivante :</p>
+    <pre><code>SELECT colonne1, fonction(colonne2)
+FROM table
+GROUP BY colonne1
+</code></pre>
+    <p><strong>A noter :</strong> cette commande doit toujours s’utiliser après la commande WHERE et avant la commande HAVING.</p>
+    <h2>Exemple d’utilisation</h2>
+    <p>Prenons en considération une table “achat” qui résume les ventes d’une boutique :</p>
+    <pre><code>id  client  tarif  date
+1   Pierre  102    2012-10-23
+2   Simon   47     2012-10-27
+3   Marie   18     2012-11-05
+4   Marie   20     2012-11-14
+5   Pierre  160    2012-12-03
+</code></pre>
+    <p>Ce tableau contient une colonne qui sert d’identifiant pour chaque ligne, une autre qui contient le nom du client, le coût de la vente et la date d’achat.</p>
+    <p>Pour obtenir le coût total de chaque client en regroupant les commandes des mêmes clients, il faut utiliser la requête suivante :</p>
+    <pre><code>SELECT client, SUM(tarif)
+FROM achat
+GROUP BY client
+</code></pre>
+    <p>La fonction SUM() permet d’additionner la valeur de chaque tarif pour un même client. Le résultat sera donc le suivant :</p>
+    <pre><code>client  SUM(tarif)
+Pierre  262
+Simon   47
+Marie   38
+</code></pre>
+    <p>La manière simple de comprendre le GROUP BY c’est tout simplement d’assimiler qu’il va éviter de présenter plusieurs fois les mêmes lignes. C’est une méthode pour éviter les doublons.</p>
+</article>
+`;
+                    break;
+                case 'HAVING':
+                    contentElement.innerHTML = `<article id="post-11" class="post-11 page type-page status-publish hentry">
+    <h1>HAVING</h1>
+    <p>La condition HAVING en SQL est presque similaire à WHERE à la seule différence que HAVING permet de filtrer en utilisant des fonctions telles que SUM(), COUNT(), AVG(), MIN() ou MAX().</p>
+    <h2>Syntaxe</h2>
+    <p>L’utilisation de HAVING s’utilise de la manière suivante :</p>
+    <pre><code>SELECT colonne1, SUM(colonne2)
+FROM nom_table
+GROUP BY colonne1
+HAVING fonction(colonne2) operateur valeur
+</code></pre>
+    <p>Cela permet donc de SÉLECTIONNER les colonnes DE la table “nom_table” en GROUPANT les lignes qui ont des valeurs identiques sur la colonne “colonne1” et que la condition de HAVING soit respectée.</p>
+    <p><strong>Important :</strong> HAVING est très souvent utilisé en même temps que GROUP BY bien que ce ne soit pas obligatoire.</p>
+    <h2>Exemple</h2>
+    <p>Pour utiliser un exemple concret, imaginons une table “achat” qui contient les achats de différents clients avec le coût du panier pour chaque achat.</p>
+    <pre><code>id  client  tarif  date_achat
+1   Pierre  102    2012-10-23
+2   Simon   47     2012-10-27
+3   Marie   18     2012-11-05
+4   Marie   20     2012-11-14
+5   Pierre  160    2012-12-03
+</code></pre>
+    <p>Si dans cette table on souhaite récupérer la liste des clients qui ont commandé plus de 40€, toute commandes confondu alors il est possible d’utiliser la requête suivante :</p>
+    <pre><code>SELECT client, SUM(tarif)
+FROM achat
+GROUP BY client
+HAVING SUM(tarif) &gt; 40
+</code></pre>
+    <p>Résultat :</p>
+    <pre><code>client  SUM(tarif)
+Pierre  262
+Simon   47
+</code></pre>
+    <p>La cliente “Marie” a cumulé 38€ d’achat (un achat de 18€ et un autre de 20€) ce qui est inférieur à la limite de 40€ imposée par HAVING. En conséquent cette ligne n’est pas affichée dans le résultat.</p>
+</article>`;
+                    break;
+                case 'JOINTURE':
+                    contentElement.innerHTML = `<article id="post-11" class="post-11 page type-page status-publish hentry">
+    <h1>Jointure</h1>
+    <p>Les jointures en SQL permettent d’associer plusieurs tables dans une même requête. Cela permet d’exploiter la puissance des bases de données relationnelles pour obtenir des résultats qui combinent les données de plusieurs tables de manière efficace.</p>
+    <h2>Exemple</h2>
+    <p>En général, les jointures consistent à associer des lignes de 2 tables en associant l’égalité des valeurs d’une colonne d’une première table par rapport à la valeur d’une colonne d’une seconde table. Imaginons qu’une base de données possède une table “utilisateur” et une autre table “adresse” qui contient les adresses de ces utilisateurs. Avec une jointure, il est possible d’obtenir les données de l’utilisateur et de son adresse en une seule requête.</p>
+    <p>On peut aussi imaginer qu’un site web possède une table pour les articles (titre, contenu, date de publication …) et une autre pour les rédacteurs (nom, date d’inscription, date de naissance …). Avec une jointure il est possible d’effectuer une seule recherche pour afficher un article et le nom du rédacteur. Cela évite d’avoir à afficher le nom du rédacteur dans la table “article”.</p>
+    <p>Il y a d’autres cas de jointures, incluant des jointures sur la même table ou des jointures d’inégalité. Ces cas étant assez particuliers et pas si simples à comprendre, ils ne seront pas élaborés sur cette page.</p>
+    <h2>Types de jointures</h2>
+    <p>Il y a plusieurs méthodes pour associer 2 tables ensemble. Voici la liste des différentes techniques qui sont utilisées :</p>
+    <ul>
+        <li>INNER JOIN : jointure interne pour retourner les enregistrements quand la condition est vraie dans les 2 tables. C’est l’une des jointures les plus communes.</li>
+        <li>CROSS JOIN : jointure croisée permettant de faire le produit cartésien de 2 tables. En d’autres mots, permet de joindre chaque ligne d’une table avec chaque ligne d’une seconde table. Attention, le nombre de résultats est en général très élevé.</li>
+        <li>LEFT JOIN (ou LEFT OUTER JOIN) : jointure externe pour retourner tous les enregistrements de la table de gauche (LEFT = gauche) même si la condition n’est pas vérifiée dans l’autre table.</li>
+        <li>RIGHT JOIN (ou RIGHT OUTER JOIN) : jointure externe pour retourner tous les enregistrements de la table de droite (RIGHT = droite) même si la condition n’est pas vérifiée dans l’autre table.</li>
+        <li>FULL JOIN (ou FULL OUTER JOIN) : jointure externe pour retourner les résultats quand la condition est vraie dans au moins une des 2 tables.</li>
+        <li>SELF JOIN : permet d’effectuer une jointure d’une table avec elle-même comme si c’était une autre table.</li>
+        <li>NATURAL JOIN : jointure naturelle entre 2 tables s’il y a au moins une colonne qui porte le même nom entre les 2 tables SQL.</li>
+        <li>UNION JOIN : jointure d’union.</li>
+    </ul>
+</article>
+`;
+                    break;
+                case 'AGGRAGATIONS':
+                    contentElement.innerHTML = `<article id="post-11" class="post-11 page type-page status-publish hentry">
+    <h1>Aggregations</h1>
+    <p>Les fonctions d’agrégation dans le langage SQL permettent d’effectuer des opérations statistiques sur un ensemble d’enregistrements. Étant données que ces fonctions s’appliquent à plusieurs lignes en même temps, elles permettent des opérations qui servent à récupérer l’enregistrement le plus petit, le plus grand ou bien encore de déterminer la valeur moyenne sur plusieurs enregistrements.</p>
+    <h2>Liste des fonctions d’agrégation statistiques</h2>
+    <p>Les fonctions d’agrégation sont des fonctions idéales pour effectuer quelques statistiques de bases sur des tables. Les principales fonctions sont les suivantes :</p>
+    <ul>
+        <li><strong>AVG()</strong> pour calculer la moyenne sur un ensemble d’enregistrements</li>
+        <li><strong>COUNT()</strong> pour compter le nombre d’enregistrements sur une table ou une colonne distincte</li>
+        <li><strong>MAX()</strong> pour récupérer la valeur maximum d’une colonne sur un ensemble de lignes. Cela s’applique à la fois pour des données numériques ou alphanumériques</li>
+        <li><strong>MIN()</strong> pour récupérer la valeur minimum de la même manière que MAX()</li>
+        <li><strong>SUM()</strong> pour calculer la somme sur un ensemble d’enregistrements</li>
+    </ul>
+    <h2>Utilisation simple</h2>
+    <p>L’utilisation la plus générale consiste à utiliser la syntaxe suivante : La fonction COUNT() possède une subtilité. Pour compter le nombre total de lignes d’une table, il convient d’utiliser l’étoile “*” qui signifie que l’on cherche à compter le nombre d’enregistrements sur toutes les colonnes. La syntaxe serait alors la suivante :</p>
+    <pre><code>SELECT COUNT(*) FROM table</code></pre>
+    <h2>Utilisation avec GROUP BY</h2>
+    <p>Toutes ces fonctions prennent tout leur sens lorsqu’elles sont utilisées avec la commande GROUP BY qui permet de filtrer les données sur une ou plusieurs colonnes. Imaginons une table qui contient tous les achats sur un site avec le montant de chaque achat pour chaque enregistrement. Pour obtenir le total des ventes par clients, il est possible d’exécuter la requête suivante :</p>
+    <pre><code>SELECT client, SUM(tarif)
+ FROM achat
+ GROUP BY client</code></pre>
+</article>
+`;
+                    break;
+                default:
+                    contentElement.innerHTML = '<article id="post-11" class="post-11 page type-page status-publish hentry"><p>Sélectionnez une catégorie pour afficher le contenu correspondant.</p></article>';
+            }
 
         }
     </script>
 </body>
+
 </html>
-
-

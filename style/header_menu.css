@@ -10,8 +10,8 @@ body {
 }
 
 .header {
-    background-color: #7AD3E7;
-    color: #ffffff;
+    background-image: url('/img/background_accueil.jpg');;
+    color: white;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -44,7 +44,7 @@ body {
 }
 
 .menu {
-    background-color: #7A8ED3;
+    background-color: #ffffff;
     color: #000000;
     padding: 10px;
     display: flex;
@@ -53,7 +53,7 @@ body {
 
 .menu a {
     text-decoration: none;
-    color: #ffffff;
+    color: #202b3f;
     font-weight: bold;
 }
 

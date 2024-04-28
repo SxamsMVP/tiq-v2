@@ -1,5 +1,5 @@
 body {
-    background-color: #f8f9fa;
+    background-color: #202b3f;
 }
 .container {
     max-width: 800px;
@@ -42,10 +42,13 @@ body {
 .btn {
     margin-top: 20px;
 }
+
+
 .footer-basic {
-    padding: 15px 0;
-    background-color: #9dffe5;
-    color: #4b4c4d;
+    padding: 20px 0;
+    background-color: #ffffff;
+    color: white;
+    color: #000000;
 }
 
 .footer-basic ul {

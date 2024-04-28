@@ -9,14 +9,28 @@ body {
     text-align: center;
 }
 
+
 .header {
-    background-color: #7AD3E7;
-    color: #ffffff;
+    background-image: url('/img/background_accueil.jpg');;
+    color: white;
     padding: 10px;
     display: flex;
     align-items: center;
 }
 
+.menu {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #202b3f;
+    font-weight: bold;
+}
 .logo {
     margin-right: 10px; /* Permet au logo de rester à gauche */
 }
@@ -39,19 +53,6 @@ body {
     margin-left: 20px;
 }
 
-.menu {
-    background-color: #7A8ED3;
-    color: #000000;
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.menu a {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-}
 
 .list-group-item {
     background-color: #ffffff;
