@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 include('header.php');
-
+error_reporting(E_ALL & ~E_WARNING);
 if (!isset($_SESSION['incorrect_attempts'])) {
     $_SESSION['incorrect_attempts'] = 0;
 }
@@ -20,31 +20,39 @@ if (!$currentQuestion) {
 
 $isAnswerCorrect = false;
 $userResult = null;
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sql_query = $_POST['sql_query'] ?? '';
-    try {
-        $userResult = $bdd->query($sql_query);
-    } catch (Exception $e) {
-        $_SESSION['error_message'] = "Erreur de requête SQL : " . $e->getMessage();
-        header("Location: error.php"); // Assurez-vous que cette page affiche les messages d'erreur.
-        exit;
-    }
+try {
 
-    // Logique pour valider la réponse
-    if (isset($_POST['validate']) && $currentQuestion) {
-        $answer = $currentQuestion['reponse'];
-        $answerResult = $bdd->query($answer);
-        if ($userResult && $answerResult) {
-            $isAnswerCorrect = compareResults($userResult, $answerResult);
-            $_SESSION['isAnswerCorrect'] = $isAnswerCorrect;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $sql_query = $_POST['sql_query'] ?? '';
+        try {
+            $userResult = $bdd->query($sql_query);
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Erreur de requête SQL : " . $e->getMessage();
+            header("Location: error.php"); // Assurez-vous que cette page affiche les messages d'erreur.
+            exit;
         }
 
-        if ($isAnswerCorrect) {
-            $_SESSION['incorrect_attempts'] = 0;
-        } else {
-            $_SESSION['incorrect_attempts']++;
+        // Logique pour valider la réponse
+        if (isset($_POST['validate']) && $currentQuestion) {
+            $answer = $currentQuestion['reponse'];
+            $answerResult = $bdd->query($answer);
+            if ($userResult && $answerResult) {
+                $isAnswerCorrect = compareResults($userResult, $answerResult);
+                $_SESSION['isAnswerCorrect'] = $isAnswerCorrect;
+            }
+
+            if ($isAnswerCorrect) {
+                $_SESSION['incorrect_attempts'] = 0;
+            } else {
+                $_SESSION['incorrect_attempts']++;
+            }
         }
     }
+} catch (Exception $e) {
+    // Gestion générale des erreurs
+    $_SESSION['error_message'] = "Erreur interne : " . $e->getMessage();
+    header("Location: error.php");
+    exit;
 }
 
 if (isset($_POST['nextQuestion'])) {
@@ -164,7 +172,8 @@ ob_end_flush();
                         $userResult = $bdd->query($sql_query);
                         if (!$userResult) {
                             $errorInfo = $bdd->lastErrorMsg();
-                            echo '<div class="alert alert-danger">Erreur lors de l\'exécution de la requête : ' . htmlspecialchars($errorInfo) . '</div>';
+                            echo '<div class="alert alert-danger">Erreur lors de l\'exécution de la requête : ';
+                            echo '<div class="alert alert-danger mt-3">' . htmlspecialchars($errorInfo) . '</div>';
                         } else {
                             $hasResults = false;
                             $columnNames = [];
