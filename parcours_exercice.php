@@ -22,9 +22,15 @@ $isAnswerCorrect = false;
 $userResult = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql_query = $_POST['sql_query'] ?? '';
+    try {
+        $userResult = $bdd->query($sql_query);
+    } catch (Exception $e) {
+        $_SESSION['error_message'] = "Erreur de requête SQL : " . $e->getMessage();
+        header("Location: error.php"); // Assurez-vous que cette page affiche les messages d'erreur.
+        exit;
+    }
 
-    $userResult = $bdd->query($sql_query);
-
+    // Logique pour valider la réponse
     if (isset($_POST['validate']) && $currentQuestion) {
         $answer = $currentQuestion['reponse'];
         $answerResult = $bdd->query($answer);
@@ -35,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($isAnswerCorrect) {
             $_SESSION['incorrect_attempts'] = 0;
-            // Do not exit here if you want the script to continue processing
         } else {
             $_SESSION['incorrect_attempts']++;
         }
@@ -153,49 +158,60 @@ ob_end_flush();
                         <img src="<?php echo $currentQuestion['path_uml']; ?>" alt="Image UML" class="img-fluid" style="max-width: 80%; height: auto;">
                     </div>
 
-                    <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($userResult)) : ?>
+                    <?php if ($_SERVER['REQUEST_METHOD'] === 'POST') : ?>
                         <?php
-                        $firstRow = true;
-                        $hasResults = false;
-                        $columnNames = [];
+                        $sql_query = $_POST['sql_query'] ?? '';
+                        $userResult = $bdd->query($sql_query);
+                        if (!$userResult) {
+                            $errorInfo = $bdd->lastErrorMsg();
+                            echo '<div class="alert alert-danger">Erreur lors de l\'exécution de la requête : ' . htmlspecialchars($errorInfo) . '</div>';
+                        } else {
+                            $hasResults = false;
+                            $columnNames = [];
+                            $firstRow = true;
                         ?>
-                        <h4>Résultats de la requête :</h4>
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead class="thead-dark">
+                            <h4>Résultats de la requête :</h4>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <?php while ($row = $userResult->fetchArray(SQLITE3_ASSOC)) : ?>
+                                                <?php $hasResults = true; ?>
+                                                <?php if ($firstRow) : ?>
+                                                    <?php foreach ($row as $columnName => $value) : ?>
+                                                        <th><?php echo $columnName; ?></th>
+                                                        <?php $columnNames[] = $columnName; ?>
+                                                    <?php endforeach; ?>
+                                                    <?php $firstRow = false; ?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <?php foreach ($row as $value) : ?>
+                                                <td><?php echo $value; ?></td>
+                                            <?php endforeach; ?>
+                                        </tr>
+                                        <?php continue; ?>
+                                    <?php endif; ?>
                                     <tr>
-                                        <?php while ($row = $userResult->fetchArray(SQLITE3_ASSOC)) : ?>
-                                            <?php $hasResults = true; ?>
-                                            <?php if ($firstRow) : ?>
-                                                <?php foreach ($row as $columnName => $value) : ?>
-                                                    <th><?php echo $columnName; ?></th>
-                                                    <?php $columnNames[] = $columnName; ?>
-                                                <?php endforeach; ?>
-                                                <?php $firstRow = false; ?>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <?php foreach ($row as $value) : ?>
-                                            <td><?php echo $value; ?></td>
+                                        <?php foreach ($columnNames as $columnName) : ?>
+                                            <td><?php echo $row[$columnName]; ?></td>
                                         <?php endforeach; ?>
                                     </tr>
-                                    <?php continue; ?>
-                                <?php endif; ?>
-                                <tr>
-                                    <?php foreach ($columnNames as $columnName) : ?>
-                                        <td><?php echo $row[$columnName]; ?></td>
-                                    <?php endforeach; ?>
-                                </tr>
-                            <?php endwhile; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <?php if (!$hasResults) : ?>
-                            <p>Aucun résultat trouvé.</p>
-                        <?php endif; ?>
+                                <?php endwhile; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <?php if (!$hasResults) : ?>
+                                <p>Aucun résultat trouvé.</p>
+                            <?php endif; ?>
+                        <?php
+                        }
+                        ?>
                     <?php endif; ?>
                 </div>
+
+
             </div>
         </div>
         <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
@@ -264,7 +280,7 @@ ob_end_flush();
                     form.submit();
                 }
                 window.goToNextQuestion = goToNextQuestion;
-                
+
             });
         </script>
 
