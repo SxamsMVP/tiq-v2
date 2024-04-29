@@ -9,10 +9,11 @@ body {
 }
 
 .header {
-    color: #000000;
+    color: WHITE;
     padding: 10px;
     display: flex;
     align-items: center;
+    background-color: #202b3f;
 }
 
 .header-title {
@@ -96,56 +97,73 @@ body {
     margin-right: 10px; /* Espace entre la photo et le texte */
 }
 
-.footer-sidebar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%; /* Couleur de fond de votre choix /
-    color: white; / Couleur du texte de votre choix /
-    padding: 20px; / Espace intérieur de votre choix */
-}
-
 .custom-border {
     border-color: blue !important; /* Utilisez !important pour vous assurer que cela prend le dessus sur les styles de Bootstrap */
 }
 
-.form-check-label {
-    font-weight: normal; /* Pour un style de texte régulier */
-    color: #333; /* Couleur de texte sombre pour une meilleure visibilité */
-}
-
-.footer {
-    background-color: #333;
-    color: white;
+.footer-basic {
     padding: 20px 0;
+    background-color: #ffffff;
+    color: white;
+    color: #000000;
 }
 
-.footer h4 {
-    color: #f8f9fa;
+.footer-basic ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
 }
 
-.footer p, .footer a {
-    color: #ccc;
-    font-size: 16px;
+.footer-basic li {
+    padding: 0 10px;
 }
 
-.footer a {
-    display: block;  /* Assure que chaque lien soit sur une nouvelle ligne */
-    margin: 5px 0;
-    color: #d1d1d1;
+.footer-basic ul a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.8;
 }
 
-.footer a:hover {
-    color: #f8f9fa;
-    text-decoration: none; /* Enlève le soulignement des liens au survol */
+.footer-basic ul a:hover {
+    opacity: 1;
 }
 
-.footer ul {
-    list-style-type: none; /* Enlève les puces des listes */
-    padding: 0; /* Enlève le padding par défaut des listes */
+.footer-basic .social {
+    text-align: center;
+    padding-bottom: 15px;
 }
 
-.footer-section {
-    margin-bottom: 20px;
+.footer-basic .social>a {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin: 0 8px;
+    color: inherit;
+    opacity: 0.75;
 }
 
+.footer-basic .social>a:hover {
+    opacity: 0.9;
+}
+
+.footer-basic .copyright {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.logout-icon {
+    color: red; /* Set the icon color to red */
+    font-size: 1.5rem;
+}
