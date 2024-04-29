@@ -253,21 +253,21 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         </div>
 
         <div class="footer-basic">
-        <footer>
-            <div class="social"><a href="https://www.instagram.com"><i class="icon ion-social-instagram"></i></a><a href="https://www.linkedin.com"><i class="icon ion-social-snapchat"></i></a><a href="https://www.twitter.com"><i class="icon ion-social-twitter"></i></a><a href="https://www.facebook.com"><i class="icon ion-social-facebook"></i></a></div>
-            <ul class="list-inline mb-3">
-                <li class="list-inline-item"><a href="index.php">Accueil</a></li>
-                <li class="list-inline-item"><a href="cours.php">Cours</a></li>
-                <li class="list-inline-item"><a href="forum.php">Forum</a></li>
-                <li class="list-inline-item"><a href="accueil_exercice.php">Exercices</a></li>
-            </ul>
-            <ul class="list-inline mt-3">
-                <li class="list-inline-item"><a>sqlchallenger@gmail.com</a></li>
-                <li class="list-inline-item"><a>05 54 05 05 05</a></li>
-                <li class="list-inline-item"><a>Université de Bordeaux</a></li>
-            </ul>
-            <p class="copyright">Copyright SQL CHALLENGER © 2024</p>
-        </footer>
-    </div>
+            <footer>
+                <div class="social"><a href="https://www.instagram.com"><i class="icon ion-social-instagram"></i></a><a href="https://www.linkedin.com"><i class="icon ion-social-snapchat"></i></a><a href="https://www.twitter.com"><i class="icon ion-social-twitter"></i></a><a href="https://www.facebook.com"><i class="icon ion-social-facebook"></i></a></div>
+                <ul class="list-inline mb-3">
+                    <li class="list-inline-item"><a href="index.php">Accueil</a></li>
+                    <li class="list-inline-item"><a href="cours.php">Cours</a></li>
+                    <li class="list-inline-item"><a href="forum.php">Forum</a></li>
+                    <li class="list-inline-item"><a href="accueil_exercice.php">Exercices</a></li>
+                </ul>
+                <ul class="list-inline mt-3">
+                    <li class="list-inline-item"><a>sqlchallenger@gmail.com</a></li>
+                    <li class="list-inline-item"><a>05 54 05 05 05</a></li>
+                    <li class="list-inline-item"><a>Université de Bordeaux</a></li>
+                </ul>
+                <p class="copyright">Copyright SQL CHALLENGER © 2024</p>
+            </footer>
+        </div>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>

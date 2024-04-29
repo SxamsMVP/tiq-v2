@@ -1,8 +1,9 @@
 body {
     font-family: 'Arial', sans-serif;
     background-size: cover; 
-    background-image: url('/img/add_question_background.png');;
-    color: #333;
+    background-color: #202b3f;
+    color: #202b3f;
+    text-align: left;
 }
 
 .container {
@@ -13,10 +14,13 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     margin-top:  40px;
     border-radius: 2rem;
+    text-align: left;
+    color: #202b3f;
 }
 
 h1 {
     color: #333;
+    text-align: center;
 }
 
 .form-group {
@@ -41,12 +45,14 @@ select {
 }
 
 .btn-submit {
-    background-color: #5cb85c;
+    background-color: red;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
 }
 
 .btn-submit:hover {

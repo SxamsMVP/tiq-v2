@@ -10,7 +10,9 @@ include('header.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQL CHALLENGER</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="style/header_menu.css">
     <link rel="stylesheet" href="style/cour.css">
 </head>
@@ -83,7 +85,7 @@ include('header.php');
             </div>
 
             <!-- Contenu principal -->
-            <div class="col-md-7 main-content">
+            <div class="col-md-8 main-content">
                 <article id="post-11" class="post-11 page type-page status-publish hentry">
                     <!-- Contenu initial -->
                     <h1 class="center-title">Apprendre le SQL</h1>
@@ -96,7 +98,7 @@ include('header.php');
 
 
             <!-- Barre latérale droite -->
-            <div class="col-md-3 right-sidebar">
+            <div class="col-md-2 right-sidebar">
                 <h3 style="color: white">Prendre des cours particuliers</h3>
                 <ul class="sidebar-list">
                     <li><a href="#">Débutants</a></li>
@@ -116,7 +118,23 @@ include('header.php');
             </div>
         </div>
     </div>
-
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="https://www.instagram.com"><i class="icon ion-social-instagram"></i></a><a href="https://www.linkedin.com"><i class="icon ion-social-snapchat"></i></a><a href="https://www.twitter.com"><i class="icon ion-social-twitter"></i></a><a href="https://www.facebook.com"><i class="icon ion-social-facebook"></i></a></div>
+            <ul class="list-inline mb-3">
+                <li class="list-inline-item"><a href="index.php">Accueil</a></li>
+                <li class="list-inline-item"><a href="cours.php">Cours</a></li>
+                <li class="list-inline-item"><a href="forum.php">Forum</a></li>
+                <li class="list-inline-item"><a href="accueil_exercice.php">Exercices</a></li>
+            </ul>
+            <ul class="list-inline mt-3">
+                <li class="list-inline-item"><a>sqlchallenger@gmail.com</a></li>
+                <li class="list-inline-item"><a>05 54 05 05 05</a></li>
+                <li class="list-inline-item"><a>Université de Bordeaux</a></li>
+            </ul>
+            <p class="copyright">Copyright SQL CHALLENGER © 2024</p>
+        </footer>
+    </div>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

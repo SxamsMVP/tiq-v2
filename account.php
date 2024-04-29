@@ -74,8 +74,7 @@ $bdd->close();
     <link rel="stylesheet" href="style/header_menu.css">
     <style>
         body {
-            background-color: #f4f4f4;
-            /* Couleur de fond légère pour un confort visuel */
+            background-color: #202b3f;
         }
 
         .container {
@@ -109,11 +108,13 @@ $bdd->close();
             /* Texte en gras pour les labels */
         }
 
+
         .footer-basic {
+            margin-top: 100px;
             padding: 20px 0;
-            background-color: #7A8ED3;
-            color: black;
-            margin-top: 50px;
+            background-color: #ffffff;
+            color: white;
+            color: #000000;
         }
 
         .footer-basic ul {

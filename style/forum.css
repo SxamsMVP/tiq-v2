@@ -41,10 +41,12 @@ body {
 }
 .btn {
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 
 .footer-basic {
+    margin-top: 20px;
     padding: 20px 0;
     background-color: #ffffff;
     color: white;

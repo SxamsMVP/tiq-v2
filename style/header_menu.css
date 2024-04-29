@@ -44,12 +44,14 @@ body {
 }
 
 .menu {
-    background-color: #ffffff;
+    border: 1px solid #202b3f; /* Ajout de la bordure solide de 2 pixels */
+    background-color: #f8f9fa;
     color: #000000;
     padding: 10px;
     display: flex;
     justify-content: space-around;
 }
+
 
 .menu a {
     text-decoration: none;
