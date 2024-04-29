@@ -59,7 +59,7 @@ include('header.php');
     <div class="container-fluid">
         <div class="row">
             <!-- Barre latérale gauche -->
-            <div class="col-md-2 sidebar">
+            <div class="col-md-3 sidebar">
                 <h3 style="color: white">Catégories</h3>
                 <ul>
                     <li>
@@ -85,7 +85,7 @@ include('header.php');
             </div>
 
             <!-- Contenu principal -->
-            <div class="col-md-8 main-content">
+            <div class="col-md-6 main-content">
                 <article id="post-11" class="post-11 page type-page status-publish hentry">
                     <!-- Contenu initial -->
                     <h1 class="center-title">Apprendre le SQL</h1>
@@ -98,13 +98,10 @@ include('header.php');
 
 
             <!-- Barre latérale droite -->
-            <div class="col-md-2 right-sidebar">
+            <div class="col-md-3 right-sidebar">
                 <h3 style="color: white">Prendre des cours particuliers</h3>
                 <ul class="sidebar-list">
-                    <li><a href="#">Débutants</a></li>
-                    <li><a href="#">Intermédiaires</a></li>
-                    <li><a href="#">Avancé</a></li>
-                    <li><a href="#">Expert</a></li>
+                    <li class="mt-3 mb-5"><a  href="mailto:sqlchallenger@gmail.com" >Contactez nous !</a></li>
                 </ul>
 
                 <h3 style="color: white"> Livres conseillés</h3>
