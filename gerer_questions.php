@@ -134,7 +134,7 @@ $bdd->close();
                         <li class="list-group-item">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <p class="mb-1 text-left text-warning">Question <?= htmlspecialchars($question['question']) ?></p>
+                                    <p class="mb-1 text-left text-warning">Question: <?= htmlspecialchars($question['question']) ?></p>
                                     <p class="mb-1 text-left text-info">Réponse <?= htmlspecialchars($question['reponse']) ?></p>
                                     <?php if (!empty($question['path_uml'])) : ?>
                                         <p><img src="<?= htmlspecialchars($question['path_uml']) ?>" alt="UML Diagram" style="max-width:100%;"></p>

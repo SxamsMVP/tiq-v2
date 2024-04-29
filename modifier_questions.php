@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST
         'where' => 'where_questions',
         'parcours' => 'parcours_questions',
         'having' => 'having_questions',
-        'groupby' => 'groupby_questions',
+        'groupeby' => 'groupeby_questions',
         'aggregation' => 'aggregation_questions',
         'join' => 'join_questions'
     ];
